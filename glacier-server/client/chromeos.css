@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --fontFamilyBase: 'Arimo', 'Roboto', 'Noto Sans', 'sans-serif' -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif !important;
+}
+
+html, body {
+  font-family: var(--fontFamilyBase) !important;
+}
+
+#taskbar {
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+}
+/* .windows-only-flex {
+  display: none;
+} */
+.chrome-only {
+  display: block;
+}
+.w11-taskbar-app {
+  padding: 0 !important;
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  cursor: default !important;
+}
+.w11-taskbar-app > img {
+  width: 90% !important;
+  height: 90% !important;
+  border-radius: 50% !important;
+}
+.w11-taskbar-app:hover > img {
+  filter: brightness(1.1);
+  position:absolute;
+  scale:1.1;
+}
+.w11-taskbar-app:hover {
+  background: transparent !important;
+}
+.w11-taskbar-app.active, .w11-taskbar-app.current {
+  background: transparent !important;
+}
+.w11-taskbar-app.active::after {
+  bottom: -2px;
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 4px;
+}

@@ -1,0 +1,16 @@
+{
+    "name": "windows",
+    "css": "",
+    "icons": {
+        "syntaxpad": "/windows/syntaxpad.png",
+        "store": "/windows/store.png",
+        "start": "/windows/start.png",
+        "settings": "/windows/settings.png",
+        "minecraft": "/windows/minecraft.png",
+        "calculator": "/windows/icons/calculator.png",
+        "camera": "/windows/icons/camera.png",
+        "edge": "/windows/icons/edge.png",
+        "explorer": "/windows/icons/explorer.png",
+        "terminal": "/windows/icons/terminal.png"
+    }
+}

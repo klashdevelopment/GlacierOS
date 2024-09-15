@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f2f6fa;
+            width: 100%;
+            height: 100%;
+        }
+        #ruffle,
+        #ruffle ruffle-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        ruffle-player,
+        ruffle-embed,
+        ruffle-object {
+            --preloader-background: #f2f6fa;
+            --logo-display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="https://www.gameflare.com/css/embed.min.css?id=02f0751c0250763a5a732fddfb3905f5">
+</head>
+
+<body class="embed-desktop-show">
+    <div id="ruffle"></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            // GameflareAsdk.loadGame(function () {
+                window.RufflePlayer = window.RufflePlayer || {};
+
+                window.RufflePlayer.config = {
+                    warnOnUnsupportedContent: false,
+                    maxExecutionDuration: 30,
+                    base: null,
+                    forceScale: false,
+                    quality: 'high'
+                };
+
+
+                var player = window.RufflePlayer.newest().createPlayer();
+
+                $('#ruffle').append(player);
+
+                player.load('/btd5.swf');
+            // });
+        });
+    </script>
+</body>
+
+</html>

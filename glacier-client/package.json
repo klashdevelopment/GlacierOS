@@ -1,0 +1,35 @@
+{
+  "name": "fluent-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fluentui/react": "8.117.0",
+    "@fluentui/react-components": "9.48.0",
+    "@monaco-editor/react": "^4.6.0",
+    "@types/dompurify": "^3.0.5",
+    "@uidotdev/usehooks": "^2.4.1",
+    "dompurify": "^3.1.6",
+    "emmet-monaco-es": "^5.4.0",
+    "framer-motion": "^11.3.31",
+    "js-interpreter": "^5.1.2",
+    "js-yaml": "^4.1.0",
+    "marked": "^13.0.3",
+    "next": "13.5.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-resizable-panels": "^2.0.22",
+    "react-rnd": "10.4.10",
+    "safe-eval": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "20.12.7",
+    "typescript": "5.4.5"
+  }
+}

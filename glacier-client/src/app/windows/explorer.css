@@ -1,0 +1,111 @@
+:root {
+    --tab-height: 14px;
+}
+.window-tabs {
+    width: 100%;
+    height: 20px;
+}
+.tab {
+    height: var(--tab-height);
+    width: 30%;
+    background: #2c2c2c;
+    margin-left: 10px;
+    padding:10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.fewp {
+    width: calc(100% - 10px);
+    height: 50px;
+    margin-top: var(--tab-height);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    gap: 10px;
+    background: #2c2c2c;
+}
+.fewp-icons {
+    display: flex;
+    gap: 12px;
+}
+.fewp-icons svg {
+    width: 20px;
+    height: 20px;
+    padding: 8px;
+}
+.fewp-icons svg:hover {
+    background: #333333;
+    border-radius: 8px;
+}
+.fewp-input {
+    width: 49%;
+}
+.fecontent {
+    width: 100%;
+    height: calc(100% - 70px);
+    background: #191919;
+    border-top: 1px solid #3a3a3a;
+    overflow-y: auto;
+    display: flex;
+}
+.fe-split-left {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-right: 2px solid #3a3a3a;
+}
+.fe-split-right {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.fiqa {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 5px 10px;
+    transition: all 0.2s ease;
+}
+.fiqa:hover {
+    background: #333333;
+}
+.fiqa > svg {
+    position: absolute;
+    right: 5px;
+}
+
+.fiwt {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 5px 10px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.fiwt:hover {
+    background: #333333;
+}
+.fiwt-left {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.fiwt-right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+}

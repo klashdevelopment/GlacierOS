@@ -44,8 +44,22 @@ export default function StartMenu({ children }: StartMenuProps) {
                     },
                 }}
             >
+                
                 <div className="sme-footer">
                     <img src="/windows/user.png" style={{width:'30px'}} alt="" className="circled" />
+                    <Button
+                        onClick={() => {
+                            const tab = window.open('about:blank', '_blank') as Window;
+                            const iframe = tab.document.createElement('iframe') as any;
+                            const stl = iframe.style;
+                            stl.border = stl.outline = 'none';
+                            stl.width = '100vw';
+                            stl.height = '100vh';
+                            stl.position = 'fixed';
+                            stl.left = stl.right = stl.top = stl.bottom = '0';
+                            iframe.src = self.location;
+                            tab.document.body.appendChild(iframe);
+                        }}>Open Cloaked</Button>
                     <Button
                         onClick={() => {
                             window.localStorage.removeItem("auth");

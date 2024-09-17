@@ -1,4 +1,4 @@
 const contsants = {
-    VERSION: '0.5.1'
+    VERSION: '0.7.0'
 };
 export default contsants;

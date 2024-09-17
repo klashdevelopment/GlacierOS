@@ -1,0 +1,60 @@
+.terminal-lines {
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    padding: 1rem;
+    overflow: hidden scroll;
+    height: calc(100% - 80px);
+    border-bottom: none;
+}
+
+.terminal {
+    height: calc(100% - 26px);
+    width: 100%;
+}
+
+.terminal-input {
+    width: 100%;
+    height: 40px;
+    padding: 1rem;
+    font-family: monospace;
+    border-top: 1px solid #333;
+}
+
+.terminal-lines p {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.terminal-input input {
+    width: calc(100% - 275px);
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    padding: 0 1rem;
+}
+
+.terminal-input input:focus-visible {
+    outline: none;
+}
+
+.terminal a:link,
+.terminal a {
+    color: rgb(210, 255, 210) !important;
+    text-decoration: none;
+}
+
+.terminal a:link:visited {
+    color: rgb(210, 255, 210);
+}
+
+.terminal a:link:hover {
+    color: rgb(159, 255, 159);
+}
+
+a:link:active {
+    color: rgb(84, 255, 84);
+}

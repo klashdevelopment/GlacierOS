@@ -1,14 +1,6 @@
 "use strict";
 
 window.addEventListener('load', async (e) => {
-  if (window.localStorage.getItem('background')) {
-    // set body.style.backgroundImage to window.localStorage.getItem('background')
-    document.body.style.backgroundImage = `url("/windows/${window.localStorage.getItem('background')}")`;
-  } else {
-    // set to background1.jpg
-    window.localStorage.setItem('background', 'wallpaper1.jpg');
-    document.body.style.backgroundImage = `url("/windows/wallpaper1.jpg")`;
-  }
 
   const onceDone = (unused) => {console.log("[INDEX.JS] page load oncedone called " + unused)};
   var errmsg = "";

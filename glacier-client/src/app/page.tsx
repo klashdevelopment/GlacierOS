@@ -15,7 +15,7 @@ import {
     Input
 } from "@fluentui/react-components";
 import { IDropdownOption, Icon } from "@fluentui/react";
-import Taskbar from "./components/Taskbar";
+import Taskbar, {TaskbarApp} from "./components/Taskbar";
 import "./windows.css";
 import {
     Dialog,
@@ -57,6 +57,18 @@ export default function Home() {
 
     const [blockUser, setBlockUser] = useState(false);
 
+    const [taskbarApps, setTaskbarApps] = useState<TaskbarApp[]>([
+        { name: "Settings", icon: `/${selectedOS}/settings.png`, window: "settings" },
+        { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.png`, window: "file-explorer" },
+        { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
+        { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.png`, window: "edge" },
+        { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
+        { name: "Calculator", icon: `/${selectedOS}/icons/calculator.png`, window: "calculator" },
+        { name: "Camera", icon: `/${selectedOS}/icons/camera.png`, window: "camera" },
+        { name: "Microsoft Store", icon: `/${selectedOS}/store.png`, window: "store" },
+        { name: "Minecraft Launcher", icon: `/${selectedOS}/minecraft.png`, window: "mclauncher" },
+    ]);
+
     useEffect(() => {
         fetch('http://ip-api.com/json/').then(
             res => res.json()
@@ -65,14 +77,6 @@ export default function Home() {
                 setBlockUser(true);
             }
         });
-
-        const params = new URLSearchParams(window.location.search);
-        if(params.has('school-admin-code')) {
-            if(params.get('school-admin-code') == 'spusd') {
-                setBlockUser(false);
-                setAuth(true);
-            }
-        }
 
         const auth = window.localStorage.getItem("auth");
         const os = window.localStorage.getItem("os");
@@ -98,6 +102,19 @@ export default function Home() {
             document.body.style.backgroundImage = `url("${window.localStorage.getItem('background')}")`;
         } else {
             window.localStorage.setItem('background', '/windows/wallpaper1.jpg');
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        if(params.has('dev-mode')) {
+            setBlockUser(false);
+            setAuth(true);
+            setTaskbarApps([
+                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
+                { name: "Quadpad", icon: `/image/quadpad.png`, window: "quadpad" },
+                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
+                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" }
+            ]);
+            document.body.style.backgroundImage = `url("/image/backgrounddev.png")`;
         }
     }, []);
 
@@ -155,17 +172,7 @@ export default function Home() {
                         <AppListHelper />
 
                         <StartMenu>
-                            <Taskbar apps={[
-                                { name: "Settings", icon: `/${selectedOS}/settings.png`, window: "settings" },
-                                { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.png`, window: "file-explorer" },
-                                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
-                                { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.png`, window: "edge" },
-                                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-                                { name: "Calculator", icon: `/${selectedOS}/icons/calculator.png`, window: "calculator" },
-                                { name: "Camera", icon: `/${selectedOS}/icons/camera.png`, window: "camera" },
-                                { name: "Microsoft Store", icon: `/${selectedOS}/store.png`, window: "store" },
-                                { name: "Minecraft Launcher", icon: `/${selectedOS}/minecraft.png`, window: "mclauncher" },
-                            ]} />
+                            <Taskbar apps={taskbarApps} />
                         </StartMenu>
                         <SettingsApp />
                         <CalculatorApp />

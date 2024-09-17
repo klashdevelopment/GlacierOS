@@ -24,6 +24,14 @@
         "category": "Social Media,Apps,Communication"
     },
     {
+        "name": "Pixeldust",
+        "unblock":false,
+        "image": "/image/pixeldust.png",
+        "description": "Pixeldust is a lightweight, fast, simple pixel art editor that runs in your browser. It features a simple interface, a color picker, and a variety of tools to help you create pixel art.",
+        "url": "https://pages.gavingogaming.com/pixeldust/",
+        "category": "Art,Apps"
+    },
+    {
         "name": "Instagram",
         "unblock":true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/300px-Instagram_logo_2022.svg.png",
@@ -117,7 +125,7 @@
         "name": "Kaido Anime",
         "url": "https://kaido.to",
         "unblock": true,
-        "category": "Apps,Anime",
+        "category": "Apps,Anime,Movies",
         "description": "An easy, free, anime viewing website!",
         "image": "/windows/kaido.png"
     },
@@ -927,5 +935,13 @@
         "description": "Microsoft Teams is a collaboration platform that combines chat, video conferencing, file storage, and app integration.",
         "url": "https://teams.microsoft.com/",
         "category": "Apps,Communication,Chat"
+    },
+    {
+        "name": "Uflix",
+        "unblock":true,
+        "image": "https://uflix.cc/style/dark-xt/favicon-uflix.svg",
+        "description": "UFlix is a streaming platform that offers a wide range of movies and TV shows for users to watch online.",
+        "url": "https://uflix.cc/",
+        "category": "Apps,Movies"
     }
 ]

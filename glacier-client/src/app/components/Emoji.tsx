@@ -1,3 +1,4 @@
+
 export default function Emoji({row, col, size='50px'}: Readonly<{row: number, col: number, size?: string}>) {
     return (
         <div className="emoji" style={{

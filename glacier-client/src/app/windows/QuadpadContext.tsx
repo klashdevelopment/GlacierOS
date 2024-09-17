@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-interface QuadpadSettings {
+export interface QuadpadSettings {
     cssImports: string[];
     jsImports: string[];
+    color: string;
+    borderWidth: number;
 
     setCssImports: (value: string[]) => void;
     setJsImports: (value: string[]) => void;
+    setColor: (value: string) => void;
+    setBorderWidth: (value: number) => void;
 }
 
 interface QuadpadContextType {
@@ -32,17 +36,25 @@ export function QuadpadProvider({ children }: { children: React.ReactNode }) {
         jsImports: [],
         setCssImports: () => {},
         setJsImports: () => {},
+        color: '#6955c6',
+        setColor: () => {},
+        borderWidth: 1,
+        setBorderWidth: () => {},
     });
 
     // Step 2: Add functions after initial state setup
     const setCssImports = (value: string[]) => setQuadpadSettings(prev => ({ ...prev, cssImports: value }));
     const setJsImports = (value: string[]) => setQuadpadSettings(prev => ({ ...prev, jsImports: value }));
+    const setColor = (value: string) => setQuadpadSettings(prev => ({ ...prev, color: value }));
+    const setBorderWidth = (value: number) => setQuadpadSettings(prev => ({ ...prev, borderWidth: value }));
 
     useEffect(() => {
         setQuadpadSettings(prev => ({
             ...prev,
             setCssImports,
             setJsImports,
+            setColor,
+            setBorderWidth,
         }));
     }, []);
 

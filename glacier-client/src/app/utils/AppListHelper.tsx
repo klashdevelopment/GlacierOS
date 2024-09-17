@@ -12,9 +12,12 @@ export function getWithCategory(category: string) {
     return apps.filter(app => app.category.split(",").includes(category));
 }
 export  function getWithName(name: string) {
-    return apps.find(app => app.name === name);
+    return apps.find(app => app.name === name) || null;
 }
-const blacklistedCategories = ["Hidden", "Minecraft", "Apps", "Games", "VMP", "VMS", "Devtools", "", " "];
+export function getAllNames() {
+    return apps.map(app => app.name);
+}
+const blacklistedCategories = ["Hidden", "Minecraft", "Apps", "Games", "VMP", "VMS", "Devtools", "Movies", "", " "];
 export function getCategories() {
     let categories: string[] = [];
     apps.forEach(app => {

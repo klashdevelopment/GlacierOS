@@ -3,11 +3,11 @@ import { Editor, Monaco } from "@monaco-editor/react";
 import Window from "../components/Window";
 import OneDarkPro from "../themes/oneDarkPro.json";
 import { useEffect, useState } from "react";
-import { QuadpadProvider, useQuadpad } from "./QuadpadContext";
+import { QuadpadProvider, useQuadpad, QuadpadSettings } from "./QuadpadContext";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { emmetCSS, emmetHTML, emmetJSX } from "emmet-monaco-es";
-import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled } from "@fluentui/react-icons";
-import { Button, Input } from "@fluentui/react-components";
+import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled, SaveFilled, DocumentSaveFilled, DocumentSyncFilled } from "@fluentui/react-icons";
+import { Button, Input, Tooltip } from "@fluentui/react-components";
 import {
     Accordion,
     AccordionHeader,
@@ -15,9 +15,9 @@ import {
     AccordionPanel,
 } from "@fluentui/react-components";
 
-const border = "1px solid #6955c6";
 function HTML() {
-    const { css, setCss, js, setJs, html, setHtml } = useQuadpad();
+    const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
+
     const handleEditorDidMount = (monaco: Monaco) => {
         emmetHTML(monaco, ['html', 'php']);
         monaco.editor.defineTheme('OneDarkPro', {
@@ -27,7 +27,7 @@ function HTML() {
         });
     };
     return (
-        <div style={{ borderRight: border, borderBottom: border, width: '100%', height: '100%' }}>
+        <div style={{ borderRight: `1px solid ${settings.color}`, borderBottom: `1px solid ${settings.color}`, width: '100%', height: '100%' }}>
             <Editor options={{
                 fontSize: 14,
                 fontLigatures: true,
@@ -43,7 +43,7 @@ function HTML() {
     )
 }
 function CSS() {
-    const { css, setCss, js, setJs, html, setHtml } = useQuadpad();
+    const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
     const handleEditorDidMount = (monaco: Monaco) => {
         emmetCSS(monaco, ['css', 'sass', 'scss', 'less']);
         monaco.editor.defineTheme('OneDarkPro', {
@@ -53,7 +53,7 @@ function CSS() {
         });
     };
     return (
-        <div style={{ borderBottom: border, width: '100%', height: '100%' }}>
+        <div style={{ borderBottom: `1px solid ${settings.color}`, width: '100%', height: '100%' }}>
             <Editor options={{
                 fontSize: 14,
                 fontLigatures: true,
@@ -69,7 +69,7 @@ function CSS() {
     )
 }
 function JS() {
-    const { css, setCss, js, setJs, html, setHtml } = useQuadpad();
+    const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
     const handleEditorDidMount = (monaco: Monaco) => {
         emmetJSX(monaco, ['javascript', 'typescript']);
         monaco.editor.defineTheme('OneDarkPro', {
@@ -79,7 +79,7 @@ function JS() {
         });
     };
     return (
-        <div style={{ borderRight: border, width: '100%', height: '100%' }}>
+        <div style={{ borderRight: `1px solid ${settings.color}`, width: '100%', height: '100%' }}>
             <Editor options={{
                 fontSize: 14,
                 fontLigatures: true,
@@ -122,7 +122,7 @@ ${html}
             }).join('\n')}
 </body>
 </html>
-                `} style={{ width: '100%', height: '100%', border: 'none' }} />
+                `} id="quadpad-content-window" style={{ width: '100%', height: '100%', border: 'none' }} />
         </div>
     )
 }
@@ -137,16 +137,66 @@ type Settings = "none" | "html" | "js" | "css";
 
 export default function Quadpad() {
     const [settingsOpen, setSettingsOpen] = useState<Settings>("none");
-    const { settings, setQuadpadSettings } = useQuadpad();
+    const { settings, setQuadpadSettings, setCss, setJs, setHtml, css, js, html } = useQuadpad();
+
+    function downloadQuadpadHTML() {
+        const iframe = document.getElementById('quadpad-content-window') as HTMLIFrameElement;
+        if (iframe && iframe.srcdoc) {
+            const htmlContent = iframe.srcdoc;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'quadpad-export.html';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        } else {
+            alert('The iframe either does not exist or has no srcdoc content.');
+        }
+    }
+
+    function downloadQPE() {
+        // Create an object to hold all the data
+        const data = {
+            js: js,
+            css: css,
+            html: html,
+            settings: settings
+        };
+
+        // Convert the object to a JSON string
+        const jsonString = JSON.stringify(data, null, 2);
+
+        // Create a Blob object representing the data
+        const blob = new Blob([jsonString], { type: 'application/json' });
+
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'project.qpe';
+
+        // Programmatically click the link to trigger the download
+        link.click();
+
+        // Cleanup the object URL after download
+        URL.revokeObjectURL(link.href);
+    }
+
     return (
-        <Window title="Quadpad" id="quadpad" defaultSize={{ width: 750, height: 650 }} taskbarIconID="quadpad" color={'onedarkbg'} seperateBorder={border}>
+        <Window title="Quadpad" id="quadpad" defaultSize={{ width: 750, height: 650 }} taskbarIconID="quadpad" color={'onedarkbg'} seperateBorder={`1px solid ${settings.color}`}>
             <div style={{ width: '100%', height: 'calc(100% - 80px)', position: 'absolute', top: '39px', left: '0px', backdropFilter: 'blur(10px)', zIndex: 99, display: `${settingsOpen != "none" ? 'flex' : "none"}`, justifyContent: 'center', alignItems: 'center' }}>
                 <div style={{ aspectRatio: 1, height: '80%', background: '#222222cc', borderRadius: '20px', filter: "drop-shadow(0px 0px 10px #000000)", textAlign: 'center' }}>
                     <Button onClick={() => { setSettingsOpen('none') }} style={{ position: 'absolute', top: '10px', right: '10px', minWidth: '30px' }}>X</Button>
                     <h1>{friendlyNames[settingsOpen]} Settings</h1>
                     {settingsOpen == "html" && <>
-                        We couldn't think of any settings for HTML.<br />
-                        If you think of any, tell us in the discord!
+                        No HTML settings yet! Maybe snippets or something. Emmet is already enabled.
+                        <br /><br />
+                        <input type="color" defaultValue={settings.color} onChange={(e)=>{
+                            setQuadpadSettings({...settings, color:e.target.value});
+                        }} /> Seperator Color
+                        <br />
+                        <input type="number" style={{width:'30px'}} maxLength={30} minLength={0} defaultValue={settings.borderWidth} onChange={(e)=>{
+                            setQuadpadSettings({...settings, borderWidth:(Math.max(Math.min(parseInt(e.target.value), 30), 0))});
+                        }} /> Seperator Width
                     </>}
                     {settingsOpen == "js" && <>
                         {settings.jsImports.map((imp, i) => {
@@ -243,29 +293,59 @@ export default function Quadpad() {
                         <Panel minSize={20} defaultSize={50}>
                             <HTML />
                         </Panel>
-                        <PanelResizeHandle style={{ background: '#6955c6', width: '1px' }} />
+                        <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
                         <Panel minSize={20} defaultSize={50}>
                             <CSS />
                         </Panel>
                     </PanelGroup>
                 </Panel>
-                <PanelResizeHandle style={{ background: '#6955c6', height: '1px' }} />
+                <PanelResizeHandle style={{ background: settings.color, height: `${settings.borderWidth}px` }} />
                 <Panel minSize={20} defaultSize={50}>
                     <PanelGroup direction="horizontal" style={{ width: '100%' }}>
                         <Panel minSize={20} defaultSize={50}>
                             <JS />
                         </Panel>
-                        <PanelResizeHandle style={{ background: '#6955c6', width: '1px' }} />
+                        <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
                         <Panel minSize={20} defaultSize={50}>
                             <Output />
                         </Panel>
                     </PanelGroup>
                 </Panel>
             </PanelGroup>
-            <div style={{ width: '100%', height: '30px', padding: '5px', borderTop: border, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+            <div style={{ width: '100%', height: '30px', borderTop: `1px solid ${settings.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                 <Button icon={<DocumentFilled />} onClick={() => { setSettingsOpen('html') }} />
                 <Button icon={<DocumentJavascriptFilled />} onClick={() => { setSettingsOpen('js') }} />
                 <Button icon={<DocumentCssFilled />} onClick={() => { setSettingsOpen('css') }} />
+                <div style={{ width: '28px' }}></div>
+                <input type="file" id="uploadQPE" accept=".qpe,.json" style={{ display: 'none' }} />
+
+                <Tooltip content="Save as .qpe" relationship="label">
+                    <Button onClick={() => { downloadQPE() }} icon={<SaveFilled/>}></Button>
+                </Tooltip>
+                <Tooltip content="Load .qpe" relationship="label">
+                    <Button onClick={() => {
+                        const upload = document.getElementById("uploadQPE") as HTMLInputElement;
+                        upload.click();
+                        upload.onchange = () => {
+                            if (!upload.files) return;
+                            const file = upload.files[0];
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                const data = JSON.parse(reader.result as string);
+                                if (!data || !data.css || !data.js || !data.html || !data.settings) return alert("Invalid QPE file.");
+                                setCss(data.css);
+                                setJs(data.js);
+                                setHtml(data.html);
+                                setQuadpadSettings(data.settings);
+                            }
+                            reader.readAsText(file);
+                        }
+                    }} icon={<DocumentSyncFilled />}></Button>
+                </Tooltip>
+                <div style={{ width: '24px' }}></div>
+                <Tooltip content="Export as .html" relationship="label">
+                    <Button onClick={() => { downloadQuadpadHTML() }} icon={<DocumentSaveFilled/>}></Button>
+                </Tooltip>
             </div>
         </Window>
     )

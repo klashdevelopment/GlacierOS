@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import OneDarkPro from "../themes/oneDarkPro.json";
 import { Button, Dropdown, Option, Persona, Select, Tooltip } from "@fluentui/react-components";
 import { useSyntaxpad } from "./SyntaxpadContext";
-import { PlayFilled, ArrowClockwiseFilled, CodeFilled, InfoFilled, QuestionFilled } from "@fluentui/react-icons";
+import { PlayFilled, ArrowClockwiseFilled, ArrowDownloadFilled, CodeFilled, InfoFilled, QuestionFilled } from "@fluentui/react-icons";
 import { toggleStoreApp } from "./store/StoreApps";
 import { getWithName } from "../utils/AppListHelper";
 import vm from 'vm';
@@ -17,93 +17,99 @@ import convertJSYaml from "js-yaml";
 import Interpreter from 'js-interpreter';
 
 const languages = [
-    { name: "ABAP", value: "abap", runnable: false },
-    { name: "Apex", value: "apex", runnable: false },
-    { name: "Azure CLI", value: "azcli", runnable: false },
-    { name: "Batch", value: "bat", runnable: false },
-    { name: "Bicep", value: "bicep", runnable: false },
-    { name: "Cameligo", value: "cameligo", runnable: false },
-    { name: "Clojure", value: "clojure", runnable: false },
-    { name: "CoffeeScript", value: "coffee", runnable: false },
-    { name: "C++", value: "cpp", runnable: false },
-    { name: "C#", value: "csharp", runnable: false },
-    { name: "CSP", value: "csp", runnable: false },
-    { name: "CSS", value: "css", runnable: true },
-    { name: "Cypher", value: "cypher", runnable: false },
-    { name: "Dart", value: "dart", runnable: false },
-    { name: "Dockerfile", value: "dockerfile", runnable: false },
-    { name: "ECL", value: "ecl", runnable: false },
-    { name: "Elixir", value: "elixir", runnable: false },
-    { name: "Flow9", value: "flow9", runnable: false },
-    { name: "FreeMarker 2", value: "freemarker2", runnable: false },
-    { name: "F#", value: "fsharp", runnable: false },
-    { name: "Go", value: "go", runnable: false },
-    { name: "GraphQL", value: "graphql", runnable: false },
-    { name: "Handlebars", value: "handlebars", runnable: false },
-    { name: "HCL", value: "hcl", runnable: false },
-    { name: "HTML", value: "html", runnable: true },
-    { name: "INI", value: "ini", runnable: false },
-    { name: "Java", value: "java", runnable: false },
-    { name: "JavaScript", value: "javascript", runnable: true },
-    { name: "JSON", value: "json", runnable: true },
-    { name: "Julia", value: "julia", runnable: false },
-    { name: "Kotlin", value: "kotlin", runnable: false },
-    { name: "LESS", value: "less", runnable: false },
-    { name: "Lexon", value: "lexon", runnable: false },
-    { name: "Liquid", value: "liquid", runnable: false },
-    { name: "Lua", value: "lua", runnable: false },
-    { name: "M3", value: "m3", runnable: false },
-    { name: "Markdown", value: "markdown", runnable: true },
-    { name: "MDX", value: "mdx", runnable: false },
-    { name: "MIPS", value: "mips", runnable: false },
-    { name: "MSDAX", value: "msdax", runnable: false },
-    { name: "MySQL", value: "mysql", runnable: false },
-    { name: "Objective-C", value: "objective-c", runnable: false },
-    { name: "Pascal", value: "pascal", runnable: false },
-    { name: "Pascaligo", value: "pascaligo", runnable: false },
-    { name: "Perl", value: "perl", runnable: false },
-    { name: "PgSQL", value: "pgsql", runnable: false },
-    { name: "PHP", value: "php", runnable: false },
-    { name: "PLA", value: "pla", runnable: false },
-    { name: "PostiATS", value: "postiats", runnable: false },
-    { name: "PowerQuery", value: "powerquery", runnable: false },
-    { name: "PowerShell", value: "powershell", runnable: false },
-    { name: "Protobuf", value: "protobuf", runnable: false },
-    { name: "Pug", value: "pug", runnable: false },
-    { name: "Python", value: "python", runnable: false },
-    { name: "Q#", value: "qsharp", runnable: false },
-    { name: "R", value: "r", runnable: false },
-    { name: "Razor", value: "razor", runnable: false },
-    { name: "Redis", value: "redis", runnable: false },
-    { name: "Redshift", value: "redshift", runnable: false },
-    { name: "reStructuredText", value: "restructuredtext", runnable: false },
-    { name: "Ruby", value: "ruby", runnable: false },
-    { name: "Rust", value: "rust", runnable: false },
-    { name: "Small Basic", value: "sb", runnable: false },
-    { name: "Scala", value: "scala", runnable: false },
-    { name: "Scheme", value: "scheme", runnable: false },
-    { name: "SCSS", value: "scss", runnable: false },
-    { name: "Shell", value: "shell", runnable: false },
-    { name: "Solidity", value: "solidity", runnable: false },
-    { name: "Sophia", value: "sophia", runnable: false },
-    { name: "SPARQL", value: "sparql", runnable: false },
-    { name: "SQL", value: "sql", runnable: false },
-    { name: "Structured Text", value: "st", runnable: false },
-    { name: "Swift", value: "swift", runnable: false },
-    { name: "SystemVerilog", value: "systemverilog", runnable: false },
-    { name: "Tcl", value: "tcl", runnable: false },
-    { name: "Test", value: "test", runnable: false },
-    { name: "Twig", value: "twig", runnable: false },
-    { name: "TypeScript", value: "typescript", runnable: false },
-    { name: "TypeSpec", value: "typespec", runnable: false },
-    { name: "VB", value: "vb", runnable: false },
-    { name: "WGSL", value: "wgsl", runnable: false },
-    { name: "XML", value: "xml", runnable: true },
-    { name: "YAML", value: "yaml", runnable: true }
+    { name: "Text", value: "text", runnable: false, extension: "txt" },
+    { name: "Glaciersh", value: "gsh", runnable: false, extension: "gsh" },
+    { name: "ABAP", value: "abap", runnable: false, extension: "abap" },
+    { name: "Apex", value: "apex", runnable: false, extension: "cls" },
+    { name: "Azure CLI", value: "azcli", runnable: false, extension: "azcli" },
+    { name: "Batch", value: "bat", runnable: false, extension: "bat" },
+    { name: "Bicep", value: "bicep", runnable: false, extension: "bicep" },
+    { name: "Cameligo", value: "cameligo", runnable: false, extension: "mligo" },
+    { name: "Clojure", value: "clojure", runnable: false, extension: "clj" },
+    { name: "CoffeeScript", value: "coffee", runnable: false, extension: "coffee" },
+    { name: "C++", value: "cpp", runnable: false, extension: "cpp" },
+    { name: "C#", value: "csharp", runnable: false, extension: "cs" },
+    { name: "CSP", value: "csp", runnable: false, extension: "csp" },
+    { name: "CSS", value: "css", runnable: true, extension: "css" },
+    { name: "Cypher", value: "cypher", runnable: false, extension: "cyp" },
+    { name: "Dart", value: "dart", runnable: false, extension: "dart" },
+    { name: "Dockerfile", value: "dockerfile", runnable: false, extension: "dockerfile" },
+    { name: "ECL", value: "ecl", runnable: false, extension: "ecl" },
+    { name: "Elixir", value: "elixir", runnable: false, extension: "ex" },
+    { name: "Flow9", value: "flow9", runnable: false, extension: "flow" },
+    { name: "FreeMarker 2", value: "freemarker2", runnable: false, extension: "ftl" },
+    { name: "F#", value: "fsharp", runnable: false, extension: "fs" },
+    { name: "Go", value: "go", runnable: false, extension: "go" },
+    { name: "GraphQL", value: "graphql", runnable: false, extension: "graphql" },
+    { name: "Handlebars", value: "handlebars", runnable: false, extension: "hbs" },
+    { name: "HCL", value: "hcl", runnable: false, extension: "hcl" },
+    { name: "HTML", value: "html", runnable: true, extension: "html" },
+    { name: "INI", value: "ini", runnable: false, extension: "ini" },
+    { name: "Java", value: "java", runnable: false, extension: "java" },
+    { name: "JavaScript", value: "javascript", runnable: true, extension: "js" },
+    { name: "JSON", value: "json", runnable: true, extension: "json" },
+    { name: "Julia", value: "julia", runnable: false, extension: "jl" },
+    { name: "Kotlin", value: "kotlin", runnable: false, extension: "kt" },
+    { name: "LESS", value: "less", runnable: false, extension: "less" },
+    { name: "Lexon", value: "lexon", runnable: false, extension: "lex" },
+    { name: "Liquid", value: "liquid", runnable: false, extension: "liquid" },
+    { name: "Lua", value: "lua", runnable: false, extension: "lua" },
+    { name: "M3", value: "m3", runnable: false, extension: "m3" },
+    { name: "Markdown", value: "markdown", runnable: true, extension: "md" },
+    { name: "MDX", value: "mdx", runnable: false, extension: "mdx" },
+    { name: "MIPS", value: "mips", runnable: false, extension: "mips" },
+    { name: "MSDAX", value: "msdax", runnable: false, extension: "dax" },
+    { name: "MySQL", value: "mysql", runnable: false, extension: "sql" },
+    { name: "Objective-C", value: "objective-c", runnable: false, extension: "m" },
+    { name: "Pascal", value: "pascal", runnable: false, extension: "pas" },
+    { name: "Pascaligo", value: "pascaligo", runnable: false, extension: "ligo" },
+    { name: "Perl", value: "perl", runnable: false, extension: "pl" },
+    { name: "PgSQL", value: "pgsql", runnable: false, extension: "pgsql" },
+    { name: "PHP", value: "php", runnable: false, extension: "php" },
+    { name: "PLA", value: "pla", runnable: false, extension: "pla" },
+    { name: "PostiATS", value: "postiats", runnable: false, extension: "dats" },
+    { name: "PowerQuery", value: "powerquery", runnable: false, extension: "pq" },
+    { name: "PowerShell", value: "powershell", runnable: false, extension: "ps1" },
+    { name: "Protobuf", value: "protobuf", runnable: false, extension: "proto" },
+    { name: "Pug", value: "pug", runnable: false, extension: "pug" },
+    { name: "Python", value: "python", runnable: false, extension: "py" },
+    { name: "Q#", value: "qsharp", runnable: false, extension: "qs" },
+    { name: "R", value: "r", runnable: false, extension: "r" },
+    { name: "Razor", value: "razor", runnable: false, extension: "cshtml" },
+    { name: "Redis", value: "redis", runnable: false, extension: "rdb" },
+    { name: "Redshift", value: "redshift", runnable: false, extension: "rsql" },
+    { name: "reStructuredText", value: "restructuredtext", runnable: false, extension: "rst" },
+    { name: "Ruby", value: "ruby", runnable: false, extension: "rb" },
+    { name: "Rust", value: "rust", runnable: false, extension: "rs" },
+    { name: "Small Basic", value: "sb", runnable: false, extension: "sb" },
+    { name: "Scala", value: "scala", runnable: false, extension: "scala" },
+    { name: "Scheme", value: "scheme", runnable: false, extension: "scm" },
+    { name: "SCSS", value: "scss", runnable: false, extension: "scss" },
+    { name: "Shell", value: "shell", runnable: false, extension: "sh" },
+    { name: "Solidity", value: "solidity", runnable: false, extension: "sol" },
+    { name: "Sophia", value: "sophia", runnable: false, extension: "aes" },
+    { name: "SPARQL", value: "sparql", runnable: false, extension: "rq" },
+    { name: "SQL", value: "sql", runnable: false, extension: "sql" },
+    { name: "Structured Text", value: "st", runnable: false, extension: "st" },
+    { name: "Swift", value: "swift", runnable: false, extension: "swift" },
+    { name: "SystemVerilog", value: "systemverilog", runnable: false, extension: "sv" },
+    { name: "Tcl", value: "tcl", runnable: false, extension: "tcl" },
+    { name: "Test", value: "test", runnable: false, extension: "test" },
+    { name: "Twig", value: "twig", runnable: false, extension: "twig" },
+    { name: "TypeScript", value: "typescript", runnable: false, extension: "ts" },
+    { name: "TypeSpec", value: "typespec", runnable: false, extension: "tsp" },
+    { name: "VB", value: "vb", runnable: false, extension: "vb" },
+    { name: "WGSL", value: "wgsl", runnable: false, extension: "wgsl" },
+    { name: "XML", value: "xml", runnable: true, extension: "xml" },
+    { name: "YAML", value: "yaml", runnable: true, extension: "yaml" }
 ];
 
+function getLangFromValue(value: string): {name: string, value: string, runnable: boolean, extension: string} {
+    return languages.find((lang) => lang.value == value)||languages[0];
+}
+
 export default function Syntaxpad() {
-    const { setValue, lang, setLang } = useSyntaxpad();
+    const { setValue, value, lang, setLang } = useSyntaxpad();
 
     const handleEditorDidMount = async (monaco: Monaco) => {
         monaco.editor.defineTheme('OneDarkPro', {
@@ -144,6 +150,18 @@ export default function Syntaxpad() {
                     <Button appearance="outline" icon={<CodeFilled />} onClick={() => {
                         toggleStoreApp("bootpad", getWithName("Bootpad"));
                     }}>Bootpad</Button>
+                </Tooltip>
+                <Tooltip content={"Download Text"} relationship="label">
+                    <Button appearance="outline" icon={<ArrowDownloadFilled />} onClick={() => {
+                        const element = document.createElement("a");
+                        const file = new Blob([value || ""], { type: 'text/plain' });
+                        element.href = URL.createObjectURL(file);
+                        element.download = "syntaxpad."+getLangFromValue(lang||"text").extension;
+                        document.body.appendChild(element);
+                        element.click();
+                        element.remove();
+                        URL.revokeObjectURL(element.href);
+                    }}>Save</Button>
                 </Tooltip>
             </div>
             <Editor options={{

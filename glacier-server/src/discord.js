@@ -68,6 +68,8 @@ export default function runDiscordBot(callback) {
                         console.error('Error fetching threads:', error);
                         res.status(500).json({ error: 'Failed to fetch threads' });
                     });
+            }, ()=>{
+                client.channels.cache.get('1287437652781437072').send('Glacier is offline - it may have restarted due to updates or inactivity.');
             })
 
             console.log('(discord helper) Successfully reloaded application (/) commands.');
@@ -78,6 +80,7 @@ export default function runDiscordBot(callback) {
 
     client.on(Events.ClientReady, () => {
         console.log(`(discord helper) Logged in as ${client.user.tag}!`);
+        client.channels.cache.get('1287437652781437072').send('Glacier is online.');
     });
 
     client.on(Events.InteractionCreate, async interaction => {

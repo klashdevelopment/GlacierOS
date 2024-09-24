@@ -10,6 +10,28 @@ import { ArrowUploadRegular } from "@fluentui/react-icons";
 import {Button} from "@fluentui/react-components";
 
 declare const window: any;
+function escapeMarkup (dangerousInput: string) {
+    const dangerousString = String(dangerousInput);
+    const matchHtmlRegExp = /["'&<>]/;
+    const match = matchHtmlRegExp.exec(dangerousString);
+    if (!match) {
+      return dangerousInput;
+    }
+  
+    const encodedSymbolMap: any = {
+      '"': '&quot;',
+      '\'': '&#39;',
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;'
+    };
+    const dangerousCharacters = dangerousString.split('');
+    const safeCharacters = dangerousCharacters.map(function (character) {
+      return encodedSymbolMap[character] || character;
+    });
+    const safeString = safeCharacters.join('');
+    return safeString;
+  }
 
 export default function TerminalApp() {
     const [lines, updLines] = useState<string[]>(["Glacier Terminal v1.0.0"]);
@@ -101,10 +123,12 @@ export default function TerminalApp() {
                 fetch(url)
                     .then(res => res.text())
                     .then(text => {
-                        newLines = [...newLines, text];
+                        setLines([...lines, ...newLines, escapeMarkup(text)]);
+                        return;
                     })
                     .catch(err => {
-                        newLines = [...newLines, `Error fetching data: ${err}`];
+                        setLines([...lines, ...newLines, escapeMarkup(`Error fetching data: ${err}`)]);
+                        return;
                     });
                 break;
             case "clear":
@@ -180,6 +204,7 @@ export default function TerminalApp() {
                         autoCorrect={"off"}
                         autoCapitalize={"off"}
                         autoComplete={"off"}
+                        spellCheck={"false"}
                         onKeyDown={async (event) => {
                             const input = document.getElementById("input") as HTMLInputElement;
                             if (event.key === "Enter") {

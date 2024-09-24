@@ -258,6 +258,14 @@
         "category": "Games,Minecraft,Mods"
     },
     {
+        "name": "Minecraft (WebMC)",
+        "unblock":false,
+        "image": "https://webmc.colbster937.dev/favicon.png",
+        "description": "A web launcher for minecraft!",
+        "url": "https://webmc.colbster937.dev",
+        "category": "Games,Minecraft,Mods"
+    },
+    {
         "name": "Forge Mod List",
         "unblock":false,
         "image": "/minecraft/forge/modrinth.ico",

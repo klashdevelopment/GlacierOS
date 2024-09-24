@@ -30,10 +30,12 @@ app.use("/bare", cors({ origin: "*" }));
 
 var forumHandler = (req, res) => {
   res.send("Forum handler not yet initalized - please wait a moment.");
-}
+};
+var onDie = () => {};
 if(!process.env.DISCORD_TOKEN || !process.env.DISCORD_CLIENT_ID) {
-  runDiscordBot((handler) => {
+  runDiscordBot((handler, die) => {
     forumHandler = handler;
+    onDie = die;
   });
 
   // let connection = new BareMuxConnection("/baremux/worker.js")
@@ -98,6 +100,7 @@ process.on("SIGTERM", shutdown);
 
 function shutdown() {
   console.log("SIGTERM signal received: closing HTTP server");
+  onDie();
   server.close();
   bareServer.close();
   process.exit(0);

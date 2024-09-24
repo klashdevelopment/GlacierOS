@@ -1,5 +1,5 @@
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef, ReactNode, useState } from "react";
 import { StartMenuAnimationContext } from "./useStartMenuAnimations";
 import { Button } from "@fluentui/react-components";
 
@@ -15,6 +15,7 @@ export default function StartMenu({ children }: StartMenuProps) {
             x: 0,
             y: 0,
         });
+        scope.current.style.display = "block";
     }
 
     function animateOut() {
@@ -22,6 +23,9 @@ export default function StartMenu({ children }: StartMenuProps) {
             x: 0,
             y: 800,
         });
+        setTimeout(() => {
+            scope.current.style.display = "none";
+        }, 400);
     }
 
     return (
@@ -41,7 +45,10 @@ export default function StartMenu({ children }: StartMenuProps) {
                     y: {
                         duration: 1,
                         bounce: 0,
-                    },
+                    }
+                }}
+                style={{
+                    display: "none",
                 }}
             >
                 

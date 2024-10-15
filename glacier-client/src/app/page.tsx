@@ -46,6 +46,9 @@ import { SyntaxpadProvider } from "./windows/SyntaxpadContext";
 import Quadpad from "./windows/Quadpad";
 import { QuadpadProvider } from "./windows/QuadpadContext";
 import StartMenu from "./components/StartMenu";
+import DuallerApp from "./windows/Dualler";
+import LunarClientApp from "./windows/LunarClient";
+import contsants from "./Constants";
 
 export default function Home() {
     const [theme, setTheme] = useState(webDarkTheme);
@@ -56,28 +59,31 @@ export default function Home() {
     const [pwInput, setPwInput] = useState("");
 
     const [blockUser, setBlockUser] = useState(false);
+    const [showFake, setShowFake] = useState(false);
 
-    const [taskbarApps, setTaskbarApps] = useState<TaskbarApp[]>([
-        { name: "Settings", icon: `/${selectedOS}/settings.png`, window: "settings" },
-        { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.png`, window: "file-explorer" },
-        { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
-        { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.png`, window: "edge" },
-        { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-        { name: "Calculator", icon: `/${selectedOS}/icons/calculator.png`, window: "calculator" },
-        { name: "Camera", icon: `/${selectedOS}/icons/camera.png`, window: "camera" },
-        { name: "Microsoft Store", icon: `/${selectedOS}/store.png`, window: "store" },
-        { name: "Minecraft Launcher", icon: `/${selectedOS}/minecraft.png`, window: "mclauncher" },
-    ]);
+    const [taskbarApps, setTaskbarApps] = useState<TaskbarApp[]>([]);
+
+    function setTaskbarDefaults(os: string) {
+        setTaskbarApps([
+            { name: "Settings", icon: `/${os}/settings.png`, window: "settings" },
+            { name: "File Explorer", icon: `/${os}/icons/explorer.png`, window: "file-explorer" },
+            { name: "Terminal", icon: `/${os}/icons/terminal.png`, window: "terminal" },
+            { name: "Microsoft Edge", icon: `/${os}/icons/edge.png`, window: "edge" },
+            { name: "Dualler", icon: `/windows/dueller.png`, window: "dualler" },
+            { name: "Syntaxpad", icon: `/${os}/syntaxpad.png`, window: "syntaxpad" },
+            { name: "Calculator", icon: `/${os}/icons/calculator.png`, window: "calculator" },
+            { name: "Camera", icon: `/${os}/icons/camera.png`, window: "camera" },
+            { name: "Microsoft Store", icon: `/${os}/store.png`, window: "store" },
+            { name: "Minecraft Launcher", icon: `/${os}/minecraft.png`, window: "mclauncher" },
+            { name: "Lunar Client", icon: contsants.LUNAR.ICON, window: "lunar" },
+        ]);
+    }
 
     useEffect(() => {
-        fetch('http://ip-api.com/json/').then(
-            res => res.json()
-        ).then(data => {
-            if(data.org == "South Pasadena Unified School") {
-                setBlockUser(true);
-            }
-        });
-
+        const useFake = window.localStorage.getItem("fake-mode");
+        if (useFake) {
+            setShowFake(useFake === 'true');
+        }
         const auth = window.localStorage.getItem("auth");
         const os = window.localStorage.getItem("os");
         if (auth/* || process.env.NODE_ENV === "development"*/) {
@@ -92,10 +98,12 @@ export default function Home() {
         }
         if (os) {
             setSelectedOS(os);
+            setTaskbarDefaults(os);
             if (os === "macos") {
                 theme.fontFamilyBase = "'SF Pro', 'SF Compact', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif";
             }
         } else {
+            setTaskbarDefaults("windows");
             window.localStorage.setItem("os", "windows");
         }
         if (window.localStorage.getItem('background')) {
@@ -145,11 +153,11 @@ export default function Home() {
                         </div>
                     </div>
                 </div>)}
-                {(!blockUser && !auth) && (
+                {(!blockUser && !auth && !showFake) && (
                     <div className="not-logged-in">
                         <img src={`/windows/user.png`} style={{ width: '175px', borderRadius: '50%', boxShadow: 'rgba(0,0,0,0.5) 0 0 7px 0px' }} alt="" />
                         <b style={{ fontSize: '22px', margin: '20px 0px' }}>Glacier User</b>
-                        {firstTime && <p>This is your first time on Glacier. Your password can later be changed in settings.</p>}
+                        {firstTime && <p>Your password can later be changed in settings.</p>}
                         <Input onChange={(e, d) => {
                             setPwInput(d.value);
                             if (!firstTime && d.value === password) {
@@ -168,10 +176,33 @@ export default function Home() {
                     </div>
                 )}
                 <main>
-                    <SyntaxpadProvider>
-                        <AppListHelper />
+                    <AppListHelper />
+                    <StoreApps />
 
-                        <StartMenu>
+                    {showFake && (
+                        <div style={{width:'100vw',height:'100vh',background:'white',zIndex:'999'}}>
+                            <div style={{width:'100%',height:'60px',borderBottom:'1px solid #00000015',display:'flex',alignItems:'center'}}>
+                                <svg style={{marginLeft:'25px'}} width="24" height="24" viewBox="0 0 24 24" fill="#00000099" focusable="false" className=" NMm5M"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                                <img style={{marginLeft:'25px'}} width="26" src="https://www.gstatic.com/classroom/logo_square_rounded.svg"></img>
+                                <span style={{marginLeft:'10px',color:'#000000cc',fontSize:'20px'}}>Classroom</span>
+                            </div>
+                            <div style={{width:'300px',height:'100%',borderRight:'1px solid #00000015',display:'flex',paddingTop:'10px'}}>
+                                <div style={{width:'90%',display:'flex',paddingLeft:'8px',height:'50px',color:'#0009',alignItems:'center',background:'#E8F0FE',borderTopRightRadius:'1000vh',borderBottomRightRadius:'1000vh',gap:'10px'}}>
+                                    <img height="20" src="data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2021%2025%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%230009%22%3E%3Cpath%20d%3D%22M1%2021h22L12%202zm12-3h-2v-2h2zm0-4h-2v-4h2z%22%2F%3E%3C%2Fsvg%3E" width="20" alt="" />
+                                    Loading
+                                </div>
+                            </div>
+                            <div style={{width:'calc(100% - 300px)',height:'calc(100% - 60px)',position:'absolute',right:'0',top:'60px',color:'black',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'10px'}}>
+                                <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20width%3D%22200%22%20height%3D%22200%22%20style%3D%22shape-rendering%3A%20auto%3B%20display%3A%20block%3B%20background%3A%20rgb(255%2C%20255%2C%20255)%3B%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cg%3E%3Ccircle%20stroke-dasharray%3D%22164.93361431346415%2056.97787143782138%22%20r%3D%2235%22%20stroke-width%3D%225%22%20stroke%3D%22%23d1d1d1%22%20fill%3D%22none%22%20cy%3D%2250%22%20cx%3D%2250%22%3E%3CanimateTransform%20keyTimes%3D%220%3B1%22%20values%3D%220%2050%2050%3B360%2050%2050%22%20dur%3D%221s%22%20repeatCount%3D%22indefinite%22%20type%3D%22rotate%22%20attributeName%3D%22transform%22%3E%3C%2FanimateTransform%3E%3C%2Fcircle%3E%3Cg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" width="60" alt="" />
+                                <b style={{color:'#0009'}}>Loading...</b>
+                                <p style={{position:'absolute',bottom:'3px'}}>Having issues? Try: <span style={{color:'#369',cursor:'pointer'}} onClick={()=>{setShowFake(false)}}>opening glacier</span></p>
+                            </div>
+                        </div>
+                    )}
+                    {!showFake && <SyntaxpadProvider>
+                        <StartMenu updTaskbarWindows={()=>{
+                            setTaskbarDefaults(selectedOS);
+                        }}>
                             <Taskbar apps={taskbarApps} />
                         </StartMenu>
                         <SettingsApp />
@@ -181,15 +212,16 @@ export default function Home() {
                         <EdgeApp />
                         <CameraApp />
                         <StoreApp />
-                        <StoreApps />
+                        <LunarClientApp />
                         <CloudGaming />
                         <MinecraftLauncherApp />
                         <Syntaxpad />
                         <Bootpad />
+                        <DuallerApp />
                         <QuadpadProvider>
                             <Quadpad />
                         </QuadpadProvider>
-                    </SyntaxpadProvider>
+                    </SyntaxpadProvider>}
                 </main>
             </FluentProvider>
         </>

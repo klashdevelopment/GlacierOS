@@ -17,6 +17,7 @@ export default function Window({
     defaultSize={width:800,height:500},
     defaultMaximized=false,
     style={borderTop:seperateBorder},
+    noDragging=false,
     onClose=()=>{}
   }: Readonly<{
     children: React.ReactNode;
@@ -31,6 +32,7 @@ export default function Window({
     defaultSize?: {width:number,height:number};
     defaultMaximized?: boolean;
     style?: React.CSSProperties;
+    noDragging?: boolean;
     onClose?: ()=>void;
   }>) {
     const [maximized, setMaximized] = useState(defaultMaximized);
@@ -85,6 +87,10 @@ export default function Window({
         setTimeout(()=>{
           (document.getElementsByClassName(id)[0] as HTMLDivElement).style.display='block';
         }, 500);
+      }else {
+        if(document.getElementById(taskbarIconID+'-tb-app')) {
+          (document.getElementById(taskbarIconID+'-tb-app') as HTMLDivElement).classList.add('active');
+        }
       }
       (document.getElementsByClassName(id)[0] as HTMLDivElement).addEventListener('click', ()=>{
         let allWindows = document.querySelectorAll('.w11-window');
@@ -111,7 +117,7 @@ export default function Window({
           className={`w11-window ${color} ${id}`}
           style={{zIndex:'4'}}
           disableDragging={maximized}
-          enableResizing={!maximized}
+          enableResizing={!maximized && !noDragging}
         >
             <div className="w11-top">
               <div className="w11-title">{formatName(selectedOS, title)}</div>

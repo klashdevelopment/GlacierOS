@@ -5,9 +5,10 @@ import { Button } from "@fluentui/react-components";
 
 interface StartMenuProps {
     children: ReactNode;
+    updTaskbarWindows: () => void;
 }
 
-export default function StartMenu({ children }: StartMenuProps) {
+export default function StartMenu({ children, updTaskbarWindows }: StartMenuProps) {
     const [scope, animate] = useAnimate();
 
     function animateIn() {
@@ -51,7 +52,7 @@ export default function StartMenu({ children }: StartMenuProps) {
                     display: "none",
                 }}
             >
-                
+                <button onClick={updTaskbarWindows}>refresh taskbar</button>
                 <div className="sme-footer">
                     <img src="/windows/user.png" style={{width:'30px'}} alt="" className="circled" />
                     <Button

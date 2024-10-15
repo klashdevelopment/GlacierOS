@@ -1,5 +1,5 @@
 'use client';
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState, useRef } from "react";
 import Draggable from "react-draggable";
 import { Wifi1Regular, WifiOffRegular, Speaker2Regular } from "@fluentui/react-icons";
 // import Battery0Regular-10Regular from "@fluentui/react-icons";
@@ -10,6 +10,7 @@ import { Tooltip } from "@fluentui/react-components";
 import { formatName } from "../windows/store/StoreApps";
 import StartMenu from "./StartMenu";
 import { useStartMenuAnimations } from "./useStartMenuAnimations";
+import {motion, useMotionValue, useTransform, useSpring, MotionValue} from "framer-motion";
 
 function BatteryIcon({ percent }: {percent: number}) {
     const batteryComponents = [Battery0Regular, Battery1Regular, Battery2Regular, Battery3Regular, Battery4Regular, Battery5Regular, Battery6Regular, Battery7Regular, Battery8Regular, Battery9Regular, Battery10Regular];
@@ -154,6 +155,17 @@ export default function Taskbar({
     }
 
     function w11TaskbarApp(start: boolean, app: TaskbarApp) {
+        // let ref = useRef<HTMLDivElement>(null);
+      
+        // let distance = useTransform(mouseX, (val) => {
+        //   let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+      
+        //   return val - bounds.x - bounds.width / 2;
+        // });
+      
+        // let widthSync = useTransform(distance, [-150, 0, 150], [40, 100, 40]);
+        // let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
         return start ? <div className="w11-taskbar-app" id="startmenu-tb-app" onClick={function () { toggleStartMenu() }}>
             <img src={`/${selectedOS}/start.png`} alt={formatName(selectedOS, 'Start')} />
             <span>{formatName(selectedOS, 'Start')}</span>
@@ -166,8 +178,6 @@ export default function Taskbar({
         <>
             {/* <div id="taskbarParent"> */}
             <div id="taskbar"
-                onMouseMove={(selectedOS !== 'macos' && macOSDockEffects) ? undefined : taskbarMouseMove}
-                onMouseLeave={(selectedOS !== 'macos' && macOSDockEffects) ? undefined : taskbarMouseLeave}
                 className="w11-taskbar" onContextMenu={(e) => {
                     e.preventDefault();
                     setCmpX(e.clientX);

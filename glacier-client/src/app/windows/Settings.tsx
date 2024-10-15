@@ -8,7 +8,7 @@ import Emoji from "../components/Emoji";
 import xor from "../utils/XOR";
 import constants from "../Constants";
 import Icons from "./MoreIcons";
-export let wallpapers = ["Motion Layered", "Sphere Green", "Sphere Purple", "Light Wave", "Light Fluent", "Dark Fluent", "Light Sand", "Windows Kali", "Motion Cones", "Motion Ribbon", "Motion Blobs", "Sun Daytime", "Sun Mountain", "Sun Setting", "Sun Desert", "Fluent Blue", "Fluent Green", "Fluent Pink", "Fluent Gray", "Windows 11 Dark", "Windows 11 Light", "Sun Nighttime", "MacOS Mojave", "MacOS Catalina", "MacOS Big Sur", "MacOS Monterey", "Chrome OS Default", "Frosty Glaciers", "Ubuntu 20.04", "Ubuntu Clean", "Cyberrush Rooftop (Lux)", "Cyberrush Track (Lux)", "Cyberrush Void (Lux)", "Cyberrush Building (Lux)", "Kali Trail", "Kali Prompt", "Kali Legacy", "Kali Layers", "Kali Luminara", "MacOS Somona"];
+export let wallpapers = ["Motion Layered", "Sphere Green", "Sphere Purple", "Light Wave", "Light Fluent", "Dark Fluent", "Light Sand", "Windows Kali", "Motion Cones", "Motion Ribbon", "Motion Blobs", "Sun Daytime", "Sun Mountain", "Sun Setting", "Sun Desert", "Fluent Blue", "Fluent Green", "Fluent Pink", "Fluent Gray", "Windows 11 Dark", "Windows 11 Light", "Sun Nighttime", "MacOS Mojave", "MacOS Catalina", "MacOS Big Sur", "MacOS Monterey", "Chrome OS Default", "Frosty Glaciers", "Ubuntu 20.04", "Ubuntu Clean", "Cyberrush Rooftop (Lux)", "Cyberrush Track (Lux)", "Cyberrush Void (Lux)", "Cyberrush Building (Lux)", "Kali Trail", "Kali Prompt", "Kali Legacy", "Kali Layers", "Kali Luminara", "MacOS Somona", "Glacier Blue"];
 
 export function SetWallpaperNum(wp: string) {
   document.body.style.backgroundImage = `url("/windows/wallpaper${wp}.jpg")`;
@@ -23,6 +23,7 @@ function Personalization({ switchPage }: { switchPage: any }) {
   const [prevWallp, setPrevWallp] = useState(false);
   const [selectedOS, setSelectedOS] = useState('windows');
   const [macOSDockEffects, setMacOSDockEffects] = useState(true);
+  const [fakeMode, setFakeMode] = useState(false);
 
   const onChange = (event: SelectionEvents, data: OptionOnSelectData): void => {
     SetWallpaperNum(data.optionValue as string);
@@ -50,6 +51,9 @@ function Personalization({ switchPage }: { switchPage: any }) {
     }
     if (window.localStorage.getItem('macOS-dock-effects')) {
       setMacOSDockEffects(window.localStorage.getItem('macOS-dock-effects') === 'true');
+    }
+    if (window.localStorage.getItem('fake-mode')) {
+      setFakeMode(window.localStorage.getItem('fake-mode') === 'true');
     }
   }, []);
 
@@ -115,7 +119,7 @@ function Personalization({ switchPage }: { switchPage: any }) {
           <Button appearance="outline" disabled icon={<ArrowUploadFilled />}></Button>
           <Dropdown placeholder="Choose a new OS..." style={{ width: '50%' }} onOptionSelect={(event, data) => {
             window.localStorage.setItem('os', data.optionValue as string);
-            window.location.reload();
+            window.location.reload(); 
           }}>
             <Option value={'windows'}>Windows 11</Option>
             <Option value={'macos'}>Mac OS</Option>
@@ -138,8 +142,9 @@ function Personalization({ switchPage }: { switchPage: any }) {
           </Dropdown>
         </div>
         <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-          <Checkbox label={"MacOS Dock Effects"} checked={macOSDockEffects} onChange={(e, d) => {
-            setMacOSDockEffects(d.checked == "mixed" ? false : d.checked);
+          <Checkbox label={"Show Fake before Launch"} checked={fakeMode} onChange={(e, d) => {
+            setFakeMode(d.checked == "mixed" ? false : d.checked);
+            window.localStorage.setItem('fake-mode', d.checked.toString());
           }} />
         </div>
       </div>

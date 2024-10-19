@@ -3,12 +3,16 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 export interface QuadpadSettings {
     cssImports: string[];
     jsImports: string[];
+    title: string;
     color: string;
     borderWidth: number;
+    shareCodeWithBrainbase: boolean;
 
     setCssImports: (value: string[]) => void;
     setJsImports: (value: string[]) => void;
+    setTitle: (value: string) => void;
     setColor: (value: string) => void;
+    setShareCodeWithBrainbase: (value: boolean) => void;
     setBorderWidth: (value: number) => void;
 }
 
@@ -40,6 +44,10 @@ export function QuadpadProvider({ children }: { children: React.ReactNode }) {
         setColor: () => {},
         borderWidth: 1,
         setBorderWidth: () => {},
+        title: 'Quadpad Export',
+        setTitle: () => {},
+        shareCodeWithBrainbase: true,
+        setShareCodeWithBrainbase: () => {},
     });
 
     // Step 2: Add functions after initial state setup
@@ -47,6 +55,8 @@ export function QuadpadProvider({ children }: { children: React.ReactNode }) {
     const setJsImports = (value: string[]) => setQuadpadSettings(prev => ({ ...prev, jsImports: value }));
     const setColor = (value: string) => setQuadpadSettings(prev => ({ ...prev, color: value }));
     const setBorderWidth = (value: number) => setQuadpadSettings(prev => ({ ...prev, borderWidth: value }));
+    const setTitle = (value: string) => setQuadpadSettings(prev => ({ ...prev, title: value }));
+    const setShareCodeWithBrainbase = (value: boolean) => setQuadpadSettings(prev => ({ ...prev, shareCodeWithBrainbase: value }));
 
     useEffect(() => {
         setQuadpadSettings(prev => ({
@@ -55,6 +65,8 @@ export function QuadpadProvider({ children }: { children: React.ReactNode }) {
             setJsImports,
             setColor,
             setBorderWidth,
+            setTitle,
+            setShareCodeWithBrainbase
         }));
     }, []);
 

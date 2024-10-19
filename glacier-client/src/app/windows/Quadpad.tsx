@@ -2,18 +2,21 @@
 import { Editor, Monaco } from "@monaco-editor/react";
 import Window from "../components/Window";
 import OneDarkPro from "../themes/oneDarkPro.json";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { QuadpadProvider, useQuadpad, QuadpadSettings } from "./QuadpadContext";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { emmetCSS, emmetHTML, emmetJSX } from "emmet-monaco-es";
-import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled, SaveFilled, DocumentSaveFilled, DocumentSyncFilled } from "@fluentui/react-icons";
-import { Button, Input, Tooltip } from "@fluentui/react-components";
+import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled, SaveFilled, DocumentSaveFilled, DocumentSyncFilled, BrainCircuitFilled, PresenceBlockedRegular, SendFilled, PersonFilled, DeleteFilled, SendCopyRegular, KeyRegular } from "@fluentui/react-icons";
+import { Button, Checkbox, Input, Tooltip } from "@fluentui/react-components";
 import {
     Accordion,
     AccordionHeader,
     AccordionItem,
     AccordionPanel,
 } from "@fluentui/react-components";
+import { TextField } from "@fluentui/react";
+import { callChatGPT, Message } from "../components/ChatGPT";
+import { marked } from "marked";
 
 function HTML() {
     const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
@@ -104,7 +107,7 @@ function Output() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quadpad Export</title>
+<title>${settings.title}</title>
 ${settings.cssImports.map(imp => {
                 return `<link rel="stylesheet" href="${imp}">`
             }).join('\n')}
@@ -123,6 +126,166 @@ ${html}
 </body>
 </html>
                 `} id="quadpad-content-window" style={{ width: '100%', height: '100%', border: 'none' }} />
+        </div>
+    )
+}
+function AIBox() {
+    const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
+    const [messageInput, setMessageInput] = useState("");
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [resolvedMessages, setResolvedMessages] = useState<{from:'user'|'assistant'|'system',content:string}[]>([]);
+
+    useEffect(() => {
+        const resolveMessages = async () => {
+            const resolved = await Promise.all(messages.map(async (message) => {
+                const content = await marked(message.value);
+                return { from: message.from, content };
+            }));
+            setResolvedMessages(resolved);
+        };
+
+        resolveMessages();
+    }, [messages]);
+
+    const [disableInput, setDisableInput] = useState(false);
+    function removeMessage(index: number) {
+        const newMessages = [...messages];
+        newMessages.splice(index, 1);
+        setMessages(newMessages);
+    }
+
+    function useAItoAddMessage(prompt: string) {
+        if (disableInput) return;
+        setDisableInput(true);
+        // add thinking message and get id
+        // const thinkingMessageID = addMessage("Thinking...", 'assistant');
+        // call the AI
+        callChatGPT(apiKey, messages, prompt, settings.shareCodeWithBrainbase ? `User's HTML:
+\`\`\`html
+${html}
+\`\`\`
+User's CSS:
+\`\`\`css
+${css}
+\`\`\`
+User's JS:
+\`\`\`js
+${js}
+\`\`\`
+` : undefined).then((response) => {
+            // removeMessage(thinkingMessageID);
+            setMessages([...messages, {from: "user", value: prompt}, { from: 'assistant', value: response }]);
+            setDisableInput(false);
+        });
+    }
+
+    function updateBrainbaseMessage(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        if (disableInput) {
+            e.preventDefault();
+            return;
+        }
+        setMessageInput(e.target.value);
+    }
+    function send(input: string) {
+        if (disableInput) return;
+        const newMessages = [...messages];
+        newMessages.push({ from: 'user', value: input });
+        setMessages(newMessages);
+        if(ref.current)
+            ref.current.value = '';
+        setMessageInput("");
+        useAItoAddMessage(input);
+    }
+    function updateBrainbaseKeydown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+        if (disableInput) return;
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (!e.shiftKey) {
+                send(e.currentTarget.value);
+            } else {
+                if (e.currentTarget.value.trim() === '') return;
+                e.currentTarget.value += '\n';
+                e.currentTarget.scrollTop = e.currentTarget.scrollHeight;
+                setMessageInput(e.currentTarget.value);
+            }
+        }
+    }
+
+    const ref = useRef<HTMLTextAreaElement>(null);
+
+    function MessageDiv({ from, content, index }: { from: 'user' | 'assistant' | 'system', content: string, index: number }) {
+        if (from === "system") return null;
+
+        return (
+            <div style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center', padding: '5px', borderTop: '1px solid #0004', borderBottom: '1px solid #0004', background: from === 'user' ? '#ffffff0a' : '#ffffff15' }}>
+                <div style={{ width: '90%', padding: '5px',display:'flex',flexDirection:'column'}} dangerouslySetInnerHTML={{__html: content}}>
+                </div>
+                <div style={{ width: '10%', display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
+                    {from === 'user' ? <PersonFilled fontSize={"20px"} color={"#ffffff"} /> : <BrainCircuitFilled fontSize={"20px"} color={"#ffffff"} />}
+                    <Button appearance={"primary"}
+                        style={{
+                            backgroundColor: '#f006',
+                            color: 'white',
+                        }} onClick={() => removeMessage(index)} icon={<DeleteFilled />} />
+                </div>
+            </div>
+        )
+    }
+
+    const [apiKey, setApiKey] = useState("");
+
+    // use effect to check if localstorage has GPT_KEY
+    useEffect(() => {
+        const key = localStorage.getItem("GPT_KEY");
+        if (key) {
+            setApiKey(key);
+        }
+    }, []);
+
+    const [inputKey, setInputKey] = useState("");
+
+    return (
+        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '20px' }}><BrainCircuitFilled /> <b>Brainbase</b> AI</div>
+            {false ? <>
+                <div style={{ display:'flex',flexDirection:'column',margin:'10px 0',gap:'4px' }}>
+                    Input your Hugging Face key here to use Brainbase.
+                </div>
+                <div style={{ display: 'flex', gap: '4px' }}>
+                    <Input placeholder="API Key" onChange={(e, d)=> {
+                        setInputKey(d.value);
+                    }} />
+                    <Button onClick={() => {
+                        localStorage.setItem("GPT_KEY", inputKey);
+                        setApiKey(inputKey);
+                    }} icon={<SendCopyRegular />}></Button>
+                </div>
+            </> : <>
+                <div style={{ height: '75%', width: '95%', border: '2px solid #ffffff25', borderRadius: '6px', marginTop: '16px', display: 'flex', flexDirection: 'column', overflowX:'auto' }}>
+                    {/* test message div */}
+                    {resolvedMessages.map((message, i) => {
+                        return <MessageDiv key={i} from={message.from} content={message.content} index={i} />
+                    })}
+                </div>
+                <div style={{ height: '10%', width: '95%', border: '2px solid #ffffff25', borderRadius: '6px', marginTop: '10px', display: 'flex' }}>
+                    <div style={{ height: 'calc(100% - 12px)', width: 'calc(80% - 12px)', padding: '6px' }}>
+                        <textarea
+                        disabled={disableInput}
+                        ref={ref} autoCorrect={"off"} onKeyDown={updateBrainbaseKeydown} onChange={updateBrainbaseMessage} placeholder="Message" style={{ width: '100%', height: '100%', padding: '0', background: 'transparent', border: 'none', outline: 'none', fontFamily: 'Segoe UI, Arial', resize: 'none' }} />
+                    </div>
+                    <div style={{ height: '100%', width: '20%', display: 'flex', borderLeft: '2px solid #ffffff25', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={()=>{
+                        send(ref.current?.value || '');
+                    }}>
+                        <SendFilled fontSize={"24px"} />
+                    </div>
+                    {/* <div style={{ height: '100%', width: '10%', display: 'flex', borderLeft: '2px solid #ffffff25', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={()=>{
+                        setApiKey("");
+                        localStorage.removeItem("GPT_KEY");
+                    }}>
+                        <KeyRegular fontSize={"24px"} />
+                    </div> */}
+                </div>
+            </>}
         </div>
     )
 }
@@ -181,6 +344,8 @@ export default function Quadpad() {
         URL.revokeObjectURL(link.href);
     }
 
+    const [showAI, setShowAI] = useState(false);
+
     return (
         <Window title="Quadpad" id="quadpad" defaultSize={{ width: 750, height: 650 }} taskbarIconID="quadpad" color={'onedarkbg'} seperateBorder={`1px solid ${settings.color}`}>
             <div style={{ width: '100%', height: 'calc(100% - 80px)', position: 'absolute', top: '39px', left: '0px', backdropFilter: 'blur(10px)', zIndex: 99, display: `${settingsOpen != "none" ? 'flex' : "none"}`, justifyContent: 'center', alignItems: 'center' }}>
@@ -188,14 +353,20 @@ export default function Quadpad() {
                     <Button onClick={() => { setSettingsOpen('none') }} style={{ position: 'absolute', top: '10px', right: '10px', minWidth: '30px' }}>X</Button>
                     <h1>{friendlyNames[settingsOpen]} Settings</h1>
                     {settingsOpen == "html" && <>
-                        No HTML settings yet! Maybe snippets or something. Emmet is already enabled.
+                        <Input type="text" placeholder="Quadpad Export" value={settings.title} onChange={(e, data) => {
+                            setQuadpadSettings({ ...settings, title: data.value });
+                        }} /> Title
+                        <br />
+                        <Checkbox checked={settings.shareCodeWithBrainbase} onChange={(e, data) => {
+                            setQuadpadSettings({ ...settings, shareCodeWithBrainbase: data.checked === 'mixed' ? true : data.checked });
+                        }} /> Share code with Brainbase
                         <br /><br />
-                        <input type="color" defaultValue={settings.color} onChange={(e)=>{
-                            setQuadpadSettings({...settings, color:e.target.value});
+                        <input type="color" defaultValue={settings.color} onChange={(e) => {
+                            setQuadpadSettings({ ...settings, color: e.target.value });
                         }} /> Seperator Color
                         <br />
-                        <input type="number" style={{width:'30px'}} maxLength={30} minLength={0} defaultValue={settings.borderWidth} onChange={(e)=>{
-                            setQuadpadSettings({...settings, borderWidth:(Math.max(Math.min(parseInt(e.target.value), 30), 0))});
+                        <input type="number" style={{ width: '30px' }} maxLength={30} minLength={0} defaultValue={settings.borderWidth} onChange={(e) => {
+                            setQuadpadSettings({ ...settings, borderWidth: (Math.max(Math.min(parseInt(e.target.value), 30), 0)) });
                         }} /> Seperator Width
                     </>}
                     {settingsOpen == "js" && <>
@@ -287,40 +458,46 @@ export default function Quadpad() {
                     </>}
                 </div>
             </div>
-            <PanelGroup direction="vertical" style={{ width: '100%', height: 'calc(100% - 40px)' }}>
+            <PanelGroup direction="horizontal" style={{ width: '100%', height: 'calc(100% - 40px)' }}>
                 <Panel minSize={20} defaultSize={50}>
-                    <PanelGroup direction="horizontal" style={{ width: '100%' }}>
+                    <PanelGroup direction="vertical" style={{ width: '100%' }}>
                         <Panel minSize={20} defaultSize={50}>
                             <HTML />
                         </Panel>
-                        <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
-                        <Panel minSize={20} defaultSize={50}>
-                            <CSS />
-                        </Panel>
-                    </PanelGroup>
-                </Panel>
-                <PanelResizeHandle style={{ background: settings.color, height: `${settings.borderWidth}px` }} />
-                <Panel minSize={20} defaultSize={50}>
-                    <PanelGroup direction="horizontal" style={{ width: '100%' }}>
+                        <PanelResizeHandle style={{ background: settings.color, height: `${settings.borderWidth}px` }} />
                         <Panel minSize={20} defaultSize={50}>
                             <JS />
                         </Panel>
-                        <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
+                    </PanelGroup>
+                </Panel>
+                <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
+                <Panel minSize={20} defaultSize={50}>
+                    <PanelGroup direction="vertical" style={{ width: '100%' }}>
+                        <Panel minSize={20} defaultSize={50}>
+                            <CSS />
+                        </Panel>
+                        <PanelResizeHandle style={{ background: settings.color, height: `${settings.borderWidth}px` }} />
                         <Panel minSize={20} defaultSize={50}>
                             <Output />
                         </Panel>
                     </PanelGroup>
                 </Panel>
+                {showAI && <>
+                    <PanelResizeHandle style={{ background: settings.color, width: `${settings.borderWidth}px` }} />
+                    <Panel minSize={35} defaultSize={35} maxSize={35}>
+                        <AIBox />
+                    </Panel>
+                </>}
             </PanelGroup>
-            <div style={{ width: '100%', height: '30px', borderTop: `1px solid ${settings.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
-                <Button icon={<DocumentFilled />} onClick={() => { setSettingsOpen('html') }} />
-                <Button icon={<DocumentJavascriptFilled />} onClick={() => { setSettingsOpen('js') }} />
-                <Button icon={<DocumentCssFilled />} onClick={() => { setSettingsOpen('css') }} />
+            <div style={{ width: '100%', height: '40px', borderTop: `1px solid ${settings.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2px' }}>
+                <Button icon={<DocumentFilled color={"#B0E0E6"} />} onClick={() => { setSettingsOpen('html') }} />
+                <Button icon={<DocumentJavascriptFilled color={"#B0E0E6"} />} onClick={() => { setSettingsOpen('js') }} />
+                <Button icon={<DocumentCssFilled color={"#B0E0E6"} />} onClick={() => { setSettingsOpen('css') }} />
                 <div style={{ width: '28px' }}></div>
                 <input type="file" id="uploadQPE" accept=".qpe,.json" style={{ display: 'none' }} />
 
                 <Tooltip content="Save as .qpe" relationship="label">
-                    <Button onClick={() => { downloadQPE() }} icon={<SaveFilled/>}></Button>
+                    <Button onClick={() => { downloadQPE() }} icon={<SaveFilled color={"#FFDAB9"} />}></Button>
                 </Tooltip>
                 <Tooltip content="Load .qpe" relationship="label">
                     <Button onClick={() => {
@@ -340,11 +517,16 @@ export default function Quadpad() {
                             }
                             reader.readAsText(file);
                         }
-                    }} icon={<DocumentSyncFilled />}></Button>
+                    }} icon={<DocumentSyncFilled color={"#FFDAB9"} />}></Button>
                 </Tooltip>
                 <div style={{ width: '24px' }}></div>
                 <Tooltip content="Export as .html" relationship="label">
-                    <Button onClick={() => { downloadQuadpadHTML() }} icon={<DocumentSaveFilled/>}></Button>
+                    <Button onClick={() => { downloadQuadpadHTML() }} icon={<DocumentSaveFilled color={"#98FB98"} />}></Button>
+                </Tooltip>
+                <div style={{ width: '24px' }}></div>
+                <Tooltip content={`${showAI ? "Hide" : "Show"} AI`} relationship="label">
+                    <Button onClick={() => { setShowAI(!showAI) }} icon={<><BrainCircuitFilled color={"#FFE4e1"} />{showAI && <PresenceBlockedRegular color={"red"} style={{ position: 'absolute' }} />}</>}>
+                    </Button>
                 </Tooltip>
             </div>
         </Window>

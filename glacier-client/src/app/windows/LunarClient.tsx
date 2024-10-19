@@ -99,9 +99,10 @@ export default function LunarClientApp() {
                                 <span style={{fontSize:'25px',textShadow:'#00000050 0px 3px 2px'}}>LAUNCH GAME</span>
                                 <span style={{fontSize:'12px',textShadow:'#00000050 0px 2px 2px',fontFamily:"Segoe UI, Helvetica, Arial",display:'flex',alignItems:'center',gap:'3px'}}>
                                     <img height={15} width={17} src={contsants.LUNAR.ICON} />
-                                    Lunar Client 1.21.1 with
+                                    {/* Lunar Client 1.21.1 with
                                     <img width={12} src={"/image/b.png"} />
-                                    Boost
+                                    Boost */}
+                                    Boost not installed
                                 </span>
                             </div>
                             <div className="lunar-darken" style={{height:'100%',width:'15%',display:'flex',alignItems:'center',justifyContent:'center',background:'#00000020',

@@ -42,10 +42,11 @@ async function huggingfaceLlama(apiKey: string, prompt: string) {
 
 async function brainbase(messages: Message[], prompt: string, includeInSystem?: string) {
     try {
-        const formattedMessages = [{role:"system",content:`You are Brainbase. A helpful AI assistant made for programmers. You run within Glacier OS, in the app Quadpad - a four split style code editor.
-Code given for websites should be split into 1-3 blocks, HTML (without head, body, or html tags, only the inside), CSS, and JS.
+        const formattedMessages = [{role:"system",content:`You are Brainbase. A helpful AI assistant made for programmers. The AI model you run on is a heavily modified version of Llama.
+Code given should be given without head, body, or html tags, only the inside.
 Users may add JS or CSS imports, change file title, export or save as .qpe (quadpad export) using buttons at the bottom of Quadpad.
-Keep explanation short unless invoked by the user. Put a code comment (ex. // or <!--> or /**/) saying "AI Generated" at the start of modified code.
+Keep explanation short unless invoked by the user, giving 1-2 sentence replies when more isnt needed.
+Here are the USER's files:
 ${includeInSystem}`},...messages.map((message) => {
             return {
                 role: message.from,

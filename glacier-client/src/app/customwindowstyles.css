@@ -1,0 +1,31 @@
+.sa-discord > .w11-top {
+    height: 20px;
+    padding: 2px;
+    font-size: 12px;
+}
+.sa-discord {
+    background: #1e1f22;
+}
+.sa-discord .left, .sa-discord .mid, .sa-discord .end {
+    top: 2px;
+    padding: 0 2px;
+}
+.sa-discord .left {
+    right: 45px !important;
+}
+.sa-discord .mid {
+    right: 25px !important;
+}
+.sa-discord .end {
+    right: 5px !important;
+    border-top-right-radius: 2px !important;
+}
+.sa-discord .w11-controls img {
+    width: 12px !important;
+}
+.sa-discord .w11-title {
+    padding-left: 4px;
+}
+#sa-discord {
+    height: calc(100% - 20px) !important;
+}

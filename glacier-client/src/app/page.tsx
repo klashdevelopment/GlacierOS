@@ -17,6 +17,7 @@ import {
 import { IDropdownOption, Icon } from "@fluentui/react";
 import Taskbar, {TaskbarApp} from "./components/Taskbar";
 import "./windows.css";
+import "./customwindowstyles.css";
 import {
     Dialog,
     DialogTrigger,

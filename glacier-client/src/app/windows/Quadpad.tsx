@@ -155,20 +155,20 @@ function AIBox() {
     }
 
     function useAItoAddMessage(prompt: string) {
-        if (disableInput) return;
+        if (disableInput || prompt == "") return;
         setDisableInput(true);
         // add thinking message and get id
         // const thinkingMessageID = addMessage("Thinking...", 'assistant');
         // call the AI
-        callChatGPT(apiKey, messages, prompt, settings.shareCodeWithBrainbase ? `User's HTML:
+        callChatGPT(apiKey, messages, prompt, settings.shareCodeWithBrainbase ? `html:
 \`\`\`html
 ${html}
 \`\`\`
-User's CSS:
+css:
 \`\`\`css
 ${css}
 \`\`\`
-User's JS:
+js:
 \`\`\`js
 ${js}
 \`\`\`
@@ -187,7 +187,7 @@ ${js}
         setMessageInput(e.target.value);
     }
     function send(input: string) {
-        if (disableInput) return;
+        if (disableInput || input.trim() === "") return;
         const newMessages = [...messages];
         newMessages.push({ from: 'user', value: input });
         setMessages(newMessages);

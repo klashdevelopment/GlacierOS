@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { QuadpadProvider, useQuadpad, QuadpadSettings } from "./QuadpadContext";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { emmetCSS, emmetHTML, emmetJSX } from "emmet-monaco-es";
-import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled, SaveFilled, DocumentSaveFilled, DocumentSyncFilled, BrainCircuitFilled, PresenceBlockedRegular, SendFilled, PersonFilled, DeleteFilled, SendCopyRegular, KeyRegular } from "@fluentui/react-icons";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.min.css';
+import { DocumentJavascriptFilled, DocumentCssFilled, DocumentFilled, SaveFilled, DocumentSaveFilled, DocumentSyncFilled, BrainCircuitFilled, PresenceBlockedRegular, SendFilled, PersonFilled, DeleteFilled, SendCopyRegular, KeyRegular, EyeTrackingOffRegular, EyeTrackingRegular } from "@fluentui/react-icons";
 import { Button, Checkbox, Input, Tooltip } from "@fluentui/react-components";
 import {
     Accordion,
@@ -129,19 +131,38 @@ ${html}
         </div>
     )
 }
+interface ResolvedMessage { from: 'user' | 'assistant' | 'system', content: string, nonFormatted: string };
 function AIBox() {
     const { css, setCss, js, setJs, html, setHtml, settings } = useQuadpad();
     const [messageInput, setMessageInput] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
-    const [resolvedMessages, setResolvedMessages] = useState<{from:'user'|'assistant'|'system',content:string}[]>([]);
+    const [resolvedMessages, setResolvedMessages] = useState<ResolvedMessage[]>([]);
+    const [whichAreRaw, setWhichAreRaw] = useState<boolean[]>([]);
 
     useEffect(() => {
         const resolveMessages = async () => {
             const resolved = await Promise.all(messages.map(async (message) => {
-                const content = await marked(message.value);
-                return { from: message.from, content };
+                // Use a regex to find code blocks in the message value
+                const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
+
+                const highlightedContent = message.value.replace(codeBlockRegex, (match, lang, code) => {
+                    // Check if a language is provided, if not, use highlightAuto
+                    const highlightedCode = lang
+                        ? hljs.highlight(code, { language: lang }).value
+                        : hljs.highlightAuto(code).value;
+
+                    // Return the highlighted code wrapped in <pre> and <code> tags
+                    return `<pre><code class="hljs ${lang || 'auto'}">${highlightedCode}</code></pre>`;
+                });
+
+                // Now process the rest of the message as Markdown
+                const content = await marked(highlightedContent);
+
+                return { from: message.from, content, nonFormatted: message.value };
             }));
             setResolvedMessages(resolved);
+            // Set which are raw array, keep previous values if they exist
+            setWhichAreRaw(resolved.map((_, i) => whichAreRaw[i] || false));
         };
 
         resolveMessages();
@@ -157,9 +178,6 @@ function AIBox() {
     function useAItoAddMessage(prompt: string) {
         if (disableInput || prompt == "") return;
         setDisableInput(true);
-        // add thinking message and get id
-        // const thinkingMessageID = addMessage("Thinking...", 'assistant');
-        // call the AI
         callChatGPT(apiKey, messages, prompt, settings.shareCodeWithBrainbase ? `html:
 \`\`\`html
 ${html}
@@ -173,8 +191,7 @@ js:
 ${js}
 \`\`\`
 ` : undefined).then((response) => {
-            // removeMessage(thinkingMessageID);
-            setMessages([...messages, {from: "user", value: prompt}, { from: 'assistant', value: response }]);
+            setMessages([...messages, { from: "user", value: prompt }, { from: 'assistant', value: response }]);
             setDisableInput(false);
         });
     }
@@ -191,7 +208,7 @@ ${js}
         const newMessages = [...messages];
         newMessages.push({ from: 'user', value: input });
         setMessages(newMessages);
-        if(ref.current)
+        if (ref.current)
             ref.current.value = '';
         setMessageInput("");
         useAItoAddMessage(input);
@@ -213,15 +230,30 @@ ${js}
 
     const ref = useRef<HTMLTextAreaElement>(null);
 
-    function MessageDiv({ from, content, index }: { from: 'user' | 'assistant' | 'system', content: string, index: number }) {
-        if (from === "system") return null;
+    function MessageDiv({ message, index }: { message: ResolvedMessage, index: number }) {
+        if (message.from === "system") return null;
 
         return (
-            <div style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center', padding: '5px', borderTop: '1px solid #0004', borderBottom: '1px solid #0004', background: from === 'user' ? '#ffffff0a' : '#ffffff15' }}>
-                <div style={{ width: '90%', padding: '5px',display:'flex',flexDirection:'column'}} dangerouslySetInnerHTML={{__html: content}}>
+            <div style={{ display: 'flex', gap: '5px', alignItems: 'center', justifyContent: 'center', padding: `${whichAreRaw[index] ? '5px 0px' : '5px'}`, borderTop: '1px solid #0004', borderBottom: '1px solid #0004', background: message.from === 'user' ? '#ffffff0a' : '#ffffff15' }}>
+                <div style={{ width: '90%', padding: `${whichAreRaw[index] ? '0px' : '5px'}`, display: 'flex', flexDirection: 'column' }} dangerouslySetInnerHTML={!whichAreRaw[index] ? { __html: message.content } : undefined}>
+                    {whichAreRaw[index] ? <>
+                        <pre><code className="hljs plaintext">
+                            {message.nonFormatted}
+                        </code></pre>
+                    </> : undefined}
                 </div>
-                <div style={{ width: '10%', display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
-                    {from === 'user' ? <PersonFilled fontSize={"20px"} color={"#ffffff"} /> : <BrainCircuitFilled fontSize={"20px"} color={"#ffffff"} />}
+                <div style={{ width: '10%', display: 'flex', flexDirection: 'column', gap: '2px', alignItems: 'center', justifyContent: 'center' }}>
+                    <Button appearance={"subtle"} onClick={() => {
+                        // swap between user and assistant
+                        const newMessages = [...messages];
+                        newMessages[index].from = newMessages[index].from === 'user' ? 'assistant' : 'user';
+                        setMessages(newMessages);
+                    }} icon={message.from === 'user' ? <PersonFilled fontSize={"20px"} color={"#ffffff"} /> : <BrainCircuitFilled fontSize={"20px"} color={"#ffffff"} />} />
+                    <Button appearance={"subtle"} onClick={() => {
+                            const newWhichAreRaw = [...whichAreRaw];
+                            newWhichAreRaw[index] = !newWhichAreRaw[index];
+                            setWhichAreRaw(newWhichAreRaw);
+                        }} icon={whichAreRaw[index] ? <EyeTrackingOffRegular/> : <EyeTrackingRegular />} />
                     <Button appearance={"primary"}
                         style={{
                             backgroundColor: '#f006',
@@ -235,12 +267,12 @@ ${js}
     const [apiKey, setApiKey] = useState("");
 
     // use effect to check if localstorage has GPT_KEY
-    useEffect(() => {
-        const key = localStorage.getItem("GPT_KEY");
-        if (key) {
-            setApiKey(key);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const key = localStorage.getItem("GPT_KEY");
+    //     if (key) {
+    //         setApiKey(key);
+    //     }
+    // }, []);
 
     const [inputKey, setInputKey] = useState("");
 
@@ -248,11 +280,11 @@ ${js}
         <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '3px', fontSize: '20px' }}><BrainCircuitFilled /> <b>Brainbase</b> AI</div>
             {false ? <>
-                <div style={{ display:'flex',flexDirection:'column',margin:'10px 0',gap:'4px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', margin: '10px 0', gap: '4px' }}>
                     Input your Hugging Face key here to use Brainbase.
                 </div>
                 <div style={{ display: 'flex', gap: '4px' }}>
-                    <Input placeholder="API Key" onChange={(e, d)=> {
+                    <Input placeholder="API Key" onChange={(e, d) => {
                         setInputKey(d.value);
                     }} />
                     <Button onClick={() => {
@@ -261,19 +293,19 @@ ${js}
                     }} icon={<SendCopyRegular />}></Button>
                 </div>
             </> : <>
-                <div style={{ height: '75%', width: '95%', border: '2px solid #ffffff25', borderRadius: '6px', marginTop: '16px', display: 'flex', flexDirection: 'column', overflowX:'auto' }}>
+                <div style={{ height: '75%', width: '95%', border: '2px solid #ffffff25', borderRadius: '6px', marginTop: '16px', display: 'flex', flexDirection: 'column', overflowX: 'auto' }}>
                     {/* test message div */}
                     {resolvedMessages.map((message, i) => {
-                        return <MessageDiv key={i} from={message.from} content={message.content} index={i} />
+                        return <MessageDiv key={i} message={message} index={i} />
                     })}
                 </div>
                 <div style={{ height: '10%', width: '95%', border: '2px solid #ffffff25', borderRadius: '6px', marginTop: '10px', display: 'flex' }}>
                     <div style={{ height: 'calc(100% - 12px)', width: 'calc(80% - 12px)', padding: '6px' }}>
                         <textarea
-                        disabled={disableInput}
-                        ref={ref} autoCorrect={"off"} onKeyDown={updateBrainbaseKeydown} onChange={updateBrainbaseMessage} placeholder="Message" style={{ width: '100%', height: '100%', padding: '0', background: 'transparent', border: 'none', outline: 'none', fontFamily: 'Segoe UI, Arial', resize: 'none' }} />
+                            disabled={disableInput}
+                            ref={ref} autoCorrect={"off"} onKeyDown={updateBrainbaseKeydown} onChange={updateBrainbaseMessage} placeholder="Message" style={{ width: '100%', height: '100%', padding: '0', background: 'transparent', border: 'none', outline: 'none', fontFamily: 'Segoe UI, Arial', resize: 'none' }} />
                     </div>
-                    <div style={{ height: '100%', width: '20%', display: 'flex', borderLeft: '2px solid #ffffff25', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={()=>{
+                    <div style={{ height: '100%', width: '20%', display: 'flex', borderLeft: '2px solid #ffffff25', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={() => {
                         send(ref.current?.value || '');
                     }}>
                         <SendFilled fontSize={"24px"} />
@@ -408,7 +440,7 @@ export default function Quadpad() {
                                         setQuadpadSettings({ ...settings, jsImports: [...settings.jsImports, "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"] });
                                     }} appearance="subtle" icon={<img style={{ width: '20px', height: '20px', borderRadius: '50%' }} src="/image/jquery.png" />}>jQuery</Button>
                                     <Button onClick={() => {
-                                        setQuadpadSettings({ ...settings, jsImports: [...settings.jsImports, "https://raw.githack.com/adryd325/oneko.js/main/oneko.js"] });
+                                        setQuadpadSettings({ ...settings, jsImports: [...settings.jsImports, "https://raw.githack.com/klashdevelopment/glacier-data-repo/refs/heads/main/oneko.js"] });
                                     }} appearance="subtle" icon={<img style={{ width: '20px', height: '20px', borderRadius: '50%' }} src="/image/oneko.webp" />}>Oneko.js</Button>
                                 </AccordionPanel>
                             </AccordionItem>

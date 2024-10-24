@@ -20,6 +20,7 @@ const bareServer = createBareServer("/bare/");
 // Load our publicPath first and prioritize it over UV.
 app.use(express.static(publicPath));
 app.use('/poker/', express.static("./poker/"));
+app.use('/quadpad/', express.static("./quadpad/"));
 // Load vendor files last.
 // The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
 app.use("/uv/", express.static(uvPath));

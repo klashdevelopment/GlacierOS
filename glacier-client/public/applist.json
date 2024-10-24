@@ -266,6 +266,14 @@
         "category": "Games,Minecraft,Mods"
     },
     {
+        "name": "Lunar Client",
+        "unblock":false,
+        "image": "data:image/webp;base64,UklGRrYEAABXRUJQVlA4WAoAAAAQAAAAfwAAdAAAQUxQSEoEAAABoFRbT55ti4RIQAISkIAEJCABCZWAhEqIhEpAQobf7Bo8LeHvfr9pREwAbeyyKP62OzH93ijor+HHeIG98g/hC0M1/4ykGP2En+AFMysfjy9M1ny4pJj/hIN5wZqVD8UXltV8pKiwP1cOIZTaTMATjuMEZi2Ovn1VC3DxUbjArIWp31UTNB0kNpirI3sQCyD+EE5glkBjU7MAFx+AC8wt0XAuaoGm7WKDVQvTTFctgPitnMBcHc0OYgEu3oYLzBLImp2NKDULNG0SG6wtkf3OI4iLGgDxGziBVQuT2SU8cQSRqxbg4sW4wFwd2f0NQCuPIApigaalYoNVAg1ulcanZgDEL+ME1pao28eeGicQFzUAF69RYNXC1BsEXYFnELlqgaYFQoO1OuoNAjRaOYgBED/J3bBKoF6+ACAvRZSaASg8oyiMLVF3VPx1ixEXNaDFYe6BUQtT94XXh9Z31QDcPMYrjNVRNz94LxsQBTHg4RFe0S+B+r3iM2xBlFofHrY5RXdLZPSKb9qVi3bhsT3o1cJk9IpvWYm5i8jVLlyWjF5xZPWKzmulGA1EofXA97H2VDKzoresVKuJ+OmRvozOSmZ+0B3WCZfqFSzETwdCV+u4yV6xB2cBJLOFuHXUHo9vZVuEkTv8JCK6bxoZOrQndyQys1qo8+ZpKQ2h+gXfcX81+su5p2Ic0jTnxriO3CFf10uSjoBxEfe04c9X6Whf4U8QJPcho8LVAOidtihftQPfRMRVAYh/iRjFsTbond0W4UsGNHq9lOldBoQXIvK4aFOeIW+h0nvADNK4Cy1A8aOOyB2VDvbJGFk6uM/lI6Uh0mHM95HuITqG04PsDoSxfoSrDdA7HCcMyiOIqDZaeJ0y6B4UrxPJIPAY9ifSUWnMXN4Go5/l/LVLGAa/Wn6OU1cTuE3SOLi1GEiblAl1rQQInwZ+GU5V8VeyP4uMSwYv6GzpKMijuBmIONYG4M6Oeo+gblCCtxCRByoZlwlT8IyJgjvYSBFPhGtAxqsmUwVv4iYh2YijQCLZk9AmNAvRRpTgaSDnbZ5Z6gew0pLr1FlQb6N0ljQNmmyLruPmAfls1BbAzUe7VkALJ/NLABefi9oa0HSg6y0vArR0nBZeWFcBWuYpjlfzuF6orAPgTjzIJdHlMp431pUASAlscPF6ABRaK14K3MkREZXFXkXK6yWC98ZLZXzfjojbBiMTLUUcqwJ3dvQ3nkBoMSLKeOj73k/dBh5XB7ftEm1ALXaQ363SFpW6014P78F9dO2kTHuY6z7q6QxUd1FPp6C6h3paRaSUUmLwEyjv8DANDiGVUqpcHWtGXa4yHdY9a2mmRcvS8t9C7Sqr4n8/9covobE/KvQ+vyR04n9/GHqwMJKGHozGhoEHC/Y/+On/BmWqHKFM/TO3HIG2/kU4/r9Pmd6mlenz5ss0Ov5PSyIiOk3++kMVrBsOlWRdvxJWUDggRgAAAHAGAJ0BKoAAdQA+kUihTKWkIyIgiACwEglpbuF0kABPbYi8QVHPbEXiCo57Yi8QVHPbEXiCo57Yi8QTYAD+/0X4AAAAAAA=",
+        "description": "Play Minecraft with Lunar Client!",
+        "url": "glacier://lunar",
+        "category": "Games,Minecraft,Mods"
+    },
+    {
         "name": "Forge Mod List",
         "unblock":false,
         "image": "/minecraft/forge/modrinth.ico",

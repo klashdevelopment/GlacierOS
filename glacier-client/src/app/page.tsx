@@ -50,6 +50,7 @@ import StartMenu from "./components/StartMenu";
 import DuallerApp from "./windows/Dualler";
 import LunarClientApp from "./windows/LunarClient";
 import contsants from "./Constants";
+import ModrinthApp from "./windows/ModrinthApp";
 
 export default function Home() {
     const [theme, setTheme] = useState(webDarkTheme);
@@ -77,6 +78,7 @@ export default function Home() {
             { name: "Microsoft Store", icon: `/${os}/store.png`, window: "store" },
             { name: "Minecraft Launcher", icon: `/${os}/minecraft.png`, window: "mclauncher" },
             { name: "Lunar Client", icon: contsants.LUNAR.ICON, window: "lunar" },
+            // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" },
         ]);
     }
 
@@ -121,7 +123,8 @@ export default function Home() {
                 { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
                 { name: "Quadpad", icon: `/image/quadpad.png`, window: "quadpad" },
                 { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" }
+                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" },
+                // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" }
             ]);
             document.body.style.backgroundImage = `url("/image/backgrounddev.png")`;
         }
@@ -159,7 +162,7 @@ export default function Home() {
                         <img src={`/windows/user.png`} style={{ width: '175px', borderRadius: '50%', boxShadow: 'rgba(0,0,0,0.5) 0 0 7px 0px' }} alt="" />
                         <b style={{ fontSize: '22px', margin: '20px 0px' }}>Glacier User</b>
                         {firstTime && <p>Your password can later be changed in settings.</p>}
-                        <Input onChange={(e, d) => {
+                        <Input onChange={(e: any, d: any) => {
                             setPwInput(d.value);
                             if (!firstTime && d.value === password) {
                                 window.localStorage.setItem("auth", "true");
@@ -214,6 +217,7 @@ export default function Home() {
                         <CameraApp />
                         <StoreApp />
                         <LunarClientApp />
+                        {/* <ModrinthApp /> */}
                         <CloudGaming />
                         <MinecraftLauncherApp />
                         <Syntaxpad />

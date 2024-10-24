@@ -25,6 +25,10 @@
         .hidden {
             display: none;
         }
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+        }
     </style>
     <script src="/baremux/index.js" defer></script>
     <script src="/uv/uv.bundle.js" defer></script>
@@ -32,18 +36,32 @@
     <script src="/enigma/register-sw.js" defer></script>
 </head>
 <body>
-    <select id="game_sel">
-        <option value="https://www.miniplay.com/embed/governor-of-poker" selected>gov. poker (Miniplay)</option>
-        <option value="https://www.governorofpoker.com/">gov. poker (OFFICIAL)</option>
-        <option value="https://www.funnygames.org/game/governor_of_poker_2.html">gov. poker 2 (FUNNYGAME)</option>
-        <option value="https://games.aarp.org/games/texas-holdem-poker-sit-and-go">texas holdem (AARP)</option>
+    <h1>lets go gambling!</h1>
+    <h2>loading options...</h2>
+    <select id="game_sel" class="hidden">
     </select>
-    <button id="game_1">load (1)</button>
+    <button id="game_1" class="hidden">load (1)</button>
     <button id="game_2" class="hidden">load (2)</button>
     <script>
         const game_1 = document.getElementById('game_1');
         const game_2 = document.getElementById('game_2');
         const game_sel = document.getElementById('game_sel');
+        document.body.addEventListener('load', ()=>{
+            fetch("https://raw.githubusercontent.com/klashdevelopment/glacier-data-repo/refs/heads/main/gambling.json")
+            .then(x => x.json())
+            .then(x => {
+                x.forEach((game, i) => {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.innerText = game.name;
+                    game_sel.appendChild(option);
+                });
+                game_1.classList.remove('hidden');
+                game_sel.classList.remove('hidden');
+                document.querySelector('h1').remove();
+                document.querySelector('h2').remove();
+            });
+        })
         var selected = game_sel.value;
         var listener;
         game_sel.addEventListener('change', () => {
@@ -60,6 +78,7 @@
                         clearInterval(listener);
                         game_1.remove();
                         game_2.classList.remove('hidden');
+                        game_sel.remove();
                     }
                 },200);
             }catch (err) {

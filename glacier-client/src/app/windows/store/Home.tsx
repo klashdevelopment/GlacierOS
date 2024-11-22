@@ -1,4 +1,4 @@
-import { getCategories, getWithCategory } from "@/app/utils/AppListHelper";
+import { getCategories, getWithCategory, reloadData } from "@/app/utils/AppListHelper";
 import { Button, Dropdown, Option } from "@fluentui/react-components";
 import { useState, useEffect } from "react";
 import { nameToID, toggleStoreApp } from "./StoreApps";
@@ -20,7 +20,8 @@ export default function Apps() {
         <div>
             <h1>Home</h1>
             <p>Either use the tabs on the left for broad categories, or search for a specific category here:</p>
-            <p><Dropdown disabled={!updated} placeholder="Select a category..." defaultSelectedOptions={[""]} defaultValue={"None"} onOptionSelect={(e,d)=>{setSelectedCategory(d.optionValue||'');}}>
+            <Button icon={<ArrowClockwiseFilled/>} onClick={reloadData}>Reload App Data</Button>
+            <p style={{gap:'2px',display:'flex'}}><Dropdown disabled={!updated} placeholder="Select a category..." defaultSelectedOptions={[""]} defaultValue={"None"} onOptionSelect={(e,d)=>{setSelectedCategory(d.optionValue||'');}}>
                 <Option value="">None</Option>
                 {categories.map((category, index) => {
                     return <Option key={index}>{category}</Option>

@@ -2,7 +2,7 @@
 // import { ReadonlyURLSearchParams, useParams, useRouter, useSearchParams } from "next/router";
 import './flash.css';
 import React, { useEffect, useState } from "react"
-import createWaflashModule, { initDragAndDrop } from "../../public/wasm/waflash.mjs"
+import createWaflashModule, { initDragAndDrop } from "../../../glacier-server/client/wasm/waflash.mjs"
 import { useRouter } from "next/router";
 
 declare const window: any;

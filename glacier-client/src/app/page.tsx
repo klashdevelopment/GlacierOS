@@ -77,7 +77,7 @@ export default function Home() {
             { name: "Camera", icon: `/${os}/icons/camera.png`, window: "camera" },
             { name: "Microsoft Store", icon: `/${os}/store.png`, window: "store" },
             { name: "Minecraft Launcher", icon: `/${os}/minecraft.png`, window: "mclauncher" },
-            { name: "Lunar Client", icon: contsants.LUNAR.ICON, window: "lunar" },
+            { name: "Lunar Client", icon: `/${os}/lunar.png`, window: "lunar" },
             // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" },
         ]);
     }

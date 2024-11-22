@@ -42,6 +42,11 @@ async function ensureDataLoaded() {
     }
 }
 
+export async function reloadData() {
+    apps = [];
+    await ensureDataLoaded();
+}
+
 export default function AppListHelper() {
     const [loaded, setLoaded] = useState(false);
 

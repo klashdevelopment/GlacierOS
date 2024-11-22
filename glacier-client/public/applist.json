@@ -109,7 +109,7 @@
         "unblock":true,
         "image":"/image/robux.jpg",
         "description": "Play Roblox on Glacier via now.gg",
-        "url": "https://now.gg/apps/roblox-corporation/5349/roblox.html",
+        "url": "https://mathsspot.com",
         "category": "Games,Strategy",
         "cssInject": "/roblox.css|500"
     },
@@ -857,7 +857,7 @@
         "category": "VMP"
     },
     {
-        "name": "ReactOS (no wifi)",
+        "name": "ReactOS (Down)",
         "unblock":false,
         "image": "/vms/reactos/reactos.png",
         "description": "A free operating system similar to Windows 7 that is compatible with many Windows applications and drivers.",
@@ -865,11 +865,75 @@
         "category": "VMS"
     },
     {
-        "name": "DSLinux (wifi)",
+        "name": "DSLinux (Down)",
         "unblock":false,
         "image": "/vms/dsl/dsl.png",
         "description": "A lightweight Linux distribution designed for older hardware and low-resource systems.",
         "url": "/vms/dsl/index.html",
+        "category": "VMS"
+    },
+    {
+        "name": "AndroidX86",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Android-x86.png",
+        "description": "A port of the Android operating system that can be run on your web browser.",
+        "url": "https://copy.sh/v86/?profile=android",
+        "category": "VMS"
+    },
+    {
+        "name": "Arch Linux",
+        "unblock":true,
+        "image": "https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png",
+        "description": "A lightweight and flexible Linux distribution that follows the KISS principle (Keep It Simple, Stupid).",
+        "url": "https://copy.sh/v86/?profile=archlinux",
+        "category": "VMS"
+    },
+    {
+        "name": "SerenityOS",
+        "unblock":true,
+        "image": "https://avatars.githubusercontent.com/u/50811782?s=200&v=4",
+        "description": "A free and open-source operating system bundled with a browser and games.",
+        "url": "https://copy.sh/v86/?profile=serenity",
+        "category": "VMS"
+    },
+    {
+        "name": "KolibriOS",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/KolibriOS_logo%2C_summer_2024.png",
+        "description": "A featureful operating system that fits on a single floppy disk.",
+        "url": "https://copy.sh/v86/?profile=kolibrios",
+        "category": "VMS"
+    },
+    {
+        "name": "NodeOS (NodeJS)",
+        "unblock":true,
+        "image": "https://avatars.githubusercontent.com/u/9950313?s=80&v=4",
+        "description": "A linux kernel with NodeJS set as the default environment.",
+        "url": "https://copy.sh/v86/?profile=nodeos",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows 95",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Logo_%281992-2001%29.svg/1184px-Windows_Logo_%281992-2001%29.svg.png",
+        "description": "A classic operating system that introduced the Start menu and taskbar.",
+        "url": "https://copy.sh/v86/?profile=windows95",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows 98",
+        "unblock":true,
+        "image": "/image/win98.webp",
+        "description": "An operating system known for its improved hardware support and USB capabilities.",
+        "url": "https://copy.sh/v86/?profile=windows98",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows XP",
+        "unblock":true,
+        "image": "https://seeklogo.com/images/W/windows-xp-icon-logo-E8F84DD6F3-seeklogo.com.png",
+        "description": "A popular operating system that introduced the Luna visual style and improved networking features.",
+        "url": "https://lrusso.github.io/VirtualXP/VirtualXP.htm",
         "category": "VMS"
     },
     {

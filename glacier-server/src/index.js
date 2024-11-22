@@ -1,6 +1,7 @@
 import express from "express";
 import { createServer } from "node:http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
+import { uvPath as uvOldPath } from "uv-old";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
@@ -16,6 +17,7 @@ import runDiscordBot from "./discord.js";
 const app = express();
 const publicPath = './client/';
 const bareServer = createBareServer("/bare/");
+const bareOld = createBareServer("/bare2/");
 
 // Load our publicPath first and prioritize it over UV.
 app.use(express.static(publicPath));
@@ -24,6 +26,7 @@ app.use('/quadpad/', express.static("./quadpad/"));
 // Load vendor files last.
 // The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
 app.use("/uv/", express.static(uvPath));
+app.use("/uv2/", express.static(uvOldPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/libcurl/", express.static(libcurlPath));
 app.use("/bareasmodule/", express.static(bareModulePath));
@@ -34,7 +37,7 @@ var forumHandler = (req, res) => {
   res.send("Forum handler not yet initalized - please wait a moment.");
 };
 var onDie = () => {};
-if(!process.env.DISCORD_TOKEN || !process.env.DISCORD_CLIENT_ID) {
+if(process.env.DISCORD_TOKEN && process.env.DISCORD_CLIENT_ID) {
   runDiscordBot((handler, die) => {
     forumHandler = handler;
     onDie = die;
@@ -59,20 +62,23 @@ const server = createServer();
 server.on("request", (req, res) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
+  } else if (bareOld.shouldRoute(req)) {
+    bareOld.routeRequest(req, res);
   } else {
     app(req, res);
   }
 })
 
 server.on("upgrade", (req, socket, head) => {
-  if (req.url.endsWith("/wisp/"))
+  if (req.url.endsWith("/wisp/")) {
     wisp.routeRequest(req, socket, head);
-  else
-  {
+  } else {
 	  if (bareServer.shouldRoute(req)) {
-		bareServer.routeUpgrade(req, socket, head);
-	  } else {
-		socket.end();
+		  bareServer.routeUpgrade(req, socket, head);
+	  } else if (bareOld.shouldRoute(req)) {
+      bareOld.routeUpgrade(req, socket, head);
+    } else {
+		  socket.end();
 	  }
   }
 });
@@ -102,7 +108,6 @@ process.on("SIGTERM", shutdown);
 
 function shutdown() {
   console.log("SIGTERM signal received: closing HTTP server");
-  onDie();
   server.close();
   bareServer.close();
   process.exit(0);

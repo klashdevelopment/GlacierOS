@@ -14,7 +14,7 @@ export async function registerSWandset(onceDone: (defined: boolean) => void) {
     }
 
     try {
-        await setTransport("epoxy");
+        await setTransport("libcurl");
         console.log("[REGISTERSWANDSET] transport success");
     } catch (err2) {
         console.log("[REGISTERSWANDSET] transport fail");

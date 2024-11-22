@@ -14,7 +14,7 @@ window.addEventListener('load', async (e) => {
     }
 
     try {
-        await setTransport("epoxy");
+        await setTransport("libcurl");
         console.log("[INDEX.JS] transport success");
     } catch (err2) {
         console.log("[INDEX.JS] transport fail");

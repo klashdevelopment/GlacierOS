@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Math | Notes</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+        #fsnotes {
+            width: 100vw;
+            height: 100vh;
+            background: #111;
+            color: white !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 5;
+            box-sizing: border-box;
+            font-family: Inter;
+        }
+        html,body {
+        	margin: 0;
+            padding: 0;
+            font-family: Inter;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="fsnotes" placeholder="Start typing..."></textarea>
+    <script>
+        const fsnotes = document.getElementById('fsnotes');
+        fsnotes.value = localStorage.getItem('fsnotes') || '';
+        fsnotes.addEventListener('input', () => {
+            localStorage.setItem('fsnotes', fsnotes.value);
+        });
+    </script>
+</body>
+</html>

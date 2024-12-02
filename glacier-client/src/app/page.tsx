@@ -92,6 +92,13 @@ export default function Home() {
         if (auth/* || process.env.NODE_ENV === "development"*/) {
             setAuth(true);
         }
+        fetch('http://ip-api.com/json/')
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.org === "South Pasadena Unified School") {
+                    setBlockUser(true);
+                }
+            });
         if (window.localStorage.getItem("firstTime")) {
             setFirstTime(false);
         }
@@ -116,6 +123,20 @@ export default function Home() {
         }
 
         const params = new URLSearchParams(window.location.search);
+        if(params.has('forcefull-access')) {
+            setBlockUser(false);
+            setAuth(true);
+            setTaskbarApps([
+                { name: "Settings", icon: `/${selectedOS}/settings.png`, window: "settings" },
+                { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.png`, window: "file-explorer" },
+                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
+                { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.png`, window: "edge" },
+                { name: "Dualler", icon: `/windows/dueller.png`, window: "dualler" },
+                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
+                { name: "Calculator", icon: `/${selectedOS}/icons/calculator.png`, window: "calculator" },
+                { name: "Camera", icon: `/${selectedOS}/icons/camera.png`, window: "camera" }
+            ]);
+        }
         if(params.has('dev-mode')) {
             setBlockUser(false);
             setAuth(true);
@@ -123,8 +144,7 @@ export default function Home() {
                 { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
                 { name: "Quadpad", icon: `/image/quadpad.png`, window: "quadpad" },
                 { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" },
-                // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" }
+                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" }
             ]);
             document.body.style.backgroundImage = `url("/image/backgrounddev.png")`;
         }
@@ -153,7 +173,7 @@ export default function Home() {
 
                         <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}>
                             <b style={{textAlign:'center'}}>Glacier isn't allowed in this school!</b>
-                            <span style={{textAlign:'center'}}>You're using a chromebook managed to SPUSD. If you are are a administrator and would like to have access for looking around, please contact me.</span>
+                            <span style={{textAlign:'center'}}>You're using a chromebook managed to a school district that has blocked Glacier from usage. If this is a mistake, contact gavin@klash.dev</span>
                         </div>
                     </div>
                 </div>)}

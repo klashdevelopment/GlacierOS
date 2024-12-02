@@ -17,27 +17,52 @@ interface SelectedClientData {
     windowName: string;
 }
 
-const clients = {
-    "boost": {
-        name: "Boost",
-        version: "1.8.9+",
-        icon: "/image/b.png",
-        windowID: "boost",
-        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/boost",
-        windowName: "Minecraft (boost)"
-    },
+type ClientKey = keyof typeof clients;
+
+const clients: Record<string, SelectedClientData> = {
     "glacier": {
         name: "Glacier",
-        version: "1.8.9",
+        version: "1.8.8",
         icon: "/windows/glacierwhite.png",
         windowID: "glacier",
         windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/glacier",
         windowName: "Minecraft (glacier)"
     },
+    "astra": {
+        name: "Astra",
+        version: "1.8.8",
+        icon: "https://tortillagames.org/assets/img/lessons/cc38ed54-0f32-4dfc-bb4f-84b6c449e9a8.webp",
+        windowID: "astra",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/astra",
+        windowName: "Minecraft (astra)"
+    },
+    "shadow4": {
+        name: "Shadow & OF",
+        version: "1.8.8",
+        icon: "https://tortillagames.org/assets/img/lessons/b0abe046-68cb-4605-b0b8-39a23b2bc2ba.webp",
+        windowID: "shadow4",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/shadow4",
+        windowName: "Minecraft (shadow4)"
+    },
+    "resent1.8": {
+        name: "Resent",
+        version: "1.8.8",
+        icon: "https://tortillagames.org/assets/img/lessons/8ecae8c2-6c12-465a-a2ec-08048986b9f0.webp",
+        windowID: "resent1.8",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/resent1.8",
+        windowName: "Minecraft (resent1.8)"
+    }
 }
 
 export default function LunarClientApp() {
-    const [selectedClient, setSelectedClient] = useState<SelectedClientData>(clients.glacier);
+    const [selectedClient, setSelectedClient] = useState<SelectedClientData>(clients.astra);
+
+    function getNextClient() {
+        const clientKeys = Object.keys(clients) as Array<keyof typeof clients>;
+        const currentIndex = clientKeys.indexOf(selectedClient.windowID);
+        const nextIndex = (currentIndex + 1) % clientKeys.length;
+        return clients[clientKeys[nextIndex]];
+    }
 
     function launchGame() {
         let launcher = document.querySelector('.lunar') as HTMLElement;
@@ -99,15 +124,16 @@ export default function LunarClientApp() {
                                 <span style={{fontSize:'25px',textShadow:'#00000050 0px 3px 2px'}}>LAUNCH GAME</span>
                                 <span style={{fontSize:'12px',textShadow:'#00000050 0px 2px 2px',fontFamily:"Segoe UI, Helvetica, Arial",display:'flex',alignItems:'center',gap:'3px'}}>
                                     <img height={15} width={17} src={contsants.LUNAR.ICON} />
-                                    {/* Lunar Client 1.21.1 with
-                                    <img width={12} src={"/image/b.png"} />
-                                    Boost */}
-                                    Boost not installed
+                                    Lunar Client {selectedClient.version} with
+                                    <img width={12} src={selectedClient.icon} />
+                                    {selectedClient.name}
                                 </span>
                             </div>
                             <div className="lunar-darken" style={{height:'100%',width:'15%',display:'flex',alignItems:'center',justifyContent:'center',background:'#00000020',
                                 borderBottomRightRadius:'8px',
                                 borderTopRightRadius:'8px',
+                            }} onClick={()=>{
+                                setSelectedClient(getNextClient());
                             }}>
                                 <img width={18} src={contsants.LUNAR.DOWN} />
                             </div>

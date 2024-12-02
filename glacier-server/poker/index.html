@@ -59,6 +59,7 @@
     <h2>lets go gambling!</h2>
     <h3>loading options...</h3>
     <select id="game_sel" class="hidden">
+        <option value="INPUT">Custom Input</option>
     </select>
     <button id="game_1" class="hidden">load (server)</button>
     <button id="game_2" class="hidden">load (game)</button>
@@ -68,7 +69,19 @@
         const game_sel = document.getElementById('game_sel');
         var selected = game_sel.value;
         var listener;
+        function isURL(str) {
+            return /^(https?:\/\/)?([a-zA-Z0-9-]+\.?)+\.[a-zA-Z]{2,}$/.test(str);
+        }
         game_sel.addEventListener('change', () => {
+            if(game_sel.value == "INPUT") {
+                var input = prompt("Enter any URL:");
+                if(isURL(input)) {
+                    selected = input;
+                }else {
+                    selected = `https://www.google.com/search?q=${input}`;
+                }
+                return;
+            }
             selected = game_sel.value;
         });
         game_1.addEventListener('click', async () => {

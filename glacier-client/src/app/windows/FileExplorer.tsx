@@ -68,7 +68,7 @@ export default function FileExplorer() {
     const [links, setLinks] = useState<LinkData[]>([]);
 
     useEffect(() => {
-        fetch('https://raw.githack.com/klashdevelopment/glacier-data-repo/main/links.json')
+        fetch('https://raw.githack.com/klashdevelopment/glacier-data-repo/refs/heads/main/links.json')
             .then(res => res.json())
             .then(data => {
                 setLinks(data);

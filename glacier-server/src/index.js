@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "node:http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
-import { uvPath as uvOldPath } from "uv-old";
+// import { uvPath as uvOldPath } from "uv-old";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
@@ -12,12 +12,12 @@ import cors from "cors";
 import { createBareServer } from "@tomphttp/bare-server-node";
 
 import wisp from "wisp-server-node";
-import runDiscordBot from "./discord.js";
+// import runDiscordBot from "./discord.js";
 
 const app = express();
 const publicPath = './client/';
 const bareServer = createBareServer("/bare/");
-const bareOld = createBareServer("/bare2/");
+// const bareOld = createBareServer("/bare2/");
 
 // Load our publicPath first and prioritize it over UV.
 app.use(express.static(publicPath));
@@ -26,31 +26,31 @@ app.use('/quadpad/', express.static("./quadpad/"));
 // Load vendor files last.
 // The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
 app.use("/uv/", express.static(uvPath));
-app.use("/uv2/", express.static(uvOldPath));
+// app.use("/uv2/", express.static(uvOldPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/libcurl/", express.static(libcurlPath));
 app.use("/bareasmodule/", express.static(bareModulePath));
 app.use("/baremux/", express.static(baremuxPath));
 app.use("/bare", cors({ origin: "*" }));
 
-var forumHandler = (req, res) => {
-  res.send("Forum handler not yet initalized - please wait a moment.");
-};
-var onDie = () => {};
-if(process.env.DISCORD_TOKEN && process.env.DISCORD_CLIENT_ID) {
-  runDiscordBot((handler, die) => {
-    forumHandler = handler;
-    onDie = die;
-  });
+// var forumHandler = (req, res) => {
+//   res.send("Forum handler not yet initalized - please wait a moment.");
+// };
+// var onDie = () => {};
+// if(process.env.DISCORD_TOKEN && process.env.DISCORD_CLIENT_ID) {
+//   runDiscordBot((handler, die) => {
+//     forumHandler = handler;
+//     onDie = die;
+//   });
 
-  // let connection = new BareMuxConnection("/baremux/worker.js")
-  // await connection.setTransport("/epoxy/index.mjs", [{ wisp: "wss://wisp.mercurywork.shop/" }]);
-  // await connection.setTransport("/baremod/index.mjs", ["https://tomp.app/"]);
+//   // let connection = new BareMuxConnection("/baremux/worker.js")
+//   // await connection.setTransport("/epoxy/index.mjs", [{ wisp: "wss://wisp.mercurywork.shop/" }]);
+//   // await connection.setTransport("/baremod/index.mjs", ["https://tomp.app/"]);
 
-  app.get("/check-forums", (req, res) => {
-    forumHandler(req, res);
-  })
-}
+//   app.get("/check-forums", (req, res) => {
+//     forumHandler(req, res);
+//   })
+// }
 // Error for everything else
 app.use((req, res) => {
   res.status(404);
@@ -62,9 +62,9 @@ const server = createServer();
 server.on("request", (req, res) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
-  } else if (bareOld.shouldRoute(req)) {
+  }/* else if (bareOld.shouldRoute(req)) {
     bareOld.routeRequest(req, res);
-  } else {
+  }*/ else {
     app(req, res);
   }
 })
@@ -75,9 +75,9 @@ server.on("upgrade", (req, socket, head) => {
   } else {
 	  if (bareServer.shouldRoute(req)) {
 		  bareServer.routeUpgrade(req, socket, head);
-	  } else if (bareOld.shouldRoute(req)) {
+	  }/* else if (bareOld.shouldRoute(req)) {
       bareOld.routeUpgrade(req, socket, head);
-    } else {
+    }*/ else {
 		  socket.end();
 	  }
   }
@@ -110,6 +110,7 @@ function shutdown() {
   console.log("SIGTERM signal received: closing HTTP server");
   server.close();
   bareServer.close();
+  //bareOld.close();
   process.exit(0);
 }
 

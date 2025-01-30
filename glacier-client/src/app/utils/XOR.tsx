@@ -23,7 +23,7 @@ export default class xor {
     return encodeURIComponent(str)
   }
   static quickURL(str: string) {
-    return `/uv/service/${xor.encode(str)}`
+    return `https://tortillagames.org/zz/service/${xor.encode(str)}`
   }
 }
 

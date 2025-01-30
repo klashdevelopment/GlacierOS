@@ -49,6 +49,17 @@
         button:hover {
             background: #222;
         }
+        .tools {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180px;
+            height: 180px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background: #22222290;
+            border: 1px solid #ffffff2a;
+        }
     </style>
     <script src="/baremux/index.js" defer></script>
     <script src="/uv/uv.bundle.js" defer></script>
@@ -59,10 +70,15 @@
     <h2>lets go gambling!</h2>
     <h3>loading options...</h3>
     <select id="game_sel" class="hidden">
+        <option value="" selected></option>
         <option value="INPUT">Custom Input</option>
     </select>
     <button id="game_1" class="hidden">load (server)</button>
     <button id="game_2" class="hidden">load (game)</button>
+    <div class="toolbox">
+        <button onclick="window.location.href = '/poker/notes';">Notes</button>
+        <button onclick="window.location.href = '/poker/brain';">Brainbase</button>
+    </div>
     <script>
         const game_1 = document.getElementById('game_1');
         const game_2 = document.getElementById('game_2');
@@ -73,6 +89,10 @@
             return /^(https?:\/\/)?([a-zA-Z0-9-]+\.?)+\.[a-zA-Z]{2,}$/.test(str);
         }
         game_sel.addEventListener('change', () => {
+            if(game_sel.value == "") {
+                alert("Please select an app.");
+                return;
+            }
             if(game_sel.value == "INPUT") {
                 var input = prompt("Enter any URL:");
                 if(isURL(input)) {
@@ -96,6 +116,7 @@
                         game_1.remove();
                         game_2.classList.remove('hidden');
                         game_sel.remove();
+                        document.querySelector('.toolbox').remove();
                     }
                 },200);
             }catch (err) {

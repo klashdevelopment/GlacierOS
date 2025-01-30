@@ -109,7 +109,7 @@
         "unblock":true,
         "image":"/image/robux.jpg",
         "description": "Play Roblox on Glacier via now.gg",
-        "url": "https://now.gg/apps/roblox-corporation/5349/roblox.html",
+        "url": "https://mathsspot.com",
         "category": "Games,Strategy",
         "cssInject": "/roblox.css|500"
     },
@@ -268,7 +268,7 @@
     {
         "name": "Lunar Client",
         "unblock":false,
-        "image": "/chromeos/lunar.png",
+        "image": "data:image/webp;base64,UklGRrYEAABXRUJQVlA4WAoAAAAQAAAAfwAAdAAAQUxQSEoEAAABoFRbT55ti4RIQAISkIAEJCABCZWAhEqIhEpAQobf7Bo8LeHvfr9pREwAbeyyKP62OzH93ijor+HHeIG98g/hC0M1/4ykGP2En+AFMysfjy9M1ny4pJj/hIN5wZqVD8UXltV8pKiwP1cOIZTaTMATjuMEZi2Ovn1VC3DxUbjArIWp31UTNB0kNpirI3sQCyD+EE5glkBjU7MAFx+AC8wt0XAuaoGm7WKDVQvTTFctgPitnMBcHc0OYgEu3oYLzBLImp2NKDULNG0SG6wtkf3OI4iLGgDxGziBVQuT2SU8cQSRqxbg4sW4wFwd2f0NQCuPIApigaalYoNVAg1ulcanZgDEL+ME1pao28eeGicQFzUAF69RYNXC1BsEXYFnELlqgaYFQoO1OuoNAjRaOYgBED/J3bBKoF6+ACAvRZSaASg8oyiMLVF3VPx1ixEXNaDFYe6BUQtT94XXh9Z31QDcPMYrjNVRNz94LxsQBTHg4RFe0S+B+r3iM2xBlFofHrY5RXdLZPSKb9qVi3bhsT3o1cJk9IpvWYm5i8jVLlyWjF5xZPWKzmulGA1EofXA97H2VDKzoresVKuJ+OmRvozOSmZ+0B3WCZfqFSzETwdCV+u4yV6xB2cBJLOFuHXUHo9vZVuEkTv8JCK6bxoZOrQndyQys1qo8+ZpKQ2h+gXfcX81+su5p2Ic0jTnxriO3CFf10uSjoBxEfe04c9X6Whf4U8QJPcho8LVAOidtihftQPfRMRVAYh/iRjFsTbond0W4UsGNHq9lOldBoQXIvK4aFOeIW+h0nvADNK4Cy1A8aOOyB2VDvbJGFk6uM/lI6Uh0mHM95HuITqG04PsDoSxfoSrDdA7HCcMyiOIqDZaeJ0y6B4UrxPJIPAY9ifSUWnMXN4Go5/l/LVLGAa/Wn6OU1cTuE3SOLi1GEiblAl1rQQInwZ+GU5V8VeyP4uMSwYv6GzpKMijuBmIONYG4M6Oeo+gblCCtxCRByoZlwlT8IyJgjvYSBFPhGtAxqsmUwVv4iYh2YijQCLZk9AmNAvRRpTgaSDnbZ5Z6gew0pLr1FlQb6N0ljQNmmyLruPmAfls1BbAzUe7VkALJ/NLABefi9oa0HSg6y0vArR0nBZeWFcBWuYpjlfzuF6orAPgTjzIJdHlMp431pUASAlscPF6ABRaK14K3MkREZXFXkXK6yWC98ZLZXzfjojbBiMTLUUcqwJ3dvQ3nkBoMSLKeOj73k/dBh5XB7ftEm1ALXaQ363SFpW6014P78F9dO2kTHuY6z7q6QxUd1FPp6C6h3paRaSUUmLwEyjv8DANDiGVUqpcHWtGXa4yHdY9a2mmRcvS8t9C7Sqr4n8/9covobE/KvQ+vyR04n9/GHqwMJKGHozGhoEHC/Y/+On/BmWqHKFM/TO3HIG2/kU4/r9Pmd6mlenz5ss0Ov5PSyIiOk3++kMVrBsOlWRdvxJWUDggRgAAAHAGAJ0BKoAAdQA+kUihTKWkIyIgiACwEglpbuF0kABPbYi8QVHPbEXiCo57Yi8QVHPbEXiCo57Yi8QTYAD+/0X4AAAAAAA=",
         "description": "Play Minecraft with Lunar Client!",
         "url": "glacier://lunar",
         "category": "Games,Minecraft,Mods"
@@ -335,16 +335,8 @@
         "unblock":true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/800px-ChatGPT_logo.svg.png",
         "description": "ChatGPT is a chatbot developed by OpenAI and launched on November 30, 2022. Based on a large language model, it enables users to refine and steer a conversation towards a desired length, format, style, level of detail, and language.",
-        "url": "https://chat.openai.com/",
+        "url": "https://chat.openai.com//",
         "category": "Apps"
-    },
-    {
-        "name": "Catway",
-        "unblock":true,
-        "image": "https://catway.app/icon.png",
-        "description": "Catway is a FOSS fork of Kasm, a web-based remote desktop client. It is a simple, fast, and secure way to access an operating system from anywhere.",
-        "url": "https://catway.app/",
-        "category": "Apps,VMP"
     },
     {
         "name": "Bloons TD 5",
@@ -865,7 +857,7 @@
         "category": "VMP"
     },
     {
-        "name": "ReactOS (no wifi)",
+        "name": "ReactOS (Down)",
         "unblock":false,
         "image": "/vms/reactos/reactos.png",
         "description": "A free operating system similar to Windows 7 that is compatible with many Windows applications and drivers.",
@@ -873,11 +865,75 @@
         "category": "VMS"
     },
     {
-        "name": "DSLinux (wifi)",
+        "name": "DSLinux (Down)",
         "unblock":false,
         "image": "/vms/dsl/dsl.png",
         "description": "A lightweight Linux distribution designed for older hardware and low-resource systems.",
         "url": "/vms/dsl/index.html",
+        "category": "VMS"
+    },
+    {
+        "name": "AndroidX86",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Android-x86.png",
+        "description": "A port of the Android operating system that can be run on your web browser.",
+        "url": "https://copy.sh/v86/?profile=android",
+        "category": "VMS"
+    },
+    {
+        "name": "Arch Linux",
+        "unblock":true,
+        "image": "https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png",
+        "description": "A lightweight and flexible Linux distribution that follows the KISS principle (Keep It Simple, Stupid).",
+        "url": "https://copy.sh/v86/?profile=archlinux",
+        "category": "VMS"
+    },
+    {
+        "name": "SerenityOS",
+        "unblock":true,
+        "image": "https://avatars.githubusercontent.com/u/50811782?s=200&v=4",
+        "description": "A free and open-source operating system bundled with a browser and games.",
+        "url": "https://copy.sh/v86/?profile=serenity",
+        "category": "VMS"
+    },
+    {
+        "name": "KolibriOS",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/KolibriOS_logo%2C_summer_2024.png",
+        "description": "A featureful operating system that fits on a single floppy disk.",
+        "url": "https://copy.sh/v86/?profile=kolibrios",
+        "category": "VMS"
+    },
+    {
+        "name": "NodeOS (NodeJS)",
+        "unblock":true,
+        "image": "https://avatars.githubusercontent.com/u/9950313?s=80&v=4",
+        "description": "A linux kernel with NodeJS set as the default environment.",
+        "url": "https://copy.sh/v86/?profile=nodeos",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows 95",
+        "unblock":true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Logo_%281992-2001%29.svg/1184px-Windows_Logo_%281992-2001%29.svg.png",
+        "description": "A classic operating system that introduced the Start menu and taskbar.",
+        "url": "https://copy.sh/v86/?profile=windows95",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows 98",
+        "unblock":true,
+        "image": "/image/win98.webp",
+        "description": "An operating system known for its improved hardware support and USB capabilities.",
+        "url": "https://copy.sh/v86/?profile=windows98",
+        "category": "VMS"
+    },
+    {
+        "name": "Windows XP",
+        "unblock":true,
+        "image": "https://seeklogo.com/images/W/windows-xp-icon-logo-E8F84DD6F3-seeklogo.com.png",
+        "description": "A popular operating system that introduced the Luna visual style and improved networking features.",
+        "url": "https://lrusso.github.io/VirtualXP/VirtualXP.htm",
         "category": "VMS"
     },
     {

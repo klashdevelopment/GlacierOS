@@ -1,6 +1,10 @@
 # GlacierOS
 GlacierOS's only official open source repo: klashdevelopment/GlacierOS
 
+```
+Instructions below may be changing as glacier goes into a static-only state. They should apply until stated otherwise
+```
+
 ## Hosting
 You're gonna want to host `glacier-server`. (`npm install` first obv) That repo includes the actual glacier hostable code and files.
 

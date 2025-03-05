@@ -12,16 +12,18 @@ const urls = {
   "geforce": "https://play.geforcenow.com/",
   "luna": "https://luna.amazon.com",
   "xbox": "https://www.xbox.com/play",
+  "parsec": "https://web.parsec.app",
   "home": "/builtin/cloudloading.html"
 };
 const friendlyNames = {
   "geforce": "GeForce Now",
   "luna": "Amazon Luna",
   "xbox": "Xbox Cloud",
+  "parsec": "Parsec",
   "home": "Homepage"
 };
 
-type CGModes = "home" | "geforce" | "luna" | "xbox";
+type CGModes = "home" | "geforce" | "luna" | "xbox" | "parsec";
 
 export default function CloudGaming() {
   const [selectedMode, setSelectedMode] = useState<CGModes>("home");
@@ -54,26 +56,31 @@ export default function CloudGaming() {
         </div>
         <div className="cloud-game-container">
           <div className="cg-game" onClick={() => setSelectedMode("geforce")}>
-            <img src="/windows/nvidia.jpg" className="cg-image" />
+            <img src="/windows/nvidia.webp" className="cg-image" />
             <span className="cg-title">GeForce Now</span>
           </div>
           <div className="cg-game" onClick={() => setSelectedMode("luna")}>
-            <img src="/windows/luna.jpg" className="cg-image" />
+            <img src="/windows/luna.webp" className="cg-image" />
             <span className="cg-title">Amazon Luna</span>
           </div>
           <div className="cg-game" onClick={() => setSelectedMode("xbox")}>
-            <img src="/windows/xbox.jpg" className="cg-image" />
+            <img src="/windows/xbox.webp" className="cg-image" />
             <span className="cg-title">Xbox Cloud</span>
+          </div>
+          <div className="cg-game" onClick={() => setSelectedMode("parsec")}>
+            <img src="/windows/parsec.webp" className="cg-image" />
+            <span className="cg-title">Parsec</span>
           </div>
         </div>
       </div>
       <div className="cloud-game-play" style={{ display: `${selectedMode == "home" ? "none" : "flex"}` }}>
         <div className="cloud-game-play-controls">
-          <CloudGameSelectControl image="/windows/cloudgaming.png" type="home" />
+          <CloudGameSelectControl image="/windows/cloudgaming.webp" type="home" />
           <div style={{ width: '1px', background: '#ffffff30', height: '60%', margin: '0px 8px' }}></div>
-          <CloudGameSelectControl image="/windows/nvidia.jpg" type="geforce" />
-          <CloudGameSelectControl image="/windows/luna.jpg" type="luna" />
-          <CloudGameSelectControl image="/windows/xbox.jpg" type="xbox" />
+          <CloudGameSelectControl image="/windows/nvidia.webp" type="geforce" />
+          <CloudGameSelectControl image="/windows/luna.webp" type="luna" />
+          <CloudGameSelectControl image="/windows/xbox.webp" type="xbox" />
+          <CloudGameSelectControl image="/windows/parsec.webp" type="parsec" />
           <div style={{ width: '1px', background: '#ffffff30', height: '60%', margin: '0px 8px' }}></div>
           <Input placeholder={`Currently ${friendlyNames[selectedMode]}`} appearance="underline" className="cloud-game-search" />
         </div>

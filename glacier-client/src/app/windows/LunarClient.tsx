@@ -20,13 +20,21 @@ interface SelectedClientData {
 type ClientKey = keyof typeof clients;
 
 const clients: Record<string, SelectedClientData> = {
-    "glacier": {
-        name: "Glacier",
+    "starlike": {
+        name: "Starlike",
         version: "1.8.8",
-        icon: "/windows/glacierwhite.png",
-        windowID: "glacier",
-        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/glacier",
-        windowName: "Minecraft (glacier)"
+        icon: "http://tortillagames.org/assets/img/lessons/06dd7a4d-c8f6-409d-bd03-4acc97847302.webp",
+        windowID: "starlike",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/starlike",
+        windowName: "Minecraft (starlike)"
+    },
+    "starlike-wasm": {
+        name: "Starlike (WASM)",
+        version: "1.8.8",
+        icon: "http://tortillagames.org/assets/img/lessons/06dd7a4d-c8f6-409d-bd03-4acc97847302.webp",
+        windowID: "starlike-wasm",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/starlike-wasm",
+        windowName: "Minecraft (starlike-wasm)"
     },
     "astra": {
         name: "Astra",
@@ -35,6 +43,14 @@ const clients: Record<string, SelectedClientData> = {
         windowID: "astra",
         windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/astra",
         windowName: "Minecraft (astra)"
+    },
+    "astra-wasm": {
+        name: "Astra (WASM)",
+        version: "1.8.8",
+        icon: "https://tortillagames.org/assets/img/lessons/cc38ed54-0f32-4dfc-bb4f-84b6c449e9a8.webp",
+        windowID: "astra-wasm",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/astra-wasm",
+        windowName: "Minecraft (astra-wasm)"
     },
     "shadow4": {
         name: "Shadow & OF",
@@ -115,11 +131,11 @@ export default function LunarClientApp() {
                         <div style={{width:'1px',margin:'0px 10px',background:'#ffffff0a',height:"100%"}}></div>
                         <img src={contsants.ICONS.WEBMC} height={20} />
                         <img src={"https://cdn.craftingstore.net/rPPmDHlLQ1/ff6f28fae9c78620670451be7fc86f98/nfjpzriwpydxbalceixv.png"} height={20} />
-                        <img src="https://arch.lol/apps/main/public/assets/img/extras/favicon.png?cache=1727046920" height={20} />
+                        <img src="https://arch.lol/favicon.ico" height={20} />
                         <img src="https://www.asspixel.net/custom/templates/Lithium/uploads/ApLogoNoBackground%20(1).png" height={20} />
                     </div>
                     <div className="lunar-quick" style={{width:'90%',margin:'0 5%',background:'url("https://minecraft.wiki/images/NewStars.png")',backgroundPosition:"50%",height:'30%',borderRadius:'12px',border:'5px solid #ffffff20',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                        <div className="lunar-quick-button" style={{width:'300px',cursor:'pointer',height:'70px',background:'url("/image/aaaa.png")',display:'flex',backgroundPosition:'50%',borderRadius:'10px',border:'5px solid #ffffff20'}}>
+                        <div className="lunar-quick-button" style={{width:'300px',cursor:'pointer',height:'70px',background:'url("/image/aaaa.webp")',display:'flex',backgroundPosition:'50%',borderRadius:'10px',border:'5px solid #ffffff20'}}>
                             <div onClick={launchGame} className="lunar-darken" style={{height:'100%',width:'85%',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'LunarOne',flexDirection:'column'}}>
                                 <span style={{fontSize:'25px',textShadow:'#00000050 0px 3px 2px'}}>LAUNCH GAME</span>
                                 <span style={{fontSize:'12px',textShadow:'#00000050 0px 2px 2px',fontFamily:"Segoe UI, Helvetica, Arial",display:'flex',alignItems:'center',gap:'3px'}}>

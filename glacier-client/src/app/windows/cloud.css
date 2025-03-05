@@ -47,14 +47,16 @@
     filter: brightness(0.8);
 }
 .cloud-game-container {
-    width:60%;
+    width:65%;
+    min-width: fit-content;
+    gap: 4px;
     height: 30%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .cg-game {
-    width: 100px;
+    width: 90px;
     height: 130px;
     display: flex;
     justify-content: center;

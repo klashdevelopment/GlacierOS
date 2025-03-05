@@ -167,7 +167,7 @@ export default function Taskbar({
         // let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
         return start ? <div className="w11-taskbar-app" id="startmenu-tb-app" onClick={function () { toggleStartMenu() }}>
-            <img src={`/${selectedOS}/start.png`} alt={formatName(selectedOS, 'Start')} />
+            <img src={`/${selectedOS}/start.webp`} alt={formatName(selectedOS, 'Start')} />
             <span>{formatName(selectedOS, 'Start')}</span>
         </div> : <div key={app.window + '-tb-key'} id={app.window + '-tb-app'} className="w11-taskbar-app" onClick={function () { toggle(app) }}>
             <img src={app.icon} alt={app.name} />

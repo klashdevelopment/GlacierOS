@@ -54,7 +54,7 @@ export default function StartMenu({ children, updTaskbarWindows }: StartMenuProp
             >
                 <button onClick={updTaskbarWindows}>refresh taskbar</button>
                 <div className="sme-footer">
-                    <img src="/windows/user.png" style={{width:'30px'}} alt="" className="circled" />
+                    <img src="/windows/user.webp" style={{width:'30px'}} alt="" className="circled" />
                     <Button
                         onClick={() => {
                             const tab = window.open('about:blank', '_blank') as Window;

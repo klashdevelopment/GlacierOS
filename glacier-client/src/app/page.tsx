@@ -76,133 +76,133 @@ export default function Home() {
 
     function setTaskbarDefaults(os: string) {
         setTaskbarApps([
-            { name: "Settings", icon: `/${os}/settings.png`, window: "settings" },
-            { name: "File Explorer", icon: `/${os}/icons/explorer.png`, window: "file-explorer" },
-            { name: "Terminal", icon: `/${os}/icons/terminal.png`, window: "terminal" },
-            { name: "Microsoft Edge", icon: `/${os}/icons/edge.png`, window: "edge" },
-            { name: "Dualler", icon: `/windows/dueller.png`, window: "dualler" },
-            { name: "Syntaxpad", icon: `/${os}/syntaxpad.png`, window: "syntaxpad" },
-            { name: "Calculator", icon: `/${os}/icons/calculator.png`, window: "calculator" },
-            { name: "Camera", icon: `/${os}/icons/camera.png`, window: "camera" },
-            { name: "Microsoft Store", icon: `/${os}/store.png`, window: "store" },
-            { name: "Minecraft Launcher", icon: `/${os}/minecraft.png`, window: "mclauncher" },
-            { name: "Lunar Client", icon: `/${os}/lunar.png`, window: "lunar" },
+            { name: "Settings", icon: `/${os}/settings.webp`, window: "settings" },
+            { name: "File Explorer", icon: `/${os}/icons/explorer.webp`, window: "file-explorer" },
+            { name: "Terminal", icon: `/${os}/icons/terminal.webp`, window: "terminal" },
+            { name: "Microsoft Edge", icon: `/${os}/icons/edge.webp`, window: "edge" },
+            { name: "Dualler", icon: `/windows/dueller.webp`, window: "dualler" },
+            { name: "Syntaxpad", icon: `/${os}/syntaxpad.webp`, window: "syntaxpad" },
+            { name: "Calculator", icon: `/${os}/icons/calculator.webp`, window: "calculator" },
+            { name: "Camera", icon: `/${os}/icons/camera.webp`, window: "camera" },
+            { name: "Microsoft Store", icon: `/${os}/store.webp`, window: "store" },
+            { name: "Minecraft Launcher", icon: `/${os}/minecraft.webp`, window: "mclauncher" },
+            { name: "Lunar Client", icon: `https://parsefiles.back4app.com/JPaQcFfEEQ1ePBxbf6wvzkPMEqKYHhPYv8boI1Rc/bc2dfa26e88ad794d530368331835d1f_7h0TxjqYaF.png`, window: "lunar" },
             // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" },
         ]);
     }
 
     useEffect(() => {
-        var V86Inject = `*:not(#screen_container, #screen_container *, html, body) {
-            display: none !important;
-        }
-        html, body {
-            font-size: 0;
-        }
-        #screen_container {
-            width: 100vw;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 999;
-        }`;
+        // var V86Inject = `*:not(#screen_container, #screen_container *, html, body) {
+        //     display: none !important;
+        // }
+        // html, body {
+        //     font-size: 0;
+        // }
+        // #screen_container {
+        //     width: 100vw;
+        //     display: flex !important;
+        //     align-items: center;
+        //     justify-content: center;
+        //     height: 100vh;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     z-index: 999;
+        // }`;
 
-        self.__uv$config = {
-            prefix: "https://tortillagames.org/zz/service/",
-            encodeUrl: xor.encode,
-            decodeUrl: xor.decode,
-            handler: "https://tortillagames.org/zz/zz.handler.js",
-            client: "https://tortillagames.org/zz/zz.client.js",
-            bundle: "https://tortillagames.org/zz/zz.bundle.js",
-            config: "https://tortillagames.org/zz/zz.config.js",
-            sw: "https://tortillagames.org/zz/zz.sw.js",
-            inject: [
-                {
-                    "host": "/^https:\/\/copy\.sh\/v86\/\?/",
-                    "injectTo": "head",
-                    "html": "<style>" + V86Inject + "</style>"
-                },
-            ]
-        };
-        async function doClientUV() {
-            var importScripts = (url: string) => {
-                return new Promise<void>((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = url;
-                    script.onload = () => { resolve(); console.log("Loaded script: " + url) };
-                    script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
-                    document.head.appendChild(script);
-                });
-            };
-            await importScripts('https://tortillagames.org/epoxy/index.js');
-            await importScripts('https://tortillagames.org/baremux/index.js');
-            await importScripts(self.__uv$config.bundle || 'uv.bundle.js');
-            await importScripts(self.__uv$config.sw || 'uv.sw.js');
-            const allowedHostnames = ["localhost", "127.0.0.1"];
-            self.setTransport = async function(transportsel: string) {
-                const connection = new BareMuxConnection("https://tortillagames.org/baremux/worker.js")
-                const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + /*location.host*/'tortillagames.org' + "/wisp/";
-                const bareUrl = location.protocol + "//" + /*location.host*/'tortillagames.org' + "/bare/";
+        // self.__uv$config = {
+        //     prefix: "https://tortillagames.org/zz/service/",
+        //     encodeUrl: xor.encode,
+        //     decodeUrl: xor.decode,
+        //     handler: "https://tortillagames.org/zz/zz.handler.js",
+        //     client: "https://tortillagames.org/zz/zz.client.js",
+        //     bundle: "https://tortillagames.org/zz/zz.bundle.js",
+        //     config: "https://tortillagames.org/zz/zz.config.js",
+        //     sw: "https://tortillagames.org/zz/zz.sw.js",
+        //     inject: [
+        //         {
+        //             "host": "/^https:\/\/copy\.sh\/v86\/\?/",
+        //             "injectTo": "head",
+        //             "html": "<style>" + V86Inject + "</style>"
+        //         },
+        //     ]
+        // };
+        // async function doClientUV() {
+        //     var importScripts = (url: string) => {
+        //         return new Promise<void>((resolve, reject) => {
+        //             const script = document.createElement('script');
+        //             script.src = url;
+        //             script.onload = () => { resolve(); console.log("Loaded script: " + url) };
+        //             script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
+        //             document.head.appendChild(script);
+        //         });
+        //     };
+        //     await importScripts('https://tortillagames.org/epoxy/index.js');
+        //     await importScripts('https://tortillagames.org/baremux/index.js');
+        //     await importScripts(self.__uv$config.bundle || 'uv.bundle.js');
+        //     await importScripts(self.__uv$config.sw || 'uv.sw.js');
+        //     const allowedHostnames = ["localhost", "127.0.0.1"];
+        //     self.setTransport = async function(transportsel: string) {
+        //         const connection = new BareMuxConnection("https://tortillagames.org/baremux/worker.js")
+        //         const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + /*location.host*/'tortillagames.org' + "/wisp/";
+        //         const bareUrl = location.protocol + "//" + /*location.host*/'tortillagames.org' + "/bare/";
 
-                if (transportsel == "epoxy") {
-                    await connection.setTransport("https://tortillagames.org/epoxy/index.mjs", [{ wisp: wispUrl }]);
-                } else if (transportsel == "libcurl") {
-                    await connection.setTransport("https://tortillagames.org/libcurl/index.mjs", [{ wisp: wispUrl }]);
-                } else {
-                    await connection.setTransport("https://tortillagames.org/bareasmodule/index.mjs", [bareUrl]);
-                }
-            }
-            self.registerSW = async function() {
-                if (!navigator.serviceWorker) {
-                    if (
-                        location.protocol !== "https:" &&
-                        !allowedHostnames.includes(location.hostname)
-                    )
-                        throw new Error("Service workers cannot be registered without https.");
+        //         if (transportsel == "epoxy") {
+        //             await connection.setTransport("https://tortillagames.org/epoxy/index.mjs", [{ wisp: wispUrl }]);
+        //         } else if (transportsel == "libcurl") {
+        //             await connection.setTransport("https://tortillagames.org/libcurl/index.mjs", [{ wisp: wispUrl }]);
+        //         } else {
+        //             await connection.setTransport("https://tortillagames.org/bareasmodule/index.mjs", [bareUrl]);
+        //         }
+        //     }
+        //     self.registerSW = async function() {
+        //         if (!navigator.serviceWorker) {
+        //             if (
+        //                 location.protocol !== "https:" &&
+        //                 !allowedHostnames.includes(location.hostname)
+        //             )
+        //                 throw new Error("Service workers cannot be registered without https.");
 
-                    throw new Error("Your browser doesn't support service workers.");
-                }
+        //             throw new Error("Your browser doesn't support service workers.");
+        //         }
 
-                await navigator.serviceWorker.register("https://tortillagames.org/zz/sw.js");
-            }
-            try {
-                await registerSW();
-            } catch (err) {
-                console.error(err);
-            }
-            try {
-                await setTransport("libcurl");
-            } catch (err2) {
-                console.error(err2);
-            }
-            const uv = new UVServiceWorker();
-            self.addEventListener('fetch', (event: any) => {
-                event.respondWith(
-                    (async () => {
-                        if (uv.route(event)) {
-                            return await uv.fetch(event);
-                        }
-                        return await fetch(event.request);
-                    })()
-                );
-            });
-        };
-        doClientUV();
-        self.search = (input: string, template: string) => {
-            try {
-                return new URL(input).toString();
-            } catch (err) { }
+        //         await navigator.serviceWorker.register("https://tortillagames.org/zz/sw.js");
+        //     }
+        //     try {
+        //         await registerSW();
+        //     } catch (err) {
+        //         console.error(err);
+        //     }
+        //     try {
+        //         await setTransport("libcurl");
+        //     } catch (err2) {
+        //         console.error(err2);
+        //     }
+        //     const uv = new UVServiceWorker();
+        //     self.addEventListener('fetch', (event: any) => {
+        //         event.respondWith(
+        //             (async () => {
+        //                 if (uv.route(event)) {
+        //                     return await uv.fetch(event);
+        //                 }
+        //                 return await fetch(event.request);
+        //             })()
+        //         );
+        //     });
+        // };
+        // doClientUV();
+        // self.search = (input: string, template: string) => {
+        //     try {
+        //         return new URL(input).toString();
+        //     } catch (err) { }
 
-            try {
-                const url = new URL(`http://${input}`);
-                if (url.hostname.includes(".")) return url.toString();
-            } catch (err) { }
+        //     try {
+        //         const url = new URL(`http://${input}`);
+        //         if (url.hostname.includes(".")) return url.toString();
+        //     } catch (err) { }
 
-            return template.replace("%s", encodeURIComponent(input));
-        };
+        //     return template.replace("%s", encodeURIComponent(input));
+        // };
         const useFake = window.localStorage.getItem("fake-mode");
         if (useFake) {
             setShowFake(useFake === 'true');
@@ -239,7 +239,7 @@ export default function Home() {
         if (window.localStorage.getItem('background')) {
             document.body.style.backgroundImage = `url("${window.localStorage.getItem('background')}")`;
         } else {
-            window.localStorage.setItem('background', '/windows/wallpaper1.jpg');
+            window.localStorage.setItem('background', '/windows/wallpaper1.webp');
         }
 
         const params = new URLSearchParams(window.location.search);
@@ -247,26 +247,26 @@ export default function Home() {
             setBlockUser(false);
             setAuth(true);
             setTaskbarApps([
-                { name: "Settings", icon: `/${selectedOS}/settings.png`, window: "settings" },
-                { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.png`, window: "file-explorer" },
-                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
-                { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.png`, window: "edge" },
-                { name: "Dualler", icon: `/windows/dueller.png`, window: "dualler" },
-                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-                { name: "Calculator", icon: `/${selectedOS}/icons/calculator.png`, window: "calculator" },
-                { name: "Camera", icon: `/${selectedOS}/icons/camera.png`, window: "camera" }
+                { name: "Settings", icon: `/${selectedOS}/settings.webp`, window: "settings" },
+                { name: "File Explorer", icon: `/${selectedOS}/icons/explorer.webp`, window: "file-explorer" },
+                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.webp`, window: "terminal" },
+                { name: "Microsoft Edge", icon: `/${selectedOS}/icons/edge.webp`, window: "edge" },
+                { name: "Dualler", icon: `/windows/dueller.webp`, window: "dualler" },
+                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.webp`, window: "syntaxpad" },
+                { name: "Calculator", icon: `/${selectedOS}/icons/calculator.webp`, window: "calculator" },
+                { name: "Camera", icon: `/${selectedOS}/icons/camera.webp`, window: "camera" }
             ]);
         }
         if (params.has('dev-mode')) {
             setBlockUser(false);
             setAuth(true);
             setTaskbarApps([
-                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.png`, window: "terminal" },
-                { name: "Quadpad", icon: `/image/quadpad.png`, window: "quadpad" },
-                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.png`, window: "syntaxpad" },
-                { name: "Bootpad", icon: `/image/bootpad.png`, window: "bootpad" }
+                { name: "Terminal", icon: `/${selectedOS}/icons/terminal.webp`, window: "terminal" },
+                { name: "Quadpad", icon: `/image/quadpad.webp`, window: "quadpad" },
+                { name: "Syntaxpad", icon: `/${selectedOS}/syntaxpad.webp`, window: "syntaxpad" },
+                { name: "Bootpad", icon: `/image/bootpad.webp`, window: "bootpad" }
             ]);
-            document.body.style.backgroundImage = `url("/image/backgrounddev.png")`;
+            document.body.style.backgroundImage = `url("/image/backgrounddev.webp")`;
         };
     }, []);
 
@@ -299,7 +299,7 @@ export default function Home() {
                 </div>)}
                 {(!blockUser && !auth && !showFake) && (
                     <div className="not-logged-in">
-                        <img src={`/windows/user.png`} style={{ width: '175px', borderRadius: '50%', boxShadow: 'rgba(0,0,0,0.5) 0 0 7px 0px' }} alt="" />
+                        <img src={`/windows/user.webp`} style={{ width: '175px', borderRadius: '50%', boxShadow: 'rgba(0,0,0,0.5) 0 0 7px 0px' }} alt="" />
                         <b style={{ fontSize: '22px', margin: '20px 0px' }}>Glacier User</b>
                         {firstTime && <p>Your password can later be changed in settings.</p>}
                         <Input onChange={(e: any, d: any) => {
@@ -343,7 +343,7 @@ export default function Home() {
                             </div>
                         </div>
                     )}
-                    {!showFake && <SyntaxpadProvider>
+                    {!showFake && <SyntaxpadProvider> 
                         <StartMenu updTaskbarWindows={() => {
                             setTaskbarDefaults(selectedOS);
                         }}>

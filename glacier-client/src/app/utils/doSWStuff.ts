@@ -8,6 +8,7 @@ export async function registerSWandset(onceDone: (defined: boolean) => void) {
     //     onceDone(false);
     //     return;
     // }
+    try{ if(__uv$config === undefined) {} } catch(e) { onceDone(false); return; }
 
     async function waitForConfig() {
         return new Promise((resolve: (value?: unknown) => void) => {

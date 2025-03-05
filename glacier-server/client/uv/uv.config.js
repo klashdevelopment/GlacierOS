@@ -17,14 +17,14 @@ html, body {
 }`;
 
 self.__uv$config = {
-  prefix: "https://tortillagames.org/zz/service/",
+  prefix: "/uv/service/",
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
-  handler: "https://tortillagames.org/zz/zz.handler.js",
-  client: "https://tortillagames.org/zz/zz.client.js",
-  bundle: "https://tortillagames.org/zz/zz.bundle.js",
-  config: "https://tortillagames.org/zz/zz.config.js",
-  sw: "https://tortillagames.org/zz/zz.sw.js",
+  handler: "/uv/uv.handler.js",
+  client: "/uv/uv.client.js",
+  bundle: "/uv/uv.bundle.js",
+  config: "/uv/uv.config.js",
+  sw: "/uv/uv.sw.js",
   inject: [
     { 
       "host": "/^https:\/\/copy\.sh\/v86\/\?/",

@@ -1,7 +1,7 @@
 [
     {
         "name": "PolyTrack",
-        "unblock":true,
+        "unblock": true,
         "image": "https://i.ibb.co/zsS3zQg/polyimage.png",
         "description": "PolyTrack is a low-poly racing game with loops, jumps and high speeds, where every millisecond counts.",
         "url": "https://www.kodub.com/apps/polytrack",
@@ -16,8 +16,16 @@
         "unblock": false
     },
     {
+        "name": "Movieslay",
+        "unblock": true,
+        "image": "https://movieslay.com/favicon.ico",
+        "description": "Movieslay is a website that allows you to watch movies and TV shows for free.",
+        "url": "https://movieslay.com/",
+        "category": "Movies,Apps"
+    },
+    {
         "name": "Discord",
-        "unblock":true,
+        "unblock": true,
         "image": "data:image/png;base64,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",
         "description": "Discord is an instant messaging and VoIP social platform which allows communication through voice calls, video calls, text messaging, and media and files. Communication can be private or take place in virtual communities called servers.",
         "url": "https://discord.com/channels/@me",
@@ -25,15 +33,15 @@
     },
     {
         "name": "Pixeldust",
-        "unblock":false,
-        "image": "/image/pixeldust.png",
+        "unblock": false,
+        "image": "/image/pixeldust.webp",
         "description": "Pixeldust is a lightweight, fast, simple pixel art editor that runs in your browser. It features a simple interface, a color picker, and a variety of tools to help you create pixel art.",
         "url": "https://pages.gavingogaming.com/pixeldust/",
         "category": "Art,Apps"
     },
     {
         "name": "Instagram",
-        "unblock":true,
+        "unblock": true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/300px-Instagram_logo_2022.svg.png",
         "description": "Instagram is an American photo and video sharing social networking service owned by Meta Platforms. It allows users to upload media that can be edited with filters, be organized by hashtags, and be associated with a location via geographical tagging. Posts can be shared publicly or with preapproved followers.",
         "url": "https://www.instagram.com/",
@@ -41,7 +49,7 @@
     },
     {
         "name": "Twitter",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/A-Rnrh0J7iKmABskTonqFAANRLGTGUg_nuE4PEMYwJavL3nPt5uWsU2WO_DSgV_mOOM=w480-h960-rw",
         "description": "Twitter, Inc. was an American social media company based in San Francisco, California. The company operated the social networking service Twitter and previously the Vine short video app and Periscope livestreaming service.",
         "url": "https://twitter.com/?lang=en",
@@ -49,7 +57,7 @@
     },
     {
         "name": "YouTube",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/lMoItBgdPPVDJsNOVtP26EKHePkwBg-PkuY9NOrc-fumRtTFP4XhpUNk_22syN4Datc=s96-rw",
         "description": "YouTube is an American online video sharing and social media platform owned by Google. Accessible worldwide, it was launched on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim, three former employees of PayPal.",
         "url": "https://www.youtube.com/",
@@ -57,7 +65,7 @@
     },
     {
         "name": "Spotify",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/eN0IexSzxpUDMfFtm-OyM-nNs44Y74Q3k51bxAMhTvrTnuA4OGnTi_fodN4cl-XxDQc=w480-h960-rw",
         "description": "Spotify is a digital music service that gives you access to millions of songs.",
         "url": "https://open.spotify.com/?",
@@ -65,7 +73,7 @@
     },
     {
         "name": "Sandboxels",
-        "unblock":true,
+        "unblock": true,
         "image": "https://static.wikia.nocookie.net/sandboxels/images/e/e6/Site-logo.png/revision/latest?cb=20230508152305",
         "description": "Sandboxels is a free falling-sand simulator that can be played in your browser. It features heat simulation, electricity, density, chemical reactions, cooking, and fire spread. With over 500 unique elements to play with, Sandboxels is a great way to pass the time and relax.",
         "url": "https://sandboxels.r74n.com/",
@@ -73,7 +81,7 @@
     },
     {
         "name": "Netflix",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/TBRwjS_qfJCSj1m7zZB93FnpJM5fSpMA_wUlFDLxWAb45T9RmwBvQd5cWR5viJJOhkI=w480-h960-rw",
         "description": "Netflix is an American subscription video on-demand over-the-top streaming service. The service primarily distributes original and acquired films and television shows from various genres, and it is available internationally in multiple languages.",
         "url": "https://www.netflix.com/",
@@ -81,24 +89,24 @@
     },
     {
         "name": "Cloud Gaming",
-        "unblock":false,
-        "image": "/windows/cloudgaming.png",
+        "unblock": false,
+        "image": "/windows/cloudgaming.webp",
         "description": "i spit FLAMES",
         "url": "glacier://cloudgame",
         "category": "Game Streaming,Apps"
     },
     {
         "name": "WebRetro",
-        "unblock":true,
-        "image": "https://teen.media/assets/webretro.jpeg",
+        "unblock": true,
+        "image": "https://play-lh.googleusercontent.com/bWf-MxH7kV88rrx27MgFB24V8gHd1C3s1ojYq4viPFtMOdtMy60PKVAkh69LLns6c4s",
         "description": "Play many retro games on WebRetro, including Mario, Sonic, and more!",
         "url": "https://binbashbanana.github.io/webretro/",
         "category": "Retro,Games"
     },
     {
         "name": "Among Us",
-        "unblock":true,
-        "image":"https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec",
+        "unblock": true,
+        "image": "https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec",
         "description": "Play Among Us on Glacier via now.gg",
         "url": "https://now.gg/apps/innersloth-llc/4047/among-us.html",
         "category": "Games,Strategy",
@@ -106,8 +114,8 @@
     },
     {
         "name": "Roblox Player",
-        "unblock":true,
-        "image":"/image/robux.jpg",
+        "unblock": true,
+        "image": "/image/robux.webp",
         "description": "Play Roblox on Glacier via now.gg",
         "url": "https://mathsspot.com",
         "category": "Games,Strategy",
@@ -115,8 +123,8 @@
     },
     {
         "name": "Browse Roblox",
-        "unblock":true,
-        "image":"https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg",
+        "unblock": true,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg",
         "description": "View roblox groups, games, avatars, profiles, and more on Roblox.com",
         "url": "https://web.roblox.com",
         "category": "Games,Roblox"
@@ -127,7 +135,7 @@
         "unblock": true,
         "category": "Apps,Anime,Movies",
         "description": "An easy, free, anime viewing website!",
-        "image": "/windows/kaido.png"
+        "image": "/windows/kaido.webp"
     },
     {
         "name": "Character.AI",
@@ -135,7 +143,7 @@
         "unblock": true,
         "category": "Apps",
         "description": "Character.AI lets you create and talk to advanced AI - language tutors, text adventure games, life advice, brainstorming and much more.",
-        "image": "/windows/cai.jpg"
+        "image": "/windows/cai.webp"
     },
     {
         "name": "Scratcharchive",
@@ -155,7 +163,7 @@
     },
     {
         "name": "Minecraft (forge)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.8 SP/MP, including RTX Shaders and Client-side EaglerForge.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/forge",
@@ -163,7 +171,7 @@
     },
     {
         "name": "Minecraft (astra)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.8 SP/MP, including Astra.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/astra",
@@ -171,7 +179,7 @@
     },
     {
         "name": "Minecraft (starlike)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.8 SP/MP, including Starlike.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/starlike",
@@ -179,7 +187,7 @@
     },
     {
         "name": "Minecraft (1.9)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.9 SP/MP, including Lambda.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.9",
@@ -187,7 +195,7 @@
     },
     {
         "name": "Minecraft (1.8)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.8 SP/MP, including RTX Shaders.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.8",
@@ -195,7 +203,7 @@
     },
     {
         "name": "Minecraft (1.5)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.5 SP/MP, including RTX Shaders.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.5",
@@ -203,7 +211,7 @@
     },
     {
         "name": "Minecraft (1.2.6)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft 1.2.6 singleplayer.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.2.6",
@@ -211,23 +219,55 @@
     },
     {
         "name": "Minecraft (1.3)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft Beta 1.3.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.3",
         "category": "Minecraft"
     },
     {
-        "name": "Minecraft (glacier)",
-        "unblock":true,
+        "name": "Minecraft (starlike-wasm)",
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
-        "description": "Play Minecraft SP/MP, with Glacier's own Glacier Client.",
-        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/glacier",
+        "description": "Play Minecraft 1.8 SP/MP, modded with Starlike in WebAssembly.",
+        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/starlike-wasm",
+        "category": "Minecraft"
+    },
+    {
+        "name": "Minecraft (1.8-wasm)",
+        "unblock": true,
+        "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        "description": "Play Minecraft 1.8 SP/MP using WebAssembly.",
+        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.8-wasm",
+        "category": "Minecraft"
+    },
+    {
+        "name": "Minecraft (astra-wasm)",
+        "unblock": true,
+        "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        "description": "Play Minecraft 1.8 SP/MP, including Astra in WebAssembly.",
+        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/astra-wasm",
+        "category": "Minecraft"
+    },
+    {
+        "name": "Minecraft (1.12)",
+        "unblock": true,
+        "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        "description": "Play Minecraft 1.12 SP/MP.",
+        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.12",
+        "category": "Minecraft"
+    },
+    {
+        "name": "Minecraft (1.12-wasm)",
+        "unblock": true,
+        "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        "description": "Play Minecraft 1.12 SP/MP using WebAssembly.",
+        "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.12-wasm",
         "category": "Minecraft"
     },
     {
         "name": "Minecraft (resent1.8/beta.html)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft SP/MP, with Resent Client.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/resent1.8/beta.html",
@@ -235,7 +275,7 @@
     },
     {
         "name": "Minecraft (resent1.8)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft SP/MP, with Resent Client.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/resent1.8",
@@ -243,7 +283,7 @@
     },
     {
         "name": "Minecraft (shadow4)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft SP/MP, with Shadow Client.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/eagle/shadow4",
@@ -251,15 +291,15 @@
     },
     {
         "name": "Minecraft",
-        "unblock":false,
+        "unblock": false,
         "image": "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
         "description": "Play Minecraft however you like!",
         "url": "glacier://mclauncher",
         "category": "Games,Minecraft,Mods"
     },
     {
-        "name": "Minecraft (WebMC)",
-        "unblock":false,
+        "name": "WebMC (Secondary Launcher)",
+        "unblock": false,
         "image": "https://webmc.colbster937.dev/favicon.png",
         "description": "A web launcher for minecraft!",
         "url": "https://webmc.colbster937.dev",
@@ -267,7 +307,7 @@
     },
     {
         "name": "Lunar Client",
-        "unblock":false,
+        "unblock": false,
         "image": "data:image/webp;base64,UklGRrYEAABXRUJQVlA4WAoAAAAQAAAAfwAAdAAAQUxQSEoEAAABoFRbT55ti4RIQAISkIAEJCABCZWAhEqIhEpAQobf7Bo8LeHvfr9pREwAbeyyKP62OzH93ijor+HHeIG98g/hC0M1/4ykGP2En+AFMysfjy9M1ny4pJj/hIN5wZqVD8UXltV8pKiwP1cOIZTaTMATjuMEZi2Ovn1VC3DxUbjArIWp31UTNB0kNpirI3sQCyD+EE5glkBjU7MAFx+AC8wt0XAuaoGm7WKDVQvTTFctgPitnMBcHc0OYgEu3oYLzBLImp2NKDULNG0SG6wtkf3OI4iLGgDxGziBVQuT2SU8cQSRqxbg4sW4wFwd2f0NQCuPIApigaalYoNVAg1ulcanZgDEL+ME1pao28eeGicQFzUAF69RYNXC1BsEXYFnELlqgaYFQoO1OuoNAjRaOYgBED/J3bBKoF6+ACAvRZSaASg8oyiMLVF3VPx1ixEXNaDFYe6BUQtT94XXh9Z31QDcPMYrjNVRNz94LxsQBTHg4RFe0S+B+r3iM2xBlFofHrY5RXdLZPSKb9qVi3bhsT3o1cJk9IpvWYm5i8jVLlyWjF5xZPWKzmulGA1EofXA97H2VDKzoresVKuJ+OmRvozOSmZ+0B3WCZfqFSzETwdCV+u4yV6xB2cBJLOFuHXUHo9vZVuEkTv8JCK6bxoZOrQndyQys1qo8+ZpKQ2h+gXfcX81+su5p2Ic0jTnxriO3CFf10uSjoBxEfe04c9X6Whf4U8QJPcho8LVAOidtihftQPfRMRVAYh/iRjFsTbond0W4UsGNHq9lOldBoQXIvK4aFOeIW+h0nvADNK4Cy1A8aOOyB2VDvbJGFk6uM/lI6Uh0mHM95HuITqG04PsDoSxfoSrDdA7HCcMyiOIqDZaeJ0y6B4UrxPJIPAY9ifSUWnMXN4Go5/l/LVLGAa/Wn6OU1cTuE3SOLi1GEiblAl1rQQInwZ+GU5V8VeyP4uMSwYv6GzpKMijuBmIONYG4M6Oeo+gblCCtxCRByoZlwlT8IyJgjvYSBFPhGtAxqsmUwVv4iYh2YijQCLZk9AmNAvRRpTgaSDnbZ5Z6gew0pLr1FlQb6N0ljQNmmyLruPmAfls1BbAzUe7VkALJ/NLABefi9oa0HSg6y0vArR0nBZeWFcBWuYpjlfzuF6orAPgTjzIJdHlMp431pUASAlscPF6ABRaK14K3MkREZXFXkXK6yWC98ZLZXzfjojbBiMTLUUcqwJ3dvQ3nkBoMSLKeOj73k/dBh5XB7ftEm1ALXaQ363SFpW6014P78F9dO2kTHuY6z7q6QxUd1FPp6C6h3paRaSUUmLwEyjv8DANDiGVUqpcHWtGXa4yHdY9a2mmRcvS8t9C7Sqr4n8/9covobE/KvQ+vyR04n9/GHqwMJKGHozGhoEHC/Y/+On/BmWqHKFM/TO3HIG2/kU4/r9Pmd6mlenz5ss0Ov5PSyIiOk3++kMVrBsOlWRdvxJWUDggRgAAAHAGAJ0BKoAAdQA+kUihTKWkIyIgiACwEglpbuF0kABPbYi8QVHPbEXiCo57Yi8QVHPbEXiCo57Yi8QTYAD+/0X4AAAAAAA=",
         "description": "Play Minecraft with Lunar Client!",
         "url": "glacier://lunar",
@@ -275,8 +315,8 @@
     },
     {
         "name": "Forge Mod List",
-        "unblock":false,
-        "image": "/minecraft/forge/modrinth.ico",
+        "unblock": false,
+        "image": "/minecraft/forge/modrinth.svg",
         "description": "A simple modlist for Minecraft Forge",
         "url": "/minecraft/forge/modlist.html",
         "category": "Games,Minecraft,Mods",
@@ -284,7 +324,7 @@
     },
     {
         "name": "TikTok",
-        "unblock":true,
+        "unblock": true,
         "image": "https://cdn.shopify.com/app-store/listing_images/ca1f1238d808935b77771b399df6e9ab/icon/CLe6nrP0lu8CEAE=.png",
         "description": "TikTok, whose mainland Chinese counterpart is Douyin, is a short-form video hosting service owned by ByteDance. It hosts user-submitted videos, which can range in duration from 3 seconds to 10 minutes. Since their launches, TikTok and Douyin have gained global popularity.",
         "url": "https://www.tiktok.com/en/",
@@ -292,7 +332,7 @@
     },
     {
         "name": "Google Docs",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/emmbClh_hm0WpWZqJ0X59B8Pz1mKoB9HVLkYMktxhGE6_-30SdGoa-BmYW73RJ8MGZQ=s96-rw",
         "description": "Google Docs is an online word processor included as part of the free, web-based Google Docs Editors suite offered by Google, which also includes Google Sheets, Google Slides, Google Drawings, Google Forms, Google Sites and Google Keep.",
         "url": "https://docs.google.com/",
@@ -300,7 +340,7 @@
     },
     {
         "name": "Google Slides",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/DG-zbXPr8LItYD8F2nD4aR_SK_jpkipLBK77YWY-F0cdJt67VFgCHZtRtjsakzTw3EM=s96-rw",
         "description": "Google Slides is a presentation program included as part of the free, web-based Google Docs suite offered by Google. Google Slides is available as a web application, mobile app for: Android, iOS, and as a desktop application on Google's ChromeOS. The app is compatible with Microsoft PowerPoint file formats.",
         "url": "https://docs.google.com/presentation/",
@@ -308,7 +348,7 @@
     },
     {
         "name": "Google Sheets",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/keE2gN0Hqh8-Tsf_RYZ_-yS2uo6ToqYVyRBv_UZaLXsgeeHBd2YPcEUWEF4DEtfGyb1h=s96-rw",
         "description": "Google Sheets is a spreadsheet application included as part of the free, web-based Google Docs Editors suite offered by Google. Google Sheets is available as a web application; a mobile app for: Android, iOS, and as a desktop application on Google's ChromeOS. The app is compatible with Microsoft Excel file formats.",
         "url": "https://docs.google.com/spreadsheets/",
@@ -316,7 +356,7 @@
     },
     {
         "name": "Google Classroom",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/w0s3au7cWptVf648ChCUP7sW6uzdwGFTSTenE178Tz87K_w1P1sFwI6h1CLZUlC2Ug=w480-h960-rw",
         "description": "Google Classroom is a free blended learning platform developed by Google for educational institutions that aims to simplify creating, distributing, and grading assignments. The primary purpose of Google Classroom is to streamline the process of sharing files between teachers and students.",
         "url": "https://classroom.google.com/",
@@ -324,7 +364,7 @@
     },
     {
         "name": "Creatur.io",
-        "unblock":true,
+        "unblock": true,
         "image": "https://play-lh.googleusercontent.com/rulMJvqawkcLfWJkjaF_87gGyF5NpfL8ACYuCAEzV46dpJN_yEWPaLAX8tsvA-BMH94=w480-h960-rw",
         "description": "Creatur.io is a fun and cute multiplayer cat game in which you control an adorable little cat! You must provide your cat with food, help them grow, and fight against the other cats in the arena for domination! Throughout the map, there are a limitless number of gems to collect that give your character XP and help them grow. As you level up you can evolve and learn new abilities such as a lunge or a speed burst.",
         "url": "https://creatur.io/",
@@ -332,7 +372,7 @@
     },
     {
         "name": "ChatGPT",
-        "unblock":true,
+        "unblock": true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/800px-ChatGPT_logo.svg.png",
         "description": "ChatGPT is a chatbot developed by OpenAI and launched on November 30, 2022. Based on a large language model, it enables users to refine and steer a conversation towards a desired length, format, style, level of detail, and language.",
         "url": "https://chat.openai.com//",
@@ -340,7 +380,7 @@
     },
     {
         "name": "Bloons TD 5",
-        "unblock":false,
+        "unblock": false,
         "image": "https://assets1.ignimgs.com/2017/05/05/bloons-td-5-1494021512734.jpg",
         "description": "Bloons TD 5 is a tower defense game that was released on December 13, 2011, and as of February 2015, it is available on the App Store, Google Play, Steam, and PlayStation Store. In the game, players build towers made up of monkeys, cannons, glue, and many more to pop bloons before they reach the end of the path.",
         "url": "/btd5.html",
@@ -348,7 +388,7 @@
     },
     {
         "name": "Snow Rider 3D",
-        "unblock":true,
+        "unblock": true,
         "image": "https://img.gamedistribution.com/3b79a8537ebc414fb4f9672a9b8c68c8-512x512.jpeg",
         "description": "Snow Rider 3D is a fun snowboarding game. Do you have what it takes to be the best snowboarder? Prove your skills and reach the highest score while collecting gifts and coins!",
         "url": "https://html5.gamedistribution.com/3b79a8537ebc414fb4f9672a9b8c68c8/",
@@ -356,7 +396,7 @@
     },
     {
         "name": "Funny Shooter 2",
-        "unblock":true,
+        "unblock": true,
         "image": "https://img.gamedistribution.com/a1b7ac4025214a5cb0bd01a4f675513a-512x512.jpeg",
         "description": "Funny Shooter 2 is a fun shooter game. Collect coins, defeat all enemies, and reach the end of the level!",
         "url": "https://html5.gamedistribution.com/a1b7ac4025214a5cb0bd01a4f675513a/",
@@ -364,7 +404,7 @@
     },
     {
         "name": "Time Shooter 3",
-        "unblock":true,
+        "unblock": true,
         "image": "https://img.gamedistribution.com/6493b872f0564380a7adad671d1e0a57-512x512.jpeg",
         "description": "Time Shooter 3: SWAT is a similar game to Superhot. Save the hostages from redmen!",
         "url": "https://html5.gamedistribution.com/6493b872f0564380a7adad671d1e0a57/",
@@ -372,8 +412,8 @@
     },
     {
         "name": "Papas Freezeria",
-        "unblock":true,
-        "image": "/papas/freeze.jpg",
+        "unblock": true,
+        "image": "/papas/freeze.webp",
         "description": "Papas Freezeria is an ice cream shop management game. You've just started an easy job at an ice cream shop on a laidback tropical island, but things get hectic when all of Papa Louie's loyal customers arrive on the island for vacation!",
         "url": "https://www.getgames.io/games/waflash/?swf=papasfreezeria.swf",
         "category": "Games,Simulation",
@@ -381,8 +421,8 @@
     },
     {
         "name": "Papas Pastaria",
-        "unblock":true,
-        "image": "/papas/pastaria.png",
+        "unblock": true,
+        "image": "/papas/pastaria.webp",
         "description": "Papas Pastaria is a pasta shop management game. Head to Portallini and start your career as a pasta chef! You're in charge of Papa's Pastaria, where you'll take orders, cook noodles, add sauces and toppings, and toast breads to craft the perfect plate of pasta for your customers!",
         "url": "https://www.getgames.io/games/waflash/?swf=papaspastaria.swf",
         "category": "Games,Simulation",
@@ -390,8 +430,8 @@
     },
     {
         "name": "Papas Pizzeria",
-        "unblock":true,
-        "image": "/papas/pizza.jfif",
+        "unblock": true,
+        "image": "/papas/pizza.webp",
         "description": "Papas Pizzeria is a pizza shop management game. Help Roy run the pizzeria while Papa Louie is gone! You'll have to take orders, top and bake the pizzas, cut them to order, and present the finished pies to the waiting customers.",
         "url": "https://www.getgames.io/games/waflash/?swf=papaspizzeria.swf",
         "category": "Games,Simulation",
@@ -399,8 +439,8 @@
     },
     {
         "name": "Papas Cupcakeria",
-        "unblock":true,
-        "image": "/papas/cupcake.png",
+        "unblock": true,
+        "image": "/papas/cupcake.webp",
         "description": "Papas Cupcakeria is a cupcake shop management game. Cook a ridiculous amount of delicious cupcakes for all your wacky customers in Papa's Cupcakeria!",
         "url": "https://www.getgames.io/games/waflash/?swf=papascupcakeria.swf",
         "category": "Games,Simulation",
@@ -408,8 +448,8 @@
     },
     {
         "name": "Papas Burgeria",
-        "unblock":true,
-        "image": "/papas/burger.jpg",
+        "unblock": true,
+        "image": "/papas/burger.webp",
         "description": "Papas Burgeria is a burger shop management game. In this sequel to the award-winning hit game “Papa's Pizzeria”, you're headed back to the kitchen to run Papa Louie's new burger shop!",
         "url": "https://www.getgames.io/games/waflash/?swf=papasburgeria.swf",
         "category": "Games,Simulation",
@@ -417,8 +457,8 @@
     },
     {
         "name": "Papas Sushiria",
-        "unblock":true,
-        "image": "/papas/sushi.jpg",
+        "unblock": true,
+        "image": "/papas/sushi.webp",
         "description": "Papas Sushiria is a sushi shop management game. Your day takes a turn for the worse when you break Papa Louie's lucky cat statue. Is this to blame for the restaurant's underwhelming opening day? All we know is that Papa Louie left on a wild-eyed mission and you're now stuck running the restaurant.",
         "url": "https://www.getgames.io/games/waflash/?swf=papassushiria.swf",
         "category": "Games,Simulation",
@@ -426,8 +466,8 @@
     },
     {
         "name": "Papas Pancakeria",
-        "unblock":true,
-        "image": "/papas/pancake.jpg",
+        "unblock": true,
+        "image": "/papas/pancake.webp",
         "description": "Papas Pancakeria is a pancake shop management game. Help Prudence and Cooper run Papa's Pancakeria! You'll need to cook and stack pancakes, french toast, and waffles in Papa's latest time-management game.",
         "url": "https://www.getgames.io/games/waflash/?swf=papaspancakeria.swf",
         "category": "Games,Simulation",
@@ -435,8 +475,8 @@
     },
     {
         "name": "Papas Taco Mia",
-        "unblock":true,
-        "image": "/papas/taco.png",
+        "unblock": true,
+        "image": "/papas/taco.webp",
         "description": "Papas Taco Mia is a taco shop management game. Papa Louie is branching out with a new taco restaurant and he's putting you in charge! Help Mitch and Maggie take orders, cook meats, and build tacos in Papa's Taco Mia!",
         "url": "https://www.getgames.io/games/waflash/?swf=papastacomia.swf",
         "category": "Games,Simulation",
@@ -444,8 +484,8 @@
     },
     {
         "name": "Papas Cheeseria",
-        "unblock":true,
-        "image": "/papas/cheese.jpeg",
+        "unblock": true,
+        "image": "/papas/cheese.webp",
         "description": "Papas Cheeseria is a grilled cheese shop management game. Craft colossal Grilled Cheese Sandwiches and pile on the Fries in Papa's Cheeseria!",
         "url": "https://www.getgames.io/games/waflash/?swf=papascheeseria.swf",
         "category": "Games,Simulation",
@@ -453,8 +493,8 @@
     },
     {
         "name": "Papas Hot Doggeria",
-        "unblock":true,
-        "image": "/papas/hotdog.png",
+        "unblock": true,
+        "image": "/papas/hotdog.webp",
         "description": "Papas Hot Doggeria is a hot dog shop management game. It's opening day at Griller Stadium but the season tickets are all sold out! Looks like the only way to watch the games is to work for your old pal Papa Louie.",
         "url": "https://www.getgames.io/games/waflash/?swf=papashotdoggeria.swf",
         "category": "Games,Simulation",
@@ -462,8 +502,8 @@
     },
     {
         "name": "Papas Wingeria",
-        "unblock":true,
-        "image": "/papas/wings.jfif",
+        "unblock": true,
+        "image": "/papas/wings.webp",
         "description": "Papas Wingeria is a chicken wing shop management game. You're in charge of Papa's Wingeria, where you'll need to take orders, fry up wings and things in the fryers, toss your wings in Papa's award-winning sauces, and arrange them just right with garnishes and sides for your loyal customers.",
         "url": "https://www.getgames.io/games/waflash/?swf=papaswingeria.swf",
         "category": "Games,Simulation",
@@ -471,8 +511,8 @@
     },
     {
         "name": "Papas Donuteria",
-        "unblock":true,
-        "image": "/papas/donut.jpg",
+        "unblock": true,
+        "image": "/papas/donut.webp",
         "description": "Papas Donuteria is a donut shop management game. You just got a job at Papa's Donuteria in the whimsical town of Powder Point. Sure, the great pay and benefits are nice, but you took the job for that coveted Line-Jump Pass.",
         "url": "https://www.getgames.io/games/waflash/?swf=papasdonuteria.swf",
         "category": "Games,Simulation",
@@ -481,7 +521,7 @@
     {
         "name": "Adarkroom",
         "unblock": true,
-        "image": "/image/adarkroom.jpg",
+        "image": "/image/adarkroom.webp",
         "description": "A minimalist text-based adventure game that combines resource management and exploration.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/adarkroom/",
         "category": "Games,Adventure"
@@ -489,7 +529,7 @@
     {
         "name": "Bad Piggies",
         "unblock": true,
-        "image": "/image/badpiggies.jpg",
+        "image": "/image/badpiggies.webp",
         "description": "A puzzle game from the creators of Angry Birds where players build contraptions to transport pigs to their goals.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/badpiggies/",
         "category": "Games,Puzzle"
@@ -497,7 +537,7 @@
     {
         "name": "Basketball Stars",
         "unblock": true,
-        "image": "/image/basketballstars.jpg",
+        "image": "/image/basketballstars.webp",
         "description": "A multiplayer basketball game where you compete in one-on-one matches against players worldwide.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/basketballstars/",
         "category": "Games,Sports"
@@ -505,7 +545,7 @@
     {
         "name": "Basket Bros",
         "unblock": true,
-        "image": "/image/basketbros.jpg",
+        "image": "/image/basketbros.webp",
         "description": "An online multiplayer basketball game featuring various modes and customizable characters.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/basketbros/",
         "category": "Games,Sports"
@@ -513,7 +553,7 @@
     {
         "name": "Basket Random",
         "unblock": true,
-        "image": "/image/basket-random.jpg",
+        "image": "/image/basket-random.webp",
         "description": "A fun, random basketball game with simple controls and unpredictable gameplay.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/basketrandom/",
         "category": "Games,Sports"
@@ -521,7 +561,7 @@
     {
         "name": "Big Tower Tiny Square",
         "unblock": true,
-        "image": "/image/bigtowertinysquare.jpg",
+        "image": "/image/bigtowertinysquare.webp",
         "description": "A challenging platformer where you navigate a tiny square through difficult levels.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/bigtowertinysquare/",
         "category": "Games,Platformer"
@@ -529,7 +569,7 @@
     {
         "name": "Binding of Isaac",
         "unblock": true,
-        "image": "/image/bindingofisaac.jpg",
+        "image": "/image/bindingofisaac.webp",
         "description": "A roguelike dungeon crawler with a dark, twisted theme and randomly generated levels.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/bindingofissac/",
         "category": "Games,Roguelike"
@@ -537,7 +577,7 @@
     {
         "name": "Bitlife",
         "unblock": true,
-        "image": "/image/bitlife.jpg",
+        "image": "/image/bitlife.webp",
         "description": "A life simulation game where you make choices and navigate through various life events.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/bitlife/",
         "category": "Games,Simulation"
@@ -545,7 +585,7 @@
     {
         "name": "Boxing Random",
         "unblock": true,
-        "image": "/image/boxing-random.jpg",
+        "image": "/image/boxing-random.webp",
         "description": "A quirky boxing game with random events and unpredictable gameplay.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/boxing-random/",
         "category": "Games,Sports"
@@ -553,7 +593,7 @@
     {
         "name": "Celeste",
         "unblock": true,
-        "image": "/image/celeste.jpg",
+        "image": "/image/celeste.webp",
         "description": "A critically acclaimed platformer focusing on climbing a mountain and overcoming personal struggles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/celeste/",
         "category": "Games,Platformer"
@@ -561,7 +601,7 @@
     {
         "name": "Celeste 2",
         "unblock": true,
-        "image": "/image/celeste2.jpg",
+        "image": "/image/celeste2.webp",
         "description": "A sequel to Celeste, continuing the challenging platforming adventure.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/celeste2/",
         "category": "Games,Platformer"
@@ -569,7 +609,7 @@
     {
         "name": "Crossy Road",
         "unblock": true,
-        "image": "/image/crossyroad.jpg",
+        "image": "/image/crossyroad.webp",
         "description": "An endless hopper game where you guide a character across roads and rivers while avoiding obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/crossyroad/",
         "category": "Games,Endless Runner"
@@ -577,7 +617,7 @@
     {
         "name": "Cut the Rope",
         "unblock": true,
-        "image": "/image/cuttherope.jpg",
+        "image": "/image/cuttherope.webp",
         "description": "A physics-based puzzle game where you cut ropes to feed candy to a cute monster.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/cuttherope/",
         "category": "Games,Puzzle"
@@ -585,7 +625,7 @@
     {
         "name": "Doodle Jump",
         "unblock": true,
-        "image": "/image/doodlejump.jpg",
+        "image": "/image/doodlejump.webp",
         "description": "An endless jumping game where you guide a character to jump from platform to platform while avoiding obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/doodle-jump/",
         "category": "Games,Endless Runner"
@@ -593,7 +633,7 @@
     {
         "name": "Doom",
         "unblock": true,
-        "image": "/image/doom.jpg",
+        "image": "/image/doom.webp",
         "description": "A classic first-person shooter with fast-paced action and a variety of weapons.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/doom/",
         "category": "Games,Action"
@@ -601,7 +641,7 @@
     {
         "name": "Drive Mad",
         "unblock": true,
-        "image": "/image/drivemad.jpg",
+        "image": "/image/drivemad.webp",
         "description": "A driving game with challenging courses and various obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/drivemad/",
         "category": "Games,Racing"
@@ -609,7 +649,7 @@
     {
         "name": "FNaF 1",
         "unblock": true,
-        "image": "/image/fnaf1.jpg",
+        "image": "/image/fnaf1.webp",
         "description": "The first game in the Five Nights at Freddy's series, a horror game where you survive nights in a haunted pizzeria.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/fnaf1/",
         "category": "Games,Horror"
@@ -617,7 +657,7 @@
     {
         "name": "FNaF 4",
         "unblock": true,
-        "image": "/image/fnaf4.jpg",
+        "image": "/image/fnaf4.webp",
         "description": "The fourth installment in the Five Nights at Freddy's series, featuring new terrifying mechanics and a deeper story.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/fnaf4/",
         "category": "Games,Horror"
@@ -625,7 +665,7 @@
     {
         "name": "Friday Night Funkin'",
         "unblock": true,
-        "image": "/image/fridaynightfunkin.jpg",
+        "image": "/image/fridaynightfunkin.webp",
         "description": "A rhythm game where you battle opponents in rap battles to win over your partner.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/fridaynightfunkin/",
         "category": "Games,Rhythm"
@@ -633,7 +673,7 @@
     {
         "name": "Jetpack Joyride",
         "unblock": true,
-        "image": "/image/jetpack-joyride.jpg",
+        "image": "/image/jetpack-joyride.webp",
         "description": "An endless runner where you control a character with a jetpack and dodge obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/jetpack-joyride/",
         "category": "Games,Endless Runner"
@@ -641,7 +681,7 @@
     {
         "name": "Jump King",
         "unblock": true,
-        "image": "/image/jumpking.jpg",
+        "image": "/image/jumpking.webp",
         "description": "A challenging platformer where you must climb a tower using precise jumps.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/jumpking/",
         "category": "Games,Platformer"
@@ -649,7 +689,7 @@
     {
         "name": "Kirby",
         "unblock": true,
-        "image": "/image/kirby.jpg",
+        "image": "/image/kirby.webp",
         "description": "A classic platformer featuring Kirby, a cute pink character who can inhale enemies and gain their powers.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/kirby/",
         "category": "Games,Platformer"
@@ -657,7 +697,7 @@
     {
         "name": "Meat Boy",
         "unblock": true,
-        "image": "/image/meatboy.jpg",
+        "image": "/image/meatboy.webp",
         "description": "A fast-paced platformer where you guide Meat Boy through challenging levels filled with obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/meatboy/",
         "category": "Games,Platformer"
@@ -665,7 +705,7 @@
     {
         "name": "Monkey Mart",
         "unblock": true,
-        "image": "/image/monkeymart.jpg",
+        "image": "/image/monkeymart.webp",
         "description": "A simulation game where you run a monkey-owned convenience store, managing inventory and serving customers.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/monkeymart/",
         "category": "Games,Simulation"
@@ -673,7 +713,7 @@
     {
         "name": "N-Gon",
         "unblock": true,
-        "image": "/image/n-gon.jpg",
+        "image": "/image/n-gon.webp",
         "description": "A puzzle game involving geometric shapes and strategic placement.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/n-gon/",
         "category": "Games,Puzzle"
@@ -681,7 +721,7 @@
     {
         "name": "Ovo",
         "unblock": true,
-        "image": "/image/ovo.jpg",
+        "image": "/image/ovo.webp",
         "description": "A platformer with challenging levels and precise controls.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/ovo/",
         "category": "Games,Platformer"
@@ -689,7 +729,7 @@
     {
         "name": "Portal 2D",
         "unblock": true,
-        "image": "/image/portal2d.jpg",
+        "image": "/image/portal2d.webp",
         "description": "A 2D platformer inspired by the Portal series, featuring unique puzzle mechanics.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/portal2d/",
         "category": "Games,Puzzle"
@@ -697,7 +737,7 @@
     {
         "name": "Quake",
         "unblock": true,
-        "image": "/image/quake.jpg",
+        "image": "/image/quake.webp",
         "description": "A classic first-person shooter known for its fast-paced action and multiplayer modes.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/quake/",
         "category": "Games,Action"
@@ -705,7 +745,7 @@
     {
         "name": "Retrobowl",
         "unblock": true,
-        "image": "/image/retrobowl.jpg",
+        "image": "/image/retrobowl.webp",
         "description": "A retro-style football game with simple controls and strategic gameplay.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/retrobowl/",
         "category": "Games,Sports"
@@ -713,7 +753,7 @@
     {
         "name": "Rooftop Snipers",
         "unblock": true,
-        "image": "/image/rooftop-snipers.jpg",
+        "image": "/image/rooftop-snipers.webp",
         "description": "A multiplayer shooting game where you fight opponents on rooftops with various weapons.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/rooftop-snipers/",
         "category": "Games,Action"
@@ -721,7 +761,7 @@
     {
         "name": "Run 3",
         "unblock": true,
-        "image": "/image/run3.jpg",
+        "image": "/image/run3.webp",
         "description": "An endless runner set in space with challenging obstacles and a variety of characters.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/run3/",
         "category": "Games,Endless Runner"
@@ -729,7 +769,7 @@
     {
         "name": "Slope",
         "unblock": true,
-        "image": "/image/slope.jpg",
+        "image": "/image/slope.webp",
         "description": "A 3D endless runner where you guide a ball down a sloping track while avoiding obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/slope/",
         "category": "Games,Endless Runner"
@@ -737,7 +777,7 @@
     {
         "name": "SM64",
         "unblock": true,
-        "image": "/image/sm64.jpg",
+        "image": "/image/sm64.webp",
         "description": "A fan-made recreation of the classic Super Mario 64 with enhanced features.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/sm64/",
         "category": "Games,Platformer"
@@ -745,7 +785,7 @@
     {
         "name": "Subway Surfers",
         "unblock": true,
-        "image": "/image/subway.jpg",
+        "image": "/image/subway.webp",
         "description": "An endless runner where you dodge obstacles and collect coins while surfing through subways.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/subway/",
         "category": "Games,Endless Runner"
@@ -753,7 +793,7 @@
     {
         "name": "Temple Run 2",
         "unblock": true,
-        "image": "/image/templerun2.jpg",
+        "image": "/image/templerun2.webp",
         "description": "A sequel to Temple Run with new environments, obstacles, and power-ups.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/templerun2/",
         "category": "Games,Endless Runner"
@@ -761,7 +801,7 @@
     {
         "name": "Tetris",
         "unblock": true,
-        "image": "/image/tetris.jpg",
+        "image": "/image/tetris.webp",
         "description": "A classic puzzle game where you arrange falling blocks to complete lines and clear the board.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/tetris/",
         "category": "Games,Puzzle"
@@ -769,7 +809,7 @@
     {
         "name": "Tsuika Game",
         "unblock": true,
-        "image": "/image/tsuikagame.jpg",
+        "image": "/image/tsuikagame.webp",
         "description": "A unique game with creative mechanics and engaging gameplay.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/tsuikagame/",
         "category": "Games,Adventure"
@@ -777,7 +817,7 @@
     {
         "name": "Vex 5",
         "unblock": true,
-        "image": "/image/vex5.jpg",
+        "image": "/image/vex5.webp",
         "description": "A challenging platformer with intricate levels and precise controls.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/vex5/",
         "category": "Games,Platformer"
@@ -785,7 +825,7 @@
     {
         "name": "Vex 6",
         "unblock": true,
-        "image": "/image/vex6.jpg",
+        "image": "/image/vex6.webp",
         "description": "The sixth installment in the Vex series, featuring new levels and tougher challenges.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/vex6/",
         "category": "Games,Platformer"
@@ -793,7 +833,7 @@
     {
         "name": "Vex 7",
         "unblock": true,
-        "image": "/image/vex7.jpg",
+        "image": "/image/vex7.webp",
         "description": "The latest entry in the Vex series with even more complex platforming challenges.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/vex7/",
         "category": "Games,Platformer"
@@ -801,80 +841,78 @@
     {
         "name": "World's Hardest Game",
         "unblock": true,
-        "image": "/image/worldshardestgame.jpg",
+        "image": "/image/worldshardestgame.webp",
         "description": "A notoriously difficult game with incredibly challenging levels and obstacles.",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/games/worldshardestgame/",
         "category": "Games,Challenge"
     },
-
-
     {
         "name": "Linuxzoo",
-        "unblock":true,
-        "image": "/windows/linuxzoo.gif",
+        "unblock": true,
+        "image": "/windows/linuxzoo.webp",
         "description": "Linuxzoo is a free service that provides virtual machines for learning Linux and other IT skills. It offers a range of exercises and tutorials to help users develop their knowledge and expertise.",
         "url": "https://linuxzoo.net/",
         "category": "VMP"
     },
     {
         "name": "Linuxzoo Guide",
-        "unblock":true,
-        "image": "/windows/linuxzooguide.png",
+        "unblock": true,
+        "image": "/windows/linuxzooguide.webp",
         "description": "A guide on how to use Linuxzoo",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/using-linuxzoo",
         "category": "VMP"
     },
     {
         "name": "ANY.RUN",
-        "unblock":true,
-        "image": "/windows/anyrun.png",
+        "unblock": true,
+        "image": "/windows/anyrun.webp",
         "description": "ANY.RUN is an interactive malware analysis service that allows users to run and analyze suspicious files and URLs in a safe environment. It provides detailed reports on the behavior of malware samples and helps users understand the impact of potential threats.",
         "url": "https://app.any.run/",
         "category": "VMP"
     },
     {
         "name": "ANY.RUN Guide",
-        "unblock":true,
-        "image": "/windows/anyrunguide.png",
+        "unblock": true,
+        "image": "/windows/anyrunguide.webp",
         "description": "A guide on how to use ANY.RUN",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/using-anyrun",
         "category": "VMP"
     },
     {
         "name": "Triage",
-        "unblock":true,
-        "image": "/windows/Triage_logo.png",
+        "unblock": true,
+        "image": "/windows/Triage_logo.webp",
         "description": "Triage is a threat intelligence platform that helps security teams investigate and respond to security incidents. It provides tools for analyzing and correlating security data, identifying threats, and prioritizing response actions.",
         "url": "https://tria.ge/submit",
         "category": "VMP"
     },
     {
         "name": "Triage Guide",
-        "unblock":true,
-        "image": "/windows/triageguide.png",
+        "unblock": true,
+        "image": "/windows/triageguide.webp",
         "description": "A guide on how to use Triage",
         "url": "https://pages.gavingogaming.com/mediaology-game-repo/using-triage",
         "category": "VMP"
     },
     {
         "name": "ReactOS (Down)",
-        "unblock":false,
-        "image": "/vms/reactos/reactos.png",
+        "unblock": false,
+        "image": "/vms/reactos/reactos.webp",
         "description": "A free operating system similar to Windows 7 that is compatible with many Windows applications and drivers.",
         "url": "/vms/reactos/index.html",
         "category": "VMS"
     },
     {
         "name": "DSLinux (Down)",
-        "unblock":false,
-        "image": "/vms/dsl/dsl.png",
+        "unblock": false,
+        "image": "/vms/dsl/dsl.webp",
         "description": "A lightweight Linux distribution designed for older hardware and low-resource systems.",
         "url": "/vms/dsl/index.html",
         "category": "VMS"
     },
     {
         "name": "AndroidX86",
-        "unblock":true,
+        "unblock": true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Android-x86.png",
         "description": "A port of the Android operating system that can be run on your web browser.",
         "url": "https://copy.sh/v86/?profile=android",
@@ -882,7 +920,7 @@
     },
     {
         "name": "Arch Linux",
-        "unblock":true,
+        "unblock": true,
         "image": "https://cdn0.iconfinder.com/data/icons/flat-round-system/512/archlinux-512.png",
         "description": "A lightweight and flexible Linux distribution that follows the KISS principle (Keep It Simple, Stupid).",
         "url": "https://copy.sh/v86/?profile=archlinux",
@@ -890,7 +928,7 @@
     },
     {
         "name": "SerenityOS",
-        "unblock":true,
+        "unblock": true,
         "image": "https://avatars.githubusercontent.com/u/50811782?s=200&v=4",
         "description": "A free and open-source operating system bundled with a browser and games.",
         "url": "https://copy.sh/v86/?profile=serenity",
@@ -898,7 +936,7 @@
     },
     {
         "name": "KolibriOS",
-        "unblock":true,
+        "unblock": true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/KolibriOS_logo%2C_summer_2024.png",
         "description": "A featureful operating system that fits on a single floppy disk.",
         "url": "https://copy.sh/v86/?profile=kolibrios",
@@ -906,7 +944,7 @@
     },
     {
         "name": "NodeOS (NodeJS)",
-        "unblock":true,
+        "unblock": true,
         "image": "https://avatars.githubusercontent.com/u/9950313?s=80&v=4",
         "description": "A linux kernel with NodeJS set as the default environment.",
         "url": "https://copy.sh/v86/?profile=nodeos",
@@ -914,7 +952,7 @@
     },
     {
         "name": "Windows 95",
-        "unblock":true,
+        "unblock": true,
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Logo_%281992-2001%29.svg/1184px-Windows_Logo_%281992-2001%29.svg.png",
         "description": "A classic operating system that introduced the Start menu and taskbar.",
         "url": "https://copy.sh/v86/?profile=windows95",
@@ -922,7 +960,7 @@
     },
     {
         "name": "Windows 98",
-        "unblock":true,
+        "unblock": true,
         "image": "/image/win98.webp",
         "description": "An operating system known for its improved hardware support and USB capabilities.",
         "url": "https://copy.sh/v86/?profile=windows98",
@@ -930,7 +968,7 @@
     },
     {
         "name": "Windows XP",
-        "unblock":true,
+        "unblock": true,
         "image": "https://seeklogo.com/images/W/windows-xp-icon-logo-E8F84DD6F3-seeklogo.com.png",
         "description": "A popular operating system that introduced the Luna visual style and improved networking features.",
         "url": "https://lrusso.github.io/VirtualXP/VirtualXP.htm",
@@ -938,47 +976,47 @@
     },
     {
         "name": "VS Code",
-        "unblock":true,
-        "image": "/image/vscode.png",
+        "unblock": true,
+        "image": "/image/vscode.webp",
         "description": "Visual Studio Code is a free source-code editor made by Microsoft for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, and code refactoring.",
         "url": "https://vscode.dev/",
         "category": "Devtools,IDEs"
     },
     {
         "name": "VS Code (Insiders)",
-        "unblock":true,
-        "image": "/image/vscode-insiders.png",
+        "unblock": true,
+        "image": "/image/vscode-insiders.webp",
         "description": "Visual Studio Code Insiders is a preview version of Visual Studio Code that provides early access to new features and improvements.",
         "url": "https://insiders.vscode.dev/",
         "category": "Devtools,IDEs"
     },
     {
         "name": "Syntaxpad",
-        "unblock":true,
-        "image": "/windows/syntaxpad.png",
+        "unblock": true,
+        "image": "/windows/syntaxpad.webp",
         "description": "Syntaxpad is Glacier's custom code editor based on Monaco. It provides a simple and intuitive interface for writing and editing code in various programming languages.",
         "url": "glacier://syntaxpad",
         "category": "Devtools,IDEs"
     },
     {
         "name": "Bootpad",
-        "unblock":true,
-        "image": "/image/bootpad.png",
+        "unblock": true,
+        "image": "/image/bootpad.webp",
         "description": "Bootpad is Glacier's code interpreter that allows users to run and test code in various programming languages directly in the browser.",
         "url": "glacier://bootpad",
         "category": "Devtools,Interpreters"
     },
     {
         "name": "Quadpad",
-        "unblock":true,
-        "image": "/image/quadpad.png",
+        "unblock": true,
+        "image": "/image/quadpad.webp",
         "description": "Quadpad is Glacier's web development tool that provides a split-screen interface for writing and previewing HTML, CSS, and JavaScript code in real-time.",
         "url": "glacier://quadpad",
         "category": "Devtools,Web Development"
     },
     {
         "name": "Libera Chat",
-        "unblock":true,
+        "unblock": true,
         "image": "https://web.libera.chat/favicon.ico",
         "description": "Libera Chat is an IRC network that provides a platform for open-source and free software projects to communicate and collaborate.",
         "url": "https://web.libera.chat/",
@@ -986,7 +1024,7 @@
     },
     {
         "name": "Slack",
-        "unblock":true,
+        "unblock": true,
         "image": "https://a.slack-edge.com/80588/marketing/img/meta/slack_hash_256.png",
         "description": "Slack is a collaboration hub that connects teams and streamlines work by bringing together conversations, files, and tools in one place.",
         "url": "https://slack.com/",
@@ -994,7 +1032,7 @@
     },
     {
         "name": "Zoom",
-        "unblock":true,
+        "unblock": true,
         "image": "https://zoom.us/favicon.ico",
         "description": "Zoom is a video conferencing platform that allows users to host and join virtual meetings, webinars, and online events.",
         "url": "https://zoom.us/",
@@ -1002,7 +1040,7 @@
     },
     {
         "name": "Google Meet",
-        "unblock":true,
+        "unblock": true,
         "image": "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v1/web-64dp/logo_meet_2020q4_color_1x_web_64dp.png",
         "description": "Google Meet is a video conferencing platform that enables users to host and join virtual meetings, webinars, and online events.",
         "url": "https://meet.google.com/",
@@ -1010,7 +1048,7 @@
     },
     {
         "name": "Microsoft Teams",
-        "unblock":true,
+        "unblock": true,
         "image": "https://statics.teams.cdn.office.net/hashed/favicon/prod/favicon-f1722d9.ico",
         "description": "Microsoft Teams is a collaboration platform that combines chat, video conferencing, file storage, and app integration.",
         "url": "https://teams.microsoft.com/",
@@ -1018,7 +1056,7 @@
     },
     {
         "name": "Uflix",
-        "unblock":true,
+        "unblock": true,
         "image": "https://uflix.cc/style/dark-xt/favicon-uflix.svg",
         "description": "UFlix is a streaming platform that offers a wide range of movies and TV shows for users to watch online.",
         "url": "https://uflix.cc/",

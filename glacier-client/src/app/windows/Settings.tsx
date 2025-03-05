@@ -8,11 +8,11 @@ import Emoji from "../components/Emoji";
 import xor from "../utils/XOR";
 import constants from "../Constants";
 import Icons from "./MoreIcons";
-export let wallpapers = ["Motion Layered", "Sphere Green", "Sphere Purple", "Light Wave", "Light Fluent", "Dark Fluent", "Light Sand", "Windows Kali", "Motion Cones", "Motion Ribbon", "Motion Blobs", "Sun Daytime", "Sun Mountain", "Sun Setting", "Sun Desert", "Fluent Blue", "Fluent Green", "Fluent Pink", "Fluent Gray", "Windows 11 Dark", "Windows 11 Light", "Sun Nighttime", "MacOS Mojave", "MacOS Catalina", "MacOS Big Sur", "MacOS Monterey", "Chrome OS Default", "Frosty Glaciers", "Ubuntu 20.04", "Ubuntu Clean", "Cyberrush Rooftop (Lux)", "Cyberrush Track (Lux)", "Cyberrush Void (Lux)", "Cyberrush Building (Lux)", "Kali Trail", "Kali Prompt", "Kali Legacy", "Kali Layers", "Kali Luminara", "MacOS Somona", "Glacier Blue"];
+export let wallpapers = ["Motion Layered", "Sphere Green", "Sphere Purple", "Light Wave", "Light Fluent", "Dark Fluent", "Light Sand", "Windows Kali", "Motion Cones", "Motion Ribbon", "Motion Blobs", "Sun Daytime", "Sun Mountain", "Sun Setting", "Sun Desert", "Fluent Blue", "Fluent Green", "Fluent Pink", "Fluent Gray", "Windows 11 Dark", "Windows 11 Light", "Sun Nighttime", "MacOS Mojave", "MacOS Catalina", "MacOS Big Sur", "MacOS Monterey", "Chrome OS Default", "Frosty Glaciers", "Ubuntu 20.04", "Ubuntu Clean", "Cyberrush Rooftop (Lux)", "Cyberrush Track (Lux)", "Cyberrush Void (Lux)", "Cyberrush Building (Lux)", "Kali Trail", "Kali Prompt", "Kali Legacy", "Kali Layers", "Kali Luminara", "MacOS Somona", "Glacier Blue", "Raspberry Pi Default"];
 
 export function SetWallpaperNum(wp: string) {
-  document.body.style.backgroundImage = `url("/windows/wallpaper${wp}.jpg")`;
-  window.localStorage.setItem('background', `/windows/wallpaper${wp}.jpg`);
+  document.body.style.backgroundImage = `url("/windows/wallpaper${wp}.webp")`;
+  window.localStorage.setItem('background', `/windows/wallpaper${wp}.webp`);
 }
 export function SetWallpaperURL(wp: string) {
   document.body.style.backgroundImage = `url("${wp}")`;
@@ -102,7 +102,7 @@ function Personalization({ switchPage }: { switchPage: any }) {
                   secondaryText={`#${index + 1}`}
                   avatar={prevWallp ? {
                     image: {
-                      src: `/windows/wallpaper${index + 1}.jpg`,
+                      src: `/windows/wallpaper${index + 1}.webp`,
                       loading: 'lazy',
                       alt: wallpaper
                     },
@@ -347,7 +347,7 @@ export default function SettingsApp() {
       window.localStorage.setItem('title', 'Glacier');
     }
     if (icon) {
-      document.querySelector('link[rel="shortcut icon"]')?.setAttribute('href', `/windows/${icon}.png`);
+      document.querySelector('link[rel="shortcut icon"]')?.setAttribute('href', `/windows/${icon}.webp`);
     } else {
       window.localStorage.setItem('icon', 'glacierwhite');
     }

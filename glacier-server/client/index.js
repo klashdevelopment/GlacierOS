@@ -26,5 +26,4 @@ window.addEventListener('load', async (e) => {
   }
   await waitForConfig();
   await delay(500);
-  onceDone(true);
 })

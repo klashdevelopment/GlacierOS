@@ -98,19 +98,19 @@
   height: calc(100% - 60px);
 }
 .background {
-  background: url('/minecraft/Minecraft-Tricky-Trials.png');
+  background: url('/minecraft/The_Garden_Awakens_Key_Art.webp');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
 }
 .background-legends {
-  background: url('/minecraft/legends-art.jpg');
+  background: url('/minecraft/legends-art.webp');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
 }
 .background-dungeons {
-  background: url('/minecraft/dungeons-art.jpeg');
+  background: url('/minecraft/dungeons-art.webp');
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;

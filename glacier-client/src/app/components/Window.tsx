@@ -128,11 +128,11 @@ export default function Window({
       <div className="w11-top">
         <div className="w11-title">{formatName(selectedOS, title)}</div>
         <div className="w11-controls">
-          <div className="w11-minimize left"><img src="/windows/icons/minimize.png" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
+          <div className="w11-minimize left"><img src="/windows/icons/minimize.webp" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
           <div className="w11-fullscreen mid" onClick={() => {
             setMaximized(!maximized);
-          }}><img src="/windows/icons/maximize.png" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
-          <div className="w11-close end" onClick={close}><img src="/windows/icons/close.png" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
+          }}><img src="/windows/icons/maximize.webp" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
+          <div className="w11-close end" onClick={close}><img src="/windows/icons/close.webp" alt="" style={{ width: '18px', marginTop: '1px', filter: (color == 'white' ? 'none' : 'brightness(0) invert(1)') }} /></div>
         </div>
       </div>
       <div className="w11-content" style={style}>

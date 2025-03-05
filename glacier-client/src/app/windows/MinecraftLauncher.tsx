@@ -46,7 +46,7 @@ type LauncherTab = "play" | "installs" | "realms" | "skins" | "patchnotes";
 type SelectedGame = "java" | "bedrock" | "account" | "dungeons" | "legends";
 
 function JavaPage() {
-  const [selectedGame, setSelectedGame] = useState("glacier");
+  const [selectedGame, setSelectedGame] = useState("1.12-wasm");
 
   function launchGame() {
     let launcher = document.querySelector('.mclauncher') as HTMLElement;
@@ -74,18 +74,22 @@ function JavaPage() {
         <div className="rfarbtm">
           <div className="rfleft">
             <Dropdown style={{minWidth:'150px'}} defaultValue={"Glacier - 1.8.8"} defaultSelectedOptions={["glacier"]} onOptionSelect={(e,d)=>{setSelectedGame(d.optionValue as string)}}>
-              <Option value="glacier">Glacier - 1.8.8</Option>
+              <Option value="1.12">Vanilla - 1.12.2</Option>
+              <Option value="1.12-wasm">WASM-GC - 1.12.2</Option>
               <Option value="1.9">Lambda - 1.9</Option>
               <Option value="1.8">Vanilla - 1.8.8</Option>
+              <Option value="1.8-wasm">WASM-GC - 1.8.8</Option>
               <Option value="1.5">Vanilla - 1.5.2</Option>
               <Option value="1.2.6">Vanilla - 1.2.6</Option>
               <Option value="1.3">Vanilla - b1.3</Option>
+              <Option value="astra">Astra - 1.8.8</Option>
+              <Option value="astra-wasm">Astra WASM - 1.8.8</Option>
               <Option value="forge">Forge - 1.8.8</Option>
               <Option value="resent1.8">Resent Old - 1.8.8</Option>
               <Option value="resent1.8/beta.html">Resent New - 1.8.8</Option>
               <Option value="shadow4">Shadow - 1.8.8</Option>
               <Option value="starlike">Starlike - 1.8.8</Option>
-              <Option value="astra">Astra - 1.8.8</Option>
+              <Option value="starlike-wasm">Starlike WASM - 1.8.8</Option>
             </Dropdown>
           </div>
           <div className="craftbutton" onClick={launchGame}>
@@ -235,7 +239,7 @@ export default function MinecraftLauncherApp() {
             </div>
 
             <div className={`option ${selectedGame == "account" && "active"}`} onClick={() => setSelectedGame("account")}>
-              <img src="/windows/icons/user.png" alt="" />
+              <img src="/windows/icons/user.webp" alt="" />
               <b>Glacier User</b>
             </div>
 
@@ -244,7 +248,7 @@ export default function MinecraftLauncherApp() {
             </div>
 
             <div className={`option ${selectedGame == "java" && "active"}`} onClick={() => setSelectedGame("java")}>
-              <img src="/minecraft/java.png" alt="" />
+              <img src="/minecraft/java.webp" alt="" />
 
               <div className="option-names">
                 <b className="small">MINECRAFT:</b>
@@ -252,7 +256,7 @@ export default function MinecraftLauncherApp() {
               </div>
             </div>
             <div className="option" onClick={notify}>
-              <img src="/minecraft/bedrock.png" alt="" />
+              <img src="/minecraft/bedrock.webp" alt="" />
               <div className="option-names">
                 <b className="small">MINECRAFT</b>
                 <b>for Windows</b>
@@ -266,7 +270,7 @@ export default function MinecraftLauncherApp() {
               </div>
             </div>
             <div className={`option ${selectedGame == "legends" && "active"}`} onClick={() => setSelectedGame("legends")}>
-              <img src="/minecraft/legends.png" alt="" />
+              <img src="/minecraft/legends.webp" alt="" />
               <div className="option-names">
                 <b className="small">MINECRAFT</b>
                 <b>Legends</b>

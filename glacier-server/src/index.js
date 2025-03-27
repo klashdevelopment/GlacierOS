@@ -16,7 +16,7 @@ import wisp from "wisp-server-node";
 // import runDiscordBot from "./discord.js";
 
 const app = express();
-const publicPath = './client/';
+const publicPath = './banned/';
 const bareServer = createBareServer("/bare/");
 // const bareOld = createBareServer("/bare2/");
 

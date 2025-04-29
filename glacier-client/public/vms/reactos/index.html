@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactOS v86</title>
+    <script src="../build/libv86.js"></script>
+	<style>
+		html, body {
+			padding: 0;
+			margin: 0;
+			vertical-align: baseline;
+			background: #000;
+		}
+	</style>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            var emulator = window.emulator = new V86({
+                wasm_path: "../build/v86.wasm",
+                memory_size: 64 * 1024 * 1024,
+                vga_memory_size: 2 * 1024 * 1024,
+                screen_container: document.getElementById("screen_container"),
+                bios: {
+                    url: "../build/seabios.bin",
+                },
+                vga_bios: {
+                    url: "../build/vgabios.bin",
+                },
+                cdrom: {
+                    url: "https://worker-royal-river-ae57.gavingogaming.workers.dev/?link=reactos",
+                },
+                autostart: true,
+            });
+			const canvas = document.querySelector("#screen_container > canvas");
+			canvas.addEventListener("click", async () => {
+				await canvas.requestPointerLock();
+			});
+        };
+    </script>
+    <div id="screen_container">
+        <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
+        <canvas style="display: none"></canvas>
+    </div>
+</body>
+
+</html>

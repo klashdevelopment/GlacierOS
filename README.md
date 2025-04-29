@@ -12,7 +12,7 @@ You're gonna want to host `glacier-server`. (`npm install` first obv) That repo 
 Enter `glacier-server` using `cd` and deploy using `fly launch`, copying the settings.
 
 **Replit**
-[![Run on Replit](https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg)]([https://github.com/titaniumnetwork-dev/Ultraviolet-App/wiki/Run-on-Replit](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1))
+[![Run on Replit](https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg)]([[https://github.com/titaniumnetwork-dev/Ultraviolet-App/wiki/Run-on-Replit](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1)](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1))
 
 **Other services**
 Glacier server can be deployed on any service - simply host `glacier-server` however you need to as a NodeJS project.

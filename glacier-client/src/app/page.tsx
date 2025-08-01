@@ -299,7 +299,7 @@ export default function Home() {
                         }}>
                             <Taskbar apps={taskbarApps} />
                         </StartMenu>
-                        <FavoriteGrid />
+                        {!selectedOS.includes('tvos') && <FavoriteGrid />}
                         <SettingsApp taskbar={setTaskbarDefaults} />
                         <CalculatorApp />
                         <TerminalApp />

@@ -63,9 +63,9 @@ function ExtraPanel({ hydra }: { hydra: HydraContextType }) {
 
     function frameURL() {
         if (hydra.activeWindow === 'fr_docs') {
-            return 'https://pages.klash.dev/Hydra';
+            return 'https://pages.klash.dev/Hydra/';
         } else if (hydra.activeWindow === 'fr_hydraw') {
-            return 'https://pages.klash.dev/Hydra/hydraw';
+            return 'https://pages.klash.dev/Hydra/hydraw/';
         } else {
             return '';
         }
@@ -176,6 +176,7 @@ export function HydraCreator() {
                                 </Panel>
                             </>}
                         </PanelGroup>
+                        <PanelResizeHandle style={{ height: '1px', background: '#ffffff50' }} />
                         <Panel style={{
                             height: '20px', minHeight: '20px', maxHeight: '20px', background: '#ffffff10',
                             display: 'flex', alignItems: 'center'

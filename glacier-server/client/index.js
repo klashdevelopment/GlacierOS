@@ -1,6 +1,11 @@
 "use strict";
 
 window.addEventListener('load', async (e) => {
+  // check if registerSW is defined
+  if (typeof registerSW !== 'function') {
+    console.error('registerSW is not defined, client only');
+    return;
+  }
   try {
     await registerSW();
   } catch (err) {
@@ -14,9 +19,12 @@ window.addEventListener('load', async (e) => {
   async function waitForConfig() {
     return new Promise((resolve) => {
       const interval = setInterval(() => {
-        if (__uv$config !== null && __uv$config !== undefined) {
-          clearInterval(interval);
-          resolve();
+        try {
+          if (__uv$config !== null && __uv$config !== undefined) {
+            clearInterval(interval);
+            resolve();
+          }
+        } catch (err) {
         }
       }, 100);
     });

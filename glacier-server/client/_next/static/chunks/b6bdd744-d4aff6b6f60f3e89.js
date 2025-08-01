@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[577],{58536:function(a,e,n){n.d(e,{bkx:function(){return c}});var u=n(75520);let c=(0,u.k)("Tv20Filled","20",["M2 6c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm3.5 10a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9Z"])}}]);

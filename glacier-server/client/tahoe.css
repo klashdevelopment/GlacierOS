@@ -1,0 +1,157 @@
+@import url(https://www.apple.com/wss/fonts?family=SF+Pro&v=2);
+@import url(https://www.apple.com/wss/fonts?family=SF+Compact&v=2);
+
+:root {
+  --fontFamilyBase: 'SF Pro', 'SF Compact', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif !important;
+}
+.w11-window {
+  border-radius: 1.75rem;
+  border: 1px solid #ffffff50;
+  backdrop-filter: url(#liquid-glass-new-blur) !important;
+  -webkit-backdrop-filter: url(#liquid-glass-new-blur) !important;
+}
+.w11-window > .w11-top {
+  user-select: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: transparent;
+  z-index: 999;
+  padding: 10px 16px;
+  display: flex;
+  height: 20px;
+  width: 90%;
+  align-items: center;
+}
+.w11-controls {
+  width: 77%;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+.w11-controls > div {
+  user-select: none;
+  float: inherit !important;
+  cursor: default !important;
+  background: transparent !important;
+  margin: 8px 8px;
+  position:absolute;
+  top: 8px;
+  transition: all 0.25s ease;
+  width: 10px;
+  height: 10px;
+  padding: 0px !important;
+  border-radius: 50%;
+}
+.w11-controls > div.end {
+  left:15px;
+  border-top-right-radius: 50% !important;
+  background: red !important;
+}
+.w11-controls > div.mid {
+  left:45px;
+  background: lime !important;
+}
+.w11-controls > div.left {
+  left:30px;
+  background: yellow !important;
+}
+.w11-controls > div > img {
+  display: none;
+}
+.w11-title {
+  left: 75px;
+  position: absolute;
+  width: calc(100% - 120px) !important;
+}
+.w11-content {
+  height: calc(100% - 40px);
+  overflow:scroll;
+  /* backdrop-filter: url(#blur-20) !important; */
+}
+
+html, body {
+  font-family: 'SF Pro', 'SF Compact', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif !important;
+}
+
+#taskbar {
+  bottom: 10px !important;
+  width: auto !important;
+  padding: 0px 4px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  box-sizing: border-box !important;
+  border-radius: 16px !important;
+  backdrop-filter: url(#liquid-glass-new-blur) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: none !important;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5),
+    rgba(0, 0, 0, 0.2) 0px 6px 6px, rgba(0, 0, 0, 0.1) 0px 0px 20px !important;
+}
+.mac-only {
+  display: block;
+}
+.windows-only-flex {
+  display: none;
+}
+.favorite-item > img {
+  border-radius: 2px;
+}
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 5px;
+}
+.w11-taskbar-app > img {
+  width: 90% !important;
+  height: 90% !important;
+  margin: 0px !important;
+  transition: all 0.2s ease !important;
+  transform-origin: bottom center;
+}
+.w11-taskbar-app {
+  padding: 0 !important;
+  position: relative !important;
+  width: 40px !important;
+  margin: 0px !important;
+  height: 40px !important;
+}
+.w11-taskbar-app:hover > span {
+  display: inline-flex !important;
+  position: absolute !important;
+  z-index: 999;
+  top: -25px;
+  width: max-content;
+}
+.w11-taskbar-app:hover {
+  background: transparent !important;
+}
+.w11-taskbar-app:hover > img {
+  scale: 1.15 !important;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5)) !important;
+}
+.w11-taskbar-app.active, .w11-taskbar-app.current {
+  background: transparent !important;
+}
+.w11-taskbar-app.active::after {
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  width: 4px;
+  height: 4px;
+}
+.macicon:hover {
+  filter: brightness(0.8);
+  cursor: pointer;
+}
+.w11-window.gray {
+  background: rgb(34 34 34 / 70%) !important;
+}
+.w11-window.black {
+  background: rgb(0 0 0 / 80%) !important;
+}

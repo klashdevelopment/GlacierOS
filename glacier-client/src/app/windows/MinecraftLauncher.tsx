@@ -46,7 +46,7 @@ type LauncherTab = "play" | "installs" | "realms" | "skins" | "patchnotes";
 type SelectedGame = "java" | "bedrock" | "account" | "dungeons" | "legends";
 
 function JavaPage() {
-  const [selectedGame, setSelectedGame] = useState("1.12-wasm");
+  const [selectedGame, setSelectedGame] = useState("1.12");
 
   function launchGame() {
     let launcher = document.querySelector('.mclauncher') as HTMLElement;
@@ -73,7 +73,7 @@ function JavaPage() {
       <div className="rbottom background">
         <div className="rfarbtm">
           <div className="rfleft">
-            <Dropdown style={{minWidth:'150px'}} defaultValue={"Glacier - 1.8.8"} defaultSelectedOptions={["glacier"]} onOptionSelect={(e,d)=>{setSelectedGame(d.optionValue as string)}}>
+            <Dropdown style={{minWidth:'150px'}} defaultValue={"Vanilla - 1.12.2"} defaultSelectedOptions={["1.12"]} onOptionSelect={(e,d)=>{setSelectedGame(d.optionValue as string)}}>
               <Option value="1.12">Vanilla - 1.12.2</Option>
               <Option value="1.12-wasm">WASM-GC - 1.12.2</Option>
               <Option value="1.9">Lambda - 1.9</Option>
@@ -96,7 +96,7 @@ function JavaPage() {
             PLAY
           </div>
           <div className="rfright">
-            glacier
+            glOS
           </div>
         </div>
       </div>

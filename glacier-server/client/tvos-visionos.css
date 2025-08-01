@@ -1,0 +1,158 @@
+
+.w11-controls > div.mid,
+.w11-controls > div.left {
+    display: none !important;
+}
+.w11-window > .w11-top {
+  user-select: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: transparent;
+  z-index: 999;
+  padding: 10px 16px;
+  display: flex;
+  height: 20px;
+  width: 90%;
+  align-items: center;
+}
+.w11-controls {
+  width: 77%;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+.w11-controls > div {
+  user-select: none;
+  float: inherit !important;
+  cursor: default !important;
+  background: transparent !important;
+  margin: 8px 8px;
+  position:absolute;
+  top: 4px;
+  transition: all 0.25s ease;
+  width: 15px;
+  height: 15px;
+  padding: 0px !important;
+  border-radius: 50%;
+}
+.w11-controls > div.end {
+  left:5px;
+  border-top-right-radius: 50% !important;
+  background: red !important;
+}
+.w11-controls > div > img {
+  display: none;
+}
+.w11-title {
+  left: 40px;
+  position: absolute;
+  width: calc(100% - 120px) !important;
+}
+.w11-content {
+  height: calc(100% - 40px);
+  overflow:scroll;
+}
+.w11-window {
+    width: calc(100vw - 80px) !important;
+    height: calc(100vh - 80px) !important;
+    position: absolute;
+    top: 40px !important;
+    border: none !important;
+    border-radius: 1rem !important;
+    left: 40px !important;
+    transform: none !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.visionOS-filters {
+    position: absolute;
+    top: 0;
+    left: -100px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(128, 128, 128, 0.3);
+    border: 1.4px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    border-radius: 100vw;
+    backdrop-filter: blur(100px);
+    gap: 12px;
+}
+.visionOS-filter {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.visionOS-filter.active {
+    background: rgba(255,255,255, 0.07);
+}
+#taskbar {
+    display: none !important;
+}
+.visionOS {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.visionOS-row {
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    position: relative;
+}
+.visionOS-icon {
+    width: 90px;
+    height: 130px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+}
+.visionOS-icon img {
+    width: 90px;
+    border-radius: 50%;
+    transition: all 0.15s ease;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+.visionOS-highlight {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    z-index: 2;
+    mix-blend-mode: screen;
+}
+.visionOS-icon:not(.disabled):hover img {
+    transform: scale(1.1);
+}
+.visionOS-icon.disabled img {
+    filter: grayscale(10%);
+    opacity: 0.5;
+    filter: blur(1px);
+}
+.visionOS-icon span {
+    font-size: 17px;
+    text-align: center;
+    color: #ffffffbb;
+    margin-top: 10px;
+    user-select: none;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    font-family: 'SF Pro Display', sans-serif;
+}
+.visionOS-icon.disabled span {
+    color: #ffffff55;
+}

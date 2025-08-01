@@ -15,6 +15,7 @@ export default function Window({
   defaultClosed = true,
   defaultPosition = { x: 40, y: 40 },
   defaultSize = { width: 800, height: 500 },
+  minSize = { width: 600, height: 350 },
   defaultMaximized = false,
   style = { borderTop: seperateBorder },
   noDragging = false,
@@ -31,6 +32,7 @@ export default function Window({
   defaultPosition?: { x: number, y: number };
   defaultSize?: { width: number, height: number };
   defaultMaximized?: boolean;
+  minSize?: { width: number, height: number };
   style?: React.CSSProperties;
   noDragging?: boolean;
   onClose?: () => void;
@@ -112,18 +114,18 @@ export default function Window({
         width: defaultSize.width,
         height: defaultSize.height,
       }}
-      minWidth={600}
-      minHeight={350}
+      minWidth={minSize.width}
+      minHeight={minSize.height}
 
       dragHandleClassName="w11-top"
-      className={`w11-window ${windowColors.includes(color) ? color + ' ' : ''}${id}`}
+      className={`w11-window ${windowColors.includes(color) ? color + ' ' : ''}${id}${maximized ? ' maximized' : ''} ${className}`}
       style={{
         zIndex: '4',
         color: windowColors.includes(color) ? undefined : 'white',
         background: windowColors.includes(color) ? undefined : color
       }}
-      disableDragging={maximized}
-      enableResizing={!maximized && !noDragging}
+      disableDragging={maximized || selectedOS.includes('tvos')}
+      enableResizing={!maximized && !noDragging && !selectedOS.includes('tvos')}
     >
       <div className="w11-top">
         <div className="w11-title">{formatName(selectedOS, title)}</div>

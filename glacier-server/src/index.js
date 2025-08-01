@@ -1,3 +1,4 @@
+import functions from "firebase-functions";
 import express from "express";
 import { createServer } from "node:http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
@@ -33,6 +34,9 @@ app.use("/libcurl/", express.static(libcurlPath));
 app.use("/bareasmodule/", express.static(bareModulePath));
 app.use("/baremux/", express.static(baremuxPath));
 app.use("/bare", cors({ origin: "*" }));
+app.get('/isUV', (req, res) => {
+  res.json({ uv: true });
+});
 
 // var forumHandler = (req, res) => {
 //   res.send("Forum handler not yet initalized - please wait a moment.");
@@ -117,4 +121,23 @@ function shutdown() {
 
 server.listen({
   port,
+});
+
+// Export the Express app as a Firebase Function
+export const web = functions.https.onRequest(app);
+export const ws = functions.https.onRequest((req, res) => {
+  if (bareServer.shouldRoute(req)) {
+    bareServer.routeRequest(req, res);
+  }/* else if (bareOld.shouldRoute(req)) {
+    bareOld.routeRequest(req, res);
+  }*/ else {
+    res.status(404).send("Not found");
+  }
+});
+export const wispws = functions.https.onRequest((req, res) => {
+  if (req.url.endsWith("/wisp/")) {
+    wisp.routeRequest(req, res);
+  } else {
+    res.status(404).send("Not found");
+  }
 });

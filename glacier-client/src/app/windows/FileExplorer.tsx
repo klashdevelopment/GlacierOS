@@ -4,9 +4,9 @@ import './explorer.css';
 import { useEffect, useState } from "react";
 import { ArrowLeftFilled, ArrowRightFilled, ArrowUpFilled, ArrowClockwiseFilled, DesktopRegular, SearchRegular, PinFilled } from "@fluentui/react-icons";
 
-function FileItemQuickAccess({ icon, name, pinned }: { icon: string, name: string, pinned: boolean }) {
+function FileItemQuickAccess({ icon, name, pinned, oc }: { icon: string, name: string, pinned: boolean, oc?: any }) {
     return (
-        <div className="fiqa">
+        <div className="fiqa" onClick={oc}>
             <img src={icon} height={20} />
             <span>{name}</span>
             {pinned && <PinFilled />}
@@ -67,19 +67,23 @@ interface LinkData {
 export default function FileExplorer() {
     const [links, setLinks] = useState<LinkData[]>([]);
 
-    useEffect(() => {
-        fetch('https://raw.githack.com/klashdevelopment/glacier-data-repo/refs/heads/main/links.json')
-            .then(res => res.json())
+    function refreshData() {
+        fetch('https://raw.githack.com/klashdevelopment/glacier-data-repo/main/links.json')
+            .then(res => res.text())
             .then(data => {
-                setLinks(data);
+                setLinks(JSON.parse(data.substring(12)));
             })
+    }
+
+    useEffect(() => {
+        refreshData();
     }, []);
 
     return (
         <Window title="File Explorer" id="file-explorer" taskbarIconID="file-explorer" color={'black'} seperateBorder="none" style={{ overflow: 'hidden' }}>
             <div className="window-tabs">
                 <div className="tab">
-                    <img src={`/windows/icons/folder.png`} height={20} /> Files
+                    <img src={`/windows/icons/folder.webp`} height={20} /> Files
                 </div>
             </div>
             <div className="fewp" style={{ overflow: 'hidden' }}>
@@ -100,18 +104,19 @@ export default function FileExplorer() {
                 <div className="fe-split-left" style={{ overflowY: 'scroll' }}>
                     <div className="padding10">
                         <FileItemQuickAccess icon="/windows/folders/desktop.ico" name="Desktop" pinned={true} />
-                        <FileItemQuickAccess icon="/windows/folders/downloads.png" name="Downloads" pinned={true} />
-                        <FileItemQuickAccess icon="/windows/folders/documents.png" name="Documents" pinned={true} />
-                        <FileItemQuickAccess icon="/windows/folders/pictures.png" name="Pictures" pinned={true} />
-                        <FileItemQuickAccess icon="/windows/folders/movies.png" name="Videos" pinned={true} />
-                        <FileItemQuickAccess icon="/windows/folders/music.png" name="Music" pinned={true} />
+                        <FileItemQuickAccess icon="/windows/folders/downloads.webp" name="Downloads" pinned={true} />
+                        <FileItemQuickAccess icon="/windows/folders/documents.webp" name="Documents" pinned={true} />
+                        <FileItemQuickAccess icon="/windows/folders/pictures.webp" name="Pictures" pinned={false} />
+                        <FileItemQuickAccess icon="/windows/folders/movies.webp" name="Videos" pinned={false} />
+                        <FileItemQuickAccess icon="/windows/folders/music.webp" name="Music" pinned={false} />
+                        <FileItemQuickAccess icon="/windows/icons/folder.webp" name="Refresh" pinned={false} oc={refreshData} />
                     </div>
                 </div>
                 <div className="fe-split-right" style={{ overflowY: 'scroll' }}>
                     <div className="padding10">
                         {links.map((link) => {
                             return (
-                                <FileItemLink down={link.speed == "Down"} icon="/windows/glacierlink.ico" url={link.link} name={link.name} type={`Reccomended - ${link.reccomended ? "Yes" : "No"}`} date={`Official - ${link.official ? "Yes" : "No"}`} size={`Speed - ${link.speed}`} />
+                                <FileItemLink down={link.speed == "Down"} icon="/windows/glacierlink.ico" url={link.link} name={link.name} type={`${link.reccomended ? "Full (UV)" : "Static (NoUV)"}`} date={`${link.official ? "Official" : "Unofficial"}`} size={`Speed - ${link.speed}`} />
                             )
                         })}
                     </div>

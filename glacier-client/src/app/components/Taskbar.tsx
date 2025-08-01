@@ -39,13 +39,22 @@ export default function Taskbar({
 }>) {
     const [selectedOS, setSelectedOS] = useState("windows");
     const [macOSDockEffects, setMacOSDockEffects] = useState(true);
+    const [customStart, setCustomStart] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const os = window.localStorage.getItem("os");
-        if (os) {
-            setSelectedOS(os);
+        const custom = window.localStorage.getItem("custom-theme");
+        if(custom) {
+            setSelectedOS(JSON.parse(custom).icons.base);
+            if(JSON.parse(custom).icons.start) {
+                setCustomStart(JSON.parse(custom).icons.start);
+            }
         } else {
-            window.localStorage.setItem("os", "windows");
+            if (os) {
+                setSelectedOS(os);
+            } else {
+                window.localStorage.setItem("os", "windows");
+            }
         }
 
         const dockEffects = window.localStorage.getItem("macOS-dock-effects");
@@ -167,7 +176,7 @@ export default function Taskbar({
         // let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
         return start ? <div className="w11-taskbar-app" id="startmenu-tb-app" onClick={function () { toggleStartMenu() }}>
-            <img src={`/${selectedOS}/start.webp`} alt={formatName(selectedOS, 'Start')} />
+            <img src={customStart || `/${selectedOS}/start.webp`} alt={formatName(selectedOS, 'Start')} />
             <span>{formatName(selectedOS, 'Start')}</span>
         </div> : <div key={app.window + '-tb-key'} id={app.window + '-tb-app'} className="w11-taskbar-app" onClick={function () { toggle(app) }}>
             <img src={app.icon} alt={app.name} />

@@ -6,6 +6,11 @@ export default function SelectedStyle() {
     const [selOS, setSelOS] = useState("windows");
     useEffect(()=>{
         const os = window.localStorage.getItem("os");
+        const customtheme = window.localStorage.getItem("custom-theme");
+        if(customtheme) {
+            setSelOS("windows");
+            return;
+        }
         if (os) {
             setSelOS(os);
         }else {

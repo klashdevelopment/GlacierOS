@@ -249,6 +249,11 @@
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
+.w11-window.maximized:not(.tvos-open) {
+  width: calc(100% - 20px) !important;
+  left: 10px !important;
+  height: calc(100% - 100px) !important;
+}
 .hidden {
   display: none !important;
 }
@@ -339,6 +344,7 @@
 .w11-content {
   /* margin-top: 40px; */
   height: calc(100% - 39px);
+  width: 100%;
   overflow:scroll;
 }
 
@@ -399,39 +405,6 @@ a {
 .rightside-item > svg {
   margin: 10px 0px;
   width: 1.2em;
-}
-
-/* grid with 10px gap, 100x75 items with image and text */
-.favorite-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 100px);
-  position: absolute;
-  top: 32px;
-  gap: 5px;
-  background: transparent;
-  width: 100%;
-  padding: 5px;
-  height: 100%;
-}
-.favorite-grid > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
-  transition: all 0.2s;
-  border: 1px solid #00000010;
-}
-.favorite-grid > div:hover {
-  background: rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-}
-.favorite-grid > div > img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
 }
 
 .invalidInput {
@@ -504,4 +477,44 @@ img.circled {
 
 [data-nextjs-toast-wrapper] {
   background: #2fa9ca !important;
+}
+
+.sme-content {
+  width: 100%;
+  height: calc(100% - 65px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.favorite-grid {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  height: calc(100% - 115px);
+  width: calc(100% - 20px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+}
+.favorite-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  gap: 6px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.favorite-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.favorite-item > img {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
 }

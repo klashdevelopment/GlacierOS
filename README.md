@@ -11,8 +11,11 @@ You're gonna want to host `glacier-server`. (`npm install` first obv) That repo 
 **Fly.io**
 Enter `glacier-server` using `cd` and deploy using `fly launch`, copying the settings.
 
-**Replit**
-[![Run on Replit](https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg)](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1)
+**Self-host services**
+
+- [Replit](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1) - Run the project
+- [CodeSandbox](https://codesandbox.io/p/devbox/jxw75r) - Run the project
+- [Koyeb](https://app.koyeb.com/deploy?name=glacieros&repository=klashdevelopment%2FGlacierOS&branch=main&workdir=.%2Fglacier-server&run_command=npm+start&instance_type=free&regions=was&instances_min=0&autoscaling_sleep_idle_delay=300&ports=8080%3Bhttp%3B%2F&hc_protocol%5B8080%5D=tcp&hc_grace_period%5B8080%5D=5&hc_interval%5B8080%5D=30&hc_restart_limit%5B8080%5D=3&hc_timeout%5B8080%5D=5&hc_path%5B8080%5D=%2F&hc_method%5B8080%5D=get) - Deploy
 
 **Other services**
 Glacier server can be deployed on any service - simply host `glacier-server` however you need to as a NodeJS project.

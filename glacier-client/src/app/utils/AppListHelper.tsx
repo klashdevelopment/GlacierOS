@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-let apps: any[] = [];
+export let apps: any[] = [];
 
 export async function getApps() {
     // Ensure data is loaded before resolving the promise
@@ -11,11 +11,17 @@ export async function getApps() {
 export function getWithCategory(category: string) {
     return apps.filter(app => app.category.split(",").includes(category));
 }
+export function getCustomFilter(filter: (app: any) => boolean) {
+    return apps.filter(filter);
+}
 export  function getWithName(name: string) {
     return apps.find(app => app.name === name) || null;
 }
 export function getAllNames() {
     return apps.map(app => app.name);
+}
+export function getAllIcons() {
+    return apps.map(app => app.image);
 }
 const blacklistedCategories = ["Hidden", "Minecraft", "Apps", "Games", "VMP", "VMS", "Devtools", "Movies", "", " "];
 export function getCategories() {

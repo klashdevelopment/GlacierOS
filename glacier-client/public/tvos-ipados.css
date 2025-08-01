@@ -1,0 +1,134 @@
+#taskbar {
+    display: none !important;
+}
+
+.w11-controls>div.mid,
+.w11-controls>div.left {
+    display: none !important;
+}
+
+.w11-window>.w11-top {
+    user-select: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background: transparent;
+    z-index: 999;
+    padding: 10px 16px;
+    display: flex;
+    height: 20px;
+    width: 90%;
+    align-items: center;
+}
+
+.w11-controls {
+    width: 77%;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+.w11-controls>div {
+    user-select: none;
+    float: inherit !important;
+    cursor: default !important;
+    background: transparent !important;
+    margin: 8px 8px;
+    position: absolute;
+    top: 4px;
+    transition: all 0.25s ease;
+    width: 15px;
+    height: 15px;
+    padding: 0px !important;
+    border-radius: 50%;
+}
+
+.w11-controls>div.end {
+    left: 5px;
+    border-top-right-radius: 50% !important;
+    background: red !important;
+}
+
+.w11-controls>div>img {
+    display: none;
+}
+
+.w11-title {
+    left: 40px;
+    position: absolute;
+    width: calc(100% - 120px) !important;
+}
+
+.w11-content {
+    height: calc(100% - 40px);
+    overflow: scroll;
+}
+
+.w11-window {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0 !important;
+    border: none !important;
+    border-radius: 0px !important;
+    left: 0 !important;
+    transform: none !important;
+}
+
+.ipadOS {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ipadOS-inner {
+    border-radius: 12px;
+    gap: 76px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ipadOS-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 98px;
+    width: 886px;
+    height: 90.5px;
+}
+
+.ipadOS-app {
+    width: 68px;
+    height: 90.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+}
+.ipadOS-app.disabled {
+    opacity: 0.6;
+}
+.ipadOS-app img {
+    width: 68px;
+    height: 68px;
+    border-radius: 14px;
+    filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.50));
+    transition: all 0.25s ease;
+}
+.ipadOS-app span {
+    font-size: 12px;
+    text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.50);
+    color: #fff;
+    text-align: center;
+    font-family: SF Pro Display, sans-serif;
+    font-weight: 500;
+}
+.ipadOS-app:not(.disabled):hover {
+    scale: 1.05;
+}

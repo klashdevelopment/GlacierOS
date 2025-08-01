@@ -7,9 +7,10 @@ import { useState } from "react";
 import Home from "./store/Home";
 import Games from "./store/Games";
 import Apps from "./store/Apps";
-import Movies from "./store/Movies";
+import Movies from "./store/QuickApps";
 import VMs from "./store/VMs";
 import Devtools from "./store/Devtools";
+import Globe from "./store/Globe";
 
 export default function StoreApp() {
   const {width, height} = useWindowDimensions();
@@ -21,7 +22,7 @@ export default function StoreApp() {
         {(currentPanel === 'home') ? <Home/> : null}
         {(currentPanel === 'games') ? <Games/> : null}
         {(currentPanel === 'apps') ? <Apps/> : null}
-        {(currentPanel === 'movies') ? <Movies/> : null}
+        {(currentPanel === 'movies') ? <Globe/> : null}
         {(currentPanel === 'vms') ? <VMs/> : null}
         {(currentPanel === 'devtools') ? <Devtools/> : null}
       </div>

@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { nameToID, toggleStoreApp } from "./StoreApps";
 
 import { ArrowClockwiseFilled } from "@fluentui/react-icons";
+import { StoreGridItem } from "./Games";
+import { useFavorites } from "../useFavorites";
 
 export default function Apps() {
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [updated, setUpdated] = useState(false);
+    const favs = useFavorites();
 
     const updateCategories = () => {
         setCategories(getCategories());
@@ -29,10 +32,7 @@ export default function Apps() {
                 </Dropdown><Button icon={<ArrowClockwiseFilled/>} onClick={()=>{updateCategories();setUpdated(true);}} /></p>
             {selectedCategory !== '' && <div className="store-games-panel store-panel store-grid">
                 {getWithCategory(selectedCategory).map((app, i) => (
-                    <div key={i} className="store-grid-item">
-                        <img src={app.image} alt={app.name} onClick={function(){toggleStoreApp(nameToID(app.name), app)}} />
-                        <div className="title" onClick={function(){toggleStoreApp(nameToID(app.name), app)}}>{app.name}</div>
-                    </div>
+                    StoreGridItem(i, app, favs)
                 ))}
             </div>}
         </div>

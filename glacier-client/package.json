@@ -12,6 +12,7 @@
     "@fluentui/react": "8.117.0",
     "@fluentui/react-components": "9.48.0",
     "@monaco-editor/react": "^4.6.0",
+    "@simonwep/pickr": "^1.9.1",
     "@types/dompurify": "^3.0.5",
     "@uidotdev/usehooks": "^2.4.1",
     "dompurify": "^3.1.6",

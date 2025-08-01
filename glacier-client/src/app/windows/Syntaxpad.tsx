@@ -135,7 +135,7 @@ export default function Syntaxpad() {
                         <Option value={lang.value} onClick={() => setLang(lang.value)} text={lang.value}>
                             <Persona avatar={{
                                 image: {
-                                    src: lang.runnable ? "/image/bootpad.png" : "/windows/syntaxpad.png",
+                                    src: lang.runnable ? "/image/bootpad.webp" : "/windows/syntaxpad.webp",
                                     style: {
                                         borderRadius: '0px',
                                         background: 'transparent'

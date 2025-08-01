@@ -15,7 +15,7 @@ export function toggleStoreApp(id: string, app: any) {
           (x as HTMLDivElement).style.zIndex = '4';
         });
 
-        (document.getElementsByClassName(id)[0] as HTMLDivElement).style.zIndex = '5';
+        (window as HTMLDivElement).style.zIndex = '5';
       } else {
         window.classList.remove('opening'); 
         window.classList.add('closing');
@@ -51,8 +51,7 @@ export function toggleStoreApp(id: string, app: any) {
         allWindows.forEach((x) => {
           (x as HTMLDivElement).style.zIndex = '4';
         });
-
-        (document.getElementsByClassName(id)[0] as HTMLDivElement).style.zIndex = '5';
+        (window as HTMLDivElement).style.zIndex = '5';
       } else {
         window.classList.remove('opening');
         window.classList.add('closing');
@@ -61,7 +60,10 @@ export function toggleStoreApp(id: string, app: any) {
   }
 }
 
-export function nameToID(name: string) {
+export function nameToID(name: string, url?: string) {
+  if (url && url.startsWith('glacier://')) {
+    return url.substring('glacier://'.length);
+  }
   return 'sa-' + name.toLowerCase().replace(/[\W_]+/g, "-");
 }
 
@@ -69,6 +71,8 @@ export const conversions = {
   "Microsoft Edge": {
     "windows": "Microsoft Edge",
     "macos": "Safari",
+    "tahoe": "Safari",
+    "tahoe-dark": "Safari",
     "chromeos": "Chrome",
     "ubuntu": "Firefox",
     "kali": "Firefox",
@@ -76,6 +80,8 @@ export const conversions = {
   "File Explorer": {
     "windows": "File Explorer",
     "macos": "Finder",
+    "tahoe": "Files",
+    "tahoe-dark": "Files",
     "chromeos": "Files",
     "ubuntu": "Files",
     "kali": "Files",
@@ -83,6 +89,8 @@ export const conversions = {
   "Start": {
     "windows": "Start",
     "macos": "Launchpad",
+    "tahoe": "Launchpad",
+    "tahoe-dark": "Launchpad",
     "chromeos": "Launcher",
     "ubuntu": "Activities",
     "kali": "Activities",
@@ -91,7 +99,7 @@ export const conversions = {
 
 export function formatName(selectedOS: string, name: string) {
   // if conversion exists, return the converted name based on the selected OS, otherwise return the original name
-  return conversions[name] ? conversions[name][selectedOS] : name;
+  return (conversions[name] && conversions[name][selectedOS]) ? conversions[name][selectedOS] : name;
 }
 
 const StoreApps = () => {

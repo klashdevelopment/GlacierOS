@@ -7,8 +7,9 @@ import { registerSWandset } from "../utils/doSWStuff";
 import "./lunar.css";
 import contsants from "../Constants";
 import { nameToID, toggleStoreApp } from "./store/StoreApps";
+import exp from "constants";
 
-interface SelectedClientData {
+export interface SelectedClientData {
     name: string;
     version: string;
     icon: string;
@@ -17,9 +18,94 @@ interface SelectedClientData {
     windowName: string;
 }
 
-type ClientKey = keyof typeof clients;
+export type ClientKey = keyof typeof clients;
 
-const clients: Record<string, SelectedClientData> = {
+
+export const clients: Record<string, SelectedClientData> = {
+    /*
+    for these clients the icon is https://m.media-amazon.com/images/I/51L0-hXjy+L.png
+    vanilla 1.2.6,
+    vanilla 1.3,
+    vanilla 1.5,
+    vanilla 1.7.3,
+    vanilla 1.8,
+    vanilla 1.8 (WASM),
+    vanilla 1.9,
+    vanilla 1.12,
+    vanilla 1.12 (WASM)
+    */
+    "1.2.6": {
+        name: "Vanilla 1.2.6",
+        version: "1.2.6",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.2.6",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.2.6",
+        windowName: "Minecraft (1.2.6)"
+    },
+    "1.3": {
+        name: "Vanilla 1.3",
+        version: "1.3",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.3",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.3",
+        windowName: "Minecraft (1.3)"
+    },
+    "1.5": {
+        name: "Vanilla 1.5",
+        version: "1.5",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.5",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.5",
+        windowName: "Minecraft (1.5)"
+    },
+    "1.7.3": {
+        name: "Vanilla 1.7.3",
+        version: "1.7.3",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.7.3",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.7.3",
+        windowName: "Minecraft (1.7.3)"
+    },
+    "1.8": {
+        name: "Vanilla 1.8",
+        version: "1.8",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.8",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.8",
+        windowName: "Minecraft (1.8)"
+    },
+    "1.8-wasm": {
+        name: "Vanilla 1.8 (WASM)",
+        version: "1.8",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.8-wasm",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.8-wasm",
+        windowName: "Minecraft (1.8-wasm)"
+    },
+    "1.9": {
+        name: "Vanilla 1.9",
+        version: "1.9",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.9",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.9",
+        windowName: "Minecraft (1.9)"
+    },
+    "1.12": {
+        name: "Vanilla 1.12",
+        version: "1.12",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.12",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.12",
+        windowName: "Minecraft (1.12)"
+    },
+    "1.12-wasm": {
+        name: "Vanilla 1.12 (WASM)",
+        version: "1.12",
+        icon: "https://m.media-amazon.com/images/I/51L0-hXjy+L.png",
+        windowID: "1.12-wasm",
+        windowURL: "https://pages.gavingogaming.com/mediaology-game-repo/eagle/1.12-wasm",
+        windowName: "Minecraft (1.12-wasm)"
+    },
     "starlike": {
         name: "Starlike",
         version: "1.8.8",
@@ -69,6 +155,7 @@ const clients: Record<string, SelectedClientData> = {
         windowName: "Minecraft (resent1.8)"
     }
 }
+export const allClients: SelectedClientData[] = Object.values(clients);
 
 export default function LunarClientApp() {
     const [selectedClient, setSelectedClient] = useState<SelectedClientData>(clients.astra);

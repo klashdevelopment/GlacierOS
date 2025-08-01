@@ -1,0 +1,29 @@
+.av-bar {
+    width: 40px;
+    background: white;
+    min-height: 20px;
+    border-radius: 12px;
+}
+.audioviz-window input, .audioviz-window select {
+    border: 1px solid #ffffff2a;
+    background: #00000030;
+    padding: 5px;
+    border-radius: 6px;
+    width: min-content;
+    min-width: 40px;
+}
+.audioviz-window input[type="color"] {
+    padding: 0;
+    height: 30px;
+    border-radius: 6px;
+    border: none !important;
+    outline: none !important;
+    width: 40px;
+}
+.audioviz-window label {
+    color: #aaa;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

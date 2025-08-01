@@ -28,7 +28,7 @@ import {
     DialogContent
 } from "@fluentui/react-components";
 import TerminalApp from "./windows/Terminal";
-import SettingsApp from "./windows/Settings";
+import SettingsApp, { SetTheme } from "./windows/Settings";
 import CalculatorApp from "./windows/Calculator";
 import EdgeApp from "./windows/MicrosoftEdge";
 import CameraApp from "./windows/Camera";
@@ -36,7 +36,6 @@ import StoreApp from "./windows/Store";
 import AppListHelper, { getApps, getWithName } from "./utils/AppListHelper";
 import FrameWindow from "./components/FrameWindow";
 import StoreApps from "./windows/store/StoreApps";
-import MoreIconsApp from "./windows/MoreIcons";
 import MinecraftLauncherApp from "./windows/MinecraftLauncher";
 import FavoriteAppHelper from "./utils/FavoriteAppHelper";
 import Head from "next/head";
@@ -52,6 +51,17 @@ import LunarClientApp from "./windows/LunarClient";
 import contsants from "./Constants";
 import ModrinthApp from "./windows/ModrinthApp";
 import xor from "./utils/XOR";
+import TVOS from "./components/tvOS";
+import VisionOS from "./components/visionOS";
+import IPadOS from "./components/iPadOS";
+import LiquidGlassApp from "./windows/LiquidGlassTest";
+import AudioVizApp from "./windows/AudioVisualizer";
+import FavoriteGrid from "./utils/FavoriteAppHelper";
+import { FavoritesProvider } from "./windows/useFavorites";
+import ThemeMakerApp, { computeTheme } from "./windows/ThemeMaker";
+import "./live.css";
+import { HydraProvider } from "./windows/HydraContext";
+import {HydraCreator} from "./windows/HydraCreator";
 
 declare const self: any;
 declare const Ultraviolet: any;
@@ -74,142 +84,30 @@ export default function Home() {
 
     const [taskbarApps, setTaskbarApps] = useState<TaskbarApp[]>([]);
 
-    function setTaskbarDefaults(os: string) {
+    function setTaskbarDefaults(os?: string, customIcons?: Record<string, string>) {
+        const osName = os ?? "windows";
         setTaskbarApps([
-            { name: "Settings", icon: `/${os}/settings.webp`, window: "settings" },
-            { name: "File Explorer", icon: `/${os}/icons/explorer.webp`, window: "file-explorer" },
-            { name: "Terminal", icon: `/${os}/icons/terminal.webp`, window: "terminal" },
-            { name: "Microsoft Edge", icon: `/${os}/icons/edge.webp`, window: "edge" },
-            { name: "Dualler", icon: `/windows/dueller.webp`, window: "dualler" },
-            { name: "Syntaxpad", icon: `/${os}/syntaxpad.webp`, window: "syntaxpad" },
-            { name: "Calculator", icon: `/${os}/icons/calculator.webp`, window: "calculator" },
-            { name: "Camera", icon: `/${os}/icons/camera.webp`, window: "camera" },
-            { name: "Microsoft Store", icon: `/${os}/store.webp`, window: "store" },
-            { name: "Minecraft Launcher", icon: `/${os}/minecraft.webp`, window: "mclauncher" },
-            { name: "Lunar Client", icon: `https://parsefiles.back4app.com/JPaQcFfEEQ1ePBxbf6wvzkPMEqKYHhPYv8boI1Rc/bc2dfa26e88ad794d530368331835d1f_7h0TxjqYaF.png`, window: "lunar" },
-            // { name: "Modrinth App", icon: contsants.MODRINTH.ICON, window: "modrinth" },
+            { name: "Settings", icon: customIcons?.settings || `/${osName}/settings.webp`, window: "settings" },
+            { name: "File Explorer", icon: customIcons?.explorer || `/${osName}/icons/explorer.webp`, window: "file-explorer" },
+            { name: "Terminal", icon: customIcons?.terminal || `/${osName}/icons/terminal.webp`, window: "terminal" },
+            { name: "Microsoft Edge", icon: customIcons?.edge || `/${osName}/icons/edge.webp`, window: "edge" },
+            { name: "Dualler", icon: customIcons?.dueller || `/${osName}/dueller.webp`, window: "dualler" },
+            { name: "Syntaxpad", icon: customIcons?.syntaxpad || `/${osName}/syntaxpad.webp`, window: "syntaxpad" },
+            { name: "Calculator", icon: customIcons?.calculator || `/${osName}/icons/calculator.webp`, window: "calculator" },
+            { name: "Camera", icon: customIcons?.camera || `/${osName}/icons/camera.webp`, window: "camera" },
+            { name: "Microsoft Store", icon: customIcons?.store || `/${osName}/store.webp`, window: "store" },
+            { name: "Minecraft Launcher", icon: customIcons?.minecraft || `/${osName}/minecraft.webp`, window: "mclauncher" },
         ]);
     }
 
     useEffect(() => {
-        // var V86Inject = `*:not(#screen_container, #screen_container *, html, body) {
-        //     display: none !important;
-        // }
-        // html, body {
-        //     font-size: 0;
-        // }
-        // #screen_container {
-        //     width: 100vw;
-        //     display: flex !important;
-        //     align-items: center;
-        //     justify-content: center;
-        //     height: 100vh;
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     z-index: 999;
-        // }`;
-
-        // self.__uv$config = {
-        //     prefix: "https://tortillagames.org/zz/service/",
-        //     encodeUrl: xor.encode,
-        //     decodeUrl: xor.decode,
-        //     handler: "https://tortillagames.org/zz/zz.handler.js",
-        //     client: "https://tortillagames.org/zz/zz.client.js",
-        //     bundle: "https://tortillagames.org/zz/zz.bundle.js",
-        //     config: "https://tortillagames.org/zz/zz.config.js",
-        //     sw: "https://tortillagames.org/zz/zz.sw.js",
-        //     inject: [
-        //         {
-        //             "host": "/^https:\/\/copy\.sh\/v86\/\?/",
-        //             "injectTo": "head",
-        //             "html": "<style>" + V86Inject + "</style>"
-        //         },
-        //     ]
-        // };
-        // async function doClientUV() {
-        //     var importScripts = (url: string) => {
-        //         return new Promise<void>((resolve, reject) => {
-        //             const script = document.createElement('script');
-        //             script.src = url;
-        //             script.onload = () => { resolve(); console.log("Loaded script: " + url) };
-        //             script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
-        //             document.head.appendChild(script);
-        //         });
-        //     };
-        //     await importScripts('https://tortillagames.org/epoxy/index.js');
-        //     await importScripts('https://tortillagames.org/baremux/index.js');
-        //     await importScripts(self.__uv$config.bundle || 'uv.bundle.js');
-        //     await importScripts(self.__uv$config.sw || 'uv.sw.js');
-        //     const allowedHostnames = ["localhost", "127.0.0.1"];
-        //     self.setTransport = async function(transportsel: string) {
-        //         const connection = new BareMuxConnection("https://tortillagames.org/baremux/worker.js")
-        //         const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + /*location.host*/'tortillagames.org' + "/wisp/";
-        //         const bareUrl = location.protocol + "//" + /*location.host*/'tortillagames.org' + "/bare/";
-
-        //         if (transportsel == "epoxy") {
-        //             await connection.setTransport("https://tortillagames.org/epoxy/index.mjs", [{ wisp: wispUrl }]);
-        //         } else if (transportsel == "libcurl") {
-        //             await connection.setTransport("https://tortillagames.org/libcurl/index.mjs", [{ wisp: wispUrl }]);
-        //         } else {
-        //             await connection.setTransport("https://tortillagames.org/bareasmodule/index.mjs", [bareUrl]);
-        //         }
-        //     }
-        //     self.registerSW = async function() {
-        //         if (!navigator.serviceWorker) {
-        //             if (
-        //                 location.protocol !== "https:" &&
-        //                 !allowedHostnames.includes(location.hostname)
-        //             )
-        //                 throw new Error("Service workers cannot be registered without https.");
-
-        //             throw new Error("Your browser doesn't support service workers.");
-        //         }
-
-        //         await navigator.serviceWorker.register("https://tortillagames.org/zz/sw.js");
-        //     }
-        //     try {
-        //         await registerSW();
-        //     } catch (err) {
-        //         console.error(err);
-        //     }
-        //     try {
-        //         await setTransport("libcurl");
-        //     } catch (err2) {
-        //         console.error(err2);
-        //     }
-        //     const uv = new UVServiceWorker();
-        //     self.addEventListener('fetch', (event: any) => {
-        //         event.respondWith(
-        //             (async () => {
-        //                 if (uv.route(event)) {
-        //                     return await uv.fetch(event);
-        //                 }
-        //                 return await fetch(event.request);
-        //             })()
-        //         );
-        //     });
-        // };
-        // doClientUV();
-        // self.search = (input: string, template: string) => {
-        //     try {
-        //         return new URL(input).toString();
-        //     } catch (err) { }
-
-        //     try {
-        //         const url = new URL(`http://${input}`);
-        //         if (url.hostname.includes(".")) return url.toString();
-        //     } catch (err) { }
-
-        //     return template.replace("%s", encodeURIComponent(input));
-        // };
         const useFake = window.localStorage.getItem("fake-mode");
         if (useFake) {
             setShowFake(useFake === 'true');
         }
         const auth = window.localStorage.getItem("auth");
         const os = window.localStorage.getItem("os");
-        if (auth/* || process.env.NODE_ENV === "development"*/) {
+        if (auth) {
             setAuth(true);
         }
         fetch('http://ip-api.com/json/')
@@ -226,15 +124,20 @@ export default function Home() {
             setFirstTime(false);
             setPassword(window.localStorage.getItem("password") || "");
         }
-        if (os) {
-            setSelectedOS(os);
-            setTaskbarDefaults(os);
-            if (os === "macos") {
-                theme.fontFamilyBase = "'SF Pro', 'SF Compact', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif";
-            }
+        if (window.localStorage.getItem("custom-theme")) {
+            const theme = JSON.parse(window.localStorage.getItem("custom-theme") as string);
+            SetTheme(theme, setTaskbarDefaults);
         } else {
-            setTaskbarDefaults("windows");
-            window.localStorage.setItem("os", "windows");
+            if (os) {
+                setSelectedOS(os);
+                setTaskbarDefaults(os);
+                if (os === "macos") {
+                    theme.fontFamilyBase = "'SF Pro', 'SF Compact', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif";
+                }
+            } else {
+                setTaskbarDefaults("windows");
+                window.localStorage.setItem("os", "windows");
+            }
         }
         if (window.localStorage.getItem('background')) {
             document.body.style.backgroundImage = `url("${window.localStorage.getItem('background')}")`;
@@ -285,6 +188,50 @@ export default function Home() {
                     </filter>
                     <filter id="blur-150">
                         <feGaussianBlur stdDeviation="150" />
+                    </filter>
+                    <filter id="liquid-glass-blur" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="turbulence" />
+                        <feComponentTransfer in="turbulence" result="mapped">
+                            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" /><feFuncG type="gamma" amplitude="0" exponent="1" offset="0" /><feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+                        </feComponentTransfer>
+                        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+                        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+                            <fePointLight x="-200" y="-200" z="300" />
+                        </feSpecularLighting>
+                        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+                        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+                        <feGaussianBlur stdDeviation="10" />
+                    </filter>
+                    <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="turbulence" />
+                        <feComponentTransfer in="turbulence" result="mapped">
+                            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" /><feFuncG type="gamma" amplitude="0" exponent="1" offset="0" /><feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+                        </feComponentTransfer>
+                        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+                        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+                            <fePointLight x="-200" y="-200" z="300" />
+                        </feSpecularLighting>
+                        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+                        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                    <filter id="liquid-glass-new" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                        <feTurbulence type="fractalNoise" baseFrequency="0.011641443707048893 0.011641443707048893" numOctaves="3" seed="9055" />
+                        <feDisplacementMap in="shape" scale="64" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+                        <feMerge result="effect1_texture_4_27">
+                            <feMergeNode in="displacedImage" />
+                        </feMerge>
+                    </filter>
+                    <filter id="liquid-glass-new-blur" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                        <feTurbulence type="fractalNoise" baseFrequency="0.011641443707048893 0.011641443707048893" numOctaves="3" seed="9055" />
+                        <feDisplacementMap in="shape" scale="64" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+                        <feMerge result="effect1_texture_4_27">
+                            <feMergeNode in="displacedImage" />
+                        </feMerge>
+                        <feGaussianBlur stdDeviation="10" />
                     </filter>
                 </svg>
                 {blockUser && (<div style={{ width: '100vw', zIndex: '99999', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: '0', left: '0', backdropFilter: 'blur(60px)' }}>
@@ -343,13 +290,17 @@ export default function Home() {
                             </div>
                         </div>
                     )}
-                    {!showFake && <SyntaxpadProvider> 
+                    {!showFake && <SyntaxpadProvider><FavoritesProvider>
+                        {selectedOS === "tvos" && <TVOS />}
+                        {selectedOS === "tvos-visionos" && <VisionOS />}
+                        {selectedOS === "tvos-ipados" && <IPadOS />}
                         <StartMenu updTaskbarWindows={() => {
                             setTaskbarDefaults(selectedOS);
                         }}>
                             <Taskbar apps={taskbarApps} />
                         </StartMenu>
-                        <SettingsApp />
+                        <FavoriteGrid />
+                        <SettingsApp taskbar={setTaskbarDefaults} />
                         <CalculatorApp />
                         <TerminalApp />
                         <FileExplorer />
@@ -357,16 +308,22 @@ export default function Home() {
                         <CameraApp />
                         <StoreApp />
                         <LunarClientApp />
-                        {/* <ModrinthApp /> */}
+                        <ModrinthApp />
                         <CloudGaming />
                         <MinecraftLauncherApp />
                         <Syntaxpad />
                         <Bootpad />
                         <DuallerApp />
+                        <LiquidGlassApp />
+                        <AudioVizApp />
+                        <ThemeMakerApp setTaskbar={setTaskbarDefaults} />
+                        <HydraProvider>
+                            <HydraCreator />
+                        </HydraProvider>
                         <QuadpadProvider>
                             <Quadpad />
                         </QuadpadProvider>
-                    </SyntaxpadProvider>}
+                    </FavoritesProvider></SyntaxpadProvider>}
                 </main>
             </FluentProvider>
         </>

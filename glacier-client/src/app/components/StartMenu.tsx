@@ -52,7 +52,25 @@ export default function StartMenu({ children, updTaskbarWindows }: StartMenuProp
                     display: "none",
                 }}
             >
-                <button onClick={updTaskbarWindows}>refresh taskbar</button>
+                <button style={{
+                    width:'100%',
+                    border: 'none',
+                    borderTopLeftRadius: '16px',
+                    borderTopRightRadius: '16px',
+                    padding: '5px 3px',
+                    background: '#00001040',
+                    color: '#ccc',
+                    fontSize: '12px',
+                    cursor: 'pointer',
+                }} onClick={updTaskbarWindows}>Refresh Taskbar</button>
+                <div className="sme-content">
+                    <img src="/image/glos.png" style={{
+                        margin: 'auto',
+                        display: 'block',
+                        width: '60%',
+                        filter: 'drop-shadow(0 0 5px #000)',
+                    }} />
+                </div>
                 <div className="sme-footer">
                     <img src="/windows/user.webp" style={{width:'30px'}} alt="" className="circled" />
                     <Button

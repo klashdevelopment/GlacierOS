@@ -1,0 +1,10 @@
+#taskbar {
+    justify-content: flex-start !important;
+    background: #00000090 !important;
+}
+.start-menu {
+    left: 10px !important;
+}
+.w11-taskbar-app {
+    border-radius: 0px !important;
+}

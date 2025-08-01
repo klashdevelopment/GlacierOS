@@ -1,0 +1,131 @@
+#taskbar {
+    display: none !important;
+}
+.tvOS {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#545051, #0a0a0a);
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.tvOS-header {
+    width: 100%;
+    height: 75%;
+    position: relative;
+}
+.tvOS-header-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 900px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 900px), transparent 100%);
+}
+.tvOS-content {
+    position: relative;
+    z-index: 2;
+}
+.tvos-icon {
+    z-index: 2;
+    border-radius: 30px;
+    max-width: 12vw;
+}
+.tvos-app-row {
+    width: fit-content;
+    margin: 10px auto;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.tvos-app-row img {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    transition: all 0.15s ease;
+}
+.tvos-app-row img.disabled {
+    filter: grayscale(10%);
+    opacity: 0.5;
+    filter: blur(2px);
+}
+.tvos-app-row img:not(.disabled):hover {
+    scale: 1.1;
+}
+.tvos-app-row-main {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: #00000040;
+    backdrop-filter: url(#liquid-glass-blur);
+}
+.w11-controls > div.mid,
+.w11-controls > div.left {
+    display: none !important;
+}
+.w11-window > .w11-top {
+  user-select: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: transparent;
+  z-index: 999;
+  padding: 10px 16px;
+  display: flex;
+  height: 20px;
+  width: 90%;
+  align-items: center;
+}
+.w11-controls {
+  width: 77%;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+.w11-controls > div {
+  user-select: none;
+  float: inherit !important;
+  cursor: default !important;
+  background: transparent !important;
+  margin: 8px 8px;
+  position:absolute;
+  top: 4px;
+  transition: all 0.25s ease;
+  width: 15px;
+  height: 15px;
+  padding: 0px !important;
+  border-radius: 50%;
+}
+.w11-controls > div.end {
+  left:5px;
+  border-top-right-radius: 50% !important;
+  background: red !important;
+}
+.w11-controls > div > img {
+  display: none;
+}
+.w11-title {
+  left: 40px;
+  position: absolute;
+  width: calc(100% - 120px) !important;
+}
+.w11-content {
+  height: calc(100% - 40px);
+  overflow:scroll;
+}
+.w11-window {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0 !important;
+    border: none !important;
+    border-radius: 0px !important;
+    left: 0 !important;
+    transform: none !important;
+}

@@ -6,6 +6,7 @@ import useWindowDimensions from "../utils/WindowSizes";
 import { useEffect } from "react";
 import { useStoreApps } from "../windows/store/StoreAppsContext";
 import { nameToID } from "../windows/store/StoreApps";
+import { useUV } from "../utils/IsUV";
 
 export default function FrameWindow({
   title,
@@ -33,6 +34,7 @@ export default function FrameWindow({
   defaultUseUV?: boolean;
 }>) {
   const SAC = useStoreApps();
+  const isUV = useUV();
   function toggleOff() {
     let window = document.getElementsByClassName(id)[0];
     if (window) {
@@ -49,7 +51,7 @@ export default function FrameWindow({
   return (
     <Window title={title} id={id} defaultPosition={defaultPosition} taskbarIconID={id} color={color} seperateBorder={seperateBorder} onClose={toggleOff} defaultClosed={defaultClosed} className={className}>
       <div className="window-full">
-        <iframe id={id} data-cssinject={cssInject} data-src={defaultUseUV ? xor.quickURL(url) : url} style={{ border: '0px', position: 'absolute', width: '100%', height: 'calc(100% - 40px)' }}></iframe>
+        <iframe id={id} data-cssinject={cssInject} data-src={(defaultUseUV && isUV) ? xor.quickURL(url) : url} style={{ border: '0px', position: 'absolute', width: '100%', height: 'calc(100% - 40px)' }}></iframe>
       </div>
     </Window>
   );

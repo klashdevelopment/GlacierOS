@@ -63,6 +63,7 @@ import "./live.css";
 import { HydraProvider } from "./windows/HydraContext";
 import { HydraCreator } from "./windows/HydraCreator";
 import { StoreAppsProvider } from "./windows/store/StoreAppsContext";
+import { UVProvider } from "./utils/IsUV";
 
 declare const self: any;
 declare const Ultraviolet: any;
@@ -267,7 +268,7 @@ export default function Home() {
                         }}>Set Password</Button>}
                     </div>
                 )}
-                <StoreAppsProvider>
+                <UVProvider><StoreAppsProvider>
                     <main>
                         <AppListHelper />
                         <StoreApps />
@@ -327,7 +328,7 @@ export default function Home() {
                             </QuadpadProvider>
                         </FavoritesProvider></SyntaxpadProvider>}
                     </main>
-                </StoreAppsProvider>
+                </StoreAppsProvider></UVProvider>
             </FluentProvider>
         </>
     );

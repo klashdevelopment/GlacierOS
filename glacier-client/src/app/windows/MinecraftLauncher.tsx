@@ -8,7 +8,7 @@ import { Dropdown, Input, Option, OptionOnSelectData, SelectionEvents,
   DialogContent, } from "@fluentui/react-components";
 import Window from "../components/Window";
 import './launcher.css';
-import { toggleStoreApp, nameToID } from "./store/StoreApps";
+import { useToggleStoreApp, nameToID } from "./store/StoreApps";
 import {
   useId,
   Link,
@@ -46,6 +46,7 @@ type LauncherTab = "play" | "installs" | "realms" | "skins" | "patchnotes";
 type SelectedGame = "java" | "bedrock" | "account" | "dungeons" | "legends";
 
 function JavaPage() {
+  const toggleStoreApp = useToggleStoreApp();
   const [selectedGame, setSelectedGame] = useState("1.12");
 
   function launchGame() {
@@ -173,6 +174,7 @@ function AccountsPage() {
 }
 
 export default function MinecraftLauncherApp() {
+  const toggleStoreApp = useToggleStoreApp();
   const toasterId = useId("toaster");
   const { dispatchToast } = useToastController(toasterId);
   const notify = () =>

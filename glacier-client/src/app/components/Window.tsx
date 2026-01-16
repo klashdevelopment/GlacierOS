@@ -40,12 +40,17 @@ export default function Window({
   const [maximized, setMaximized] = useState(defaultMaximized);
   const [selectedOS, setSelectedOS] = useState('windows');
 
-  function close() {
+  function closeApp(callOnClose=true) {
     (document.getElementsByClassName(id)[0] as HTMLDivElement).classList.add('closing');
     if (document.getElementById(taskbarIconID + '-tb-app')) {
       (document.getElementById(taskbarIconID + '-tb-app') as HTMLDivElement).classList.remove('active');
     }
-    onClose();
+    if (callOnClose) {
+      onClose();
+    }
+  }
+  function close() {
+    closeApp(true);
   }
 
   useEffect(() => {
@@ -84,11 +89,7 @@ export default function Window({
       setSelectedOS(window.localStorage.getItem('os') || "windows");
     }
     if (defaultClosed) {
-      (document.getElementsByClassName(id)[0] as HTMLDivElement).style.display = 'none';
-      close();
-      setTimeout(() => {
-        (document.getElementsByClassName(id)[0] as HTMLDivElement).style.display = 'block';
-      }, 500);
+      closeApp(false);
     } else {
       if (document.getElementById(taskbarIconID + '-tb-app')) {
         (document.getElementById(taskbarIconID + '-tb-app') as HTMLDivElement).classList.add('active');

@@ -4,19 +4,21 @@ import Window from "./Window";
 import xor from "../utils/XOR";
 import useWindowDimensions from "../utils/WindowSizes";
 import { useEffect } from "react";
+import { useStoreApps } from "../windows/store/StoreAppsContext";
+import { nameToID } from "../windows/store/StoreApps";
 
 export default function FrameWindow({
   title,
   url,
   id,
-  taskbarIconID="none",
-  color="glass",
-  seperateBorder="none",
-  className="",
-  cssInject="",
-  defaultClosed=true,
-  defaultPosition={x:40,y:40},
-  defaultUseUV=true
+  taskbarIconID = "none",
+  color = "glass",
+  seperateBorder = "none",
+  className = "",
+  cssInject = "",
+  defaultClosed = true,
+  defaultPosition = { x: 40, y: 40 },
+  defaultUseUV = true
 }: Readonly<{
   title: string;
   url: string;
@@ -27,21 +29,28 @@ export default function FrameWindow({
   seperateBorder?: string;
   className?: string;
   defaultClosed?: boolean;
-  defaultPosition?: {x:number,y:number};
+  defaultPosition?: { x: number, y: number };
   defaultUseUV?: boolean;
 }>) {
+  const SAC = useStoreApps();
   function toggleOff() {
     let window = document.getElementsByClassName(id)[0];
-    if(window) {
-            var frame = (document.querySelector(`.${id} > .w11-content > div > iframe`) as HTMLIFrameElement);
-            frame.src = '';
+    if (window) {
+      var frame = (document.querySelector(`.${id} > .w11-content > div > iframe`) as HTMLIFrameElement);
+      frame.src = '';
     }
+
+    setTimeout(() => {
+      SAC.openApps.filter((app) => nameToID(app.name) === id).forEach((app) => {
+        SAC.removeApp(app);
+      });
+    }, 500);
   }
-    return (
-      <Window title={title} id={id} defaultPosition={defaultPosition} taskbarIconID={id} color={color} seperateBorder={seperateBorder} onClose={toggleOff} defaultClosed={defaultClosed} className={className}>
-        <div className="window-full">
-          <iframe id={id} data-cssinject={cssInject} data-src={defaultUseUV ? xor.quickURL(url) : url} style={{border:'0px',position:'absolute',width:'100%',height:'calc(100% - 40px)'}}></iframe>
-        </div>
-      </Window>
-    );
+  return (
+    <Window title={title} id={id} defaultPosition={defaultPosition} taskbarIconID={id} color={color} seperateBorder={seperateBorder} onClose={toggleOff} defaultClosed={defaultClosed} className={className}>
+      <div className="window-full">
+        <iframe id={id} data-cssinject={cssInject} data-src={defaultUseUV ? xor.quickURL(url) : url} style={{ border: '0px', position: 'absolute', width: '100%', height: 'calc(100% - 40px)' }}></iframe>
+      </div>
+    </Window>
+  );
 }

@@ -6,7 +6,7 @@ import OneDarkPro from "../themes/oneDarkPro.json";
 import { Button, Dropdown, Option, Persona, Select, Tooltip } from "@fluentui/react-components";
 import { useSyntaxpad } from "./SyntaxpadContext";
 import { PlayFilled, ArrowClockwiseFilled, ArrowDownloadFilled, CodeFilled, InfoFilled, QuestionFilled } from "@fluentui/react-icons";
-import { toggleStoreApp } from "./store/StoreApps";
+import { useToggleStoreApp } from "./store/StoreApps";
 import { getWithName } from "../utils/AppListHelper";
 import vm from 'vm';
 import { marked } from "marked";
@@ -124,6 +124,7 @@ export default function Syntaxpad() {
     function handleEditorChange(value: string | undefined, event: any) {
         setValue(value);
     }
+    const toggleStoreApp = useToggleStoreApp();
 
     return (
         <Window title="Syntaxpad" id="syntaxpad" defaultSize={{ width: 500, height: 380 }} taskbarIconID="syntaxpad" color={'onedarkbg'} seperateBorder="1px solid #ffffff0a">

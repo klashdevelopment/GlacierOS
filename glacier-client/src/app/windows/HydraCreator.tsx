@@ -72,7 +72,7 @@ function ExtraPanel({ hydra }: { hydra: HydraContextType }) {
     }
 
     useEffect(() => {
-        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/examples/examples-main.js')
+        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/examples/basics/examples-main.js')
             .then(res => res.text())
             .then(text => {
                 const line = text.split('\n').find(l => l.startsWith('var _exm_games'));

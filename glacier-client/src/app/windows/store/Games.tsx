@@ -2,12 +2,13 @@ import FrameWindow from "@/app/components/FrameWindow"
 import { getApps, getWithCategory } from "@/app/utils/AppListHelper"
 import { Text } from "@fluentui/react"
 import { useEffect } from "react";
-import { toggleStoreApp, nameToID } from "./StoreApps";
+import { useToggleStoreApp, nameToID } from "./StoreApps";
 import { RatingDisplay } from "@fluentui/react-components";
 import { PinFilled, PinOffFilled } from '@fluentui/react-icons';
 import { appToFavoriteApp, FavoritesContextType, useFavorites } from "../useFavorites";
 
 export function StoreGridItem(i: any, app: any, favs: FavoritesContextType) {
+    const toggleStoreApp = useToggleStoreApp();
     return <div key={i} className="store-grid-item">
         <div className="store-grid-main" onClick={function () { toggleStoreApp(nameToID(app.name), app) }}>
             <img src={app.image} alt={app.name} />

@@ -61,7 +61,8 @@ import { FavoritesProvider } from "./windows/useFavorites";
 import ThemeMakerApp, { computeTheme } from "./windows/ThemeMaker";
 import "./live.css";
 import { HydraProvider } from "./windows/HydraContext";
-import {HydraCreator} from "./windows/HydraCreator";
+import { HydraCreator } from "./windows/HydraCreator";
+import { StoreAppsProvider } from "./windows/store/StoreAppsContext";
 
 declare const self: any;
 declare const Ultraviolet: any;
@@ -215,7 +216,7 @@ export default function Home() {
                         <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
                     </filter>
                     <filter id="liquid-glass-new" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                         <feTurbulence type="fractalNoise" baseFrequency="0.011641443707048893 0.011641443707048893" numOctaves="3" seed="9055" />
                         <feDisplacementMap in="shape" scale="64" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
@@ -224,7 +225,7 @@ export default function Home() {
                         </feMerge>
                     </filter>
                     <filter id="liquid-glass-new-blur" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                         <feTurbulence type="fractalNoise" baseFrequency="0.011641443707048893 0.011641443707048893" numOctaves="3" seed="9055" />
                         <feDisplacementMap in="shape" scale="64" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
@@ -266,65 +267,67 @@ export default function Home() {
                         }}>Set Password</Button>}
                     </div>
                 )}
-                <main>
-                    <AppListHelper />
-                    <StoreApps />
+                <StoreAppsProvider>
+                    <main>
+                        <AppListHelper />
+                        <StoreApps />
 
-                    {showFake && (
-                        <div style={{ width: '100vw', height: '100vh', background: 'white', zIndex: '999' }}>
-                            <div style={{ width: '100%', height: '60px', borderBottom: '1px solid #00000015', display: 'flex', alignItems: 'center' }}>
-                                <svg style={{ marginLeft: '25px' }} width="24" height="24" viewBox="0 0 24 24" fill="#00000099" focusable="false" className=" NMm5M"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
-                                <img style={{ marginLeft: '25px' }} width="26" src="https://www.gstatic.com/classroom/logo_square_rounded.svg"></img>
-                                <span style={{ marginLeft: '10px', color: '#000000cc', fontSize: '20px' }}>Classroom</span>
-                            </div>
-                            <div style={{ width: '300px', height: '100%', borderRight: '1px solid #00000015', display: 'flex', paddingTop: '10px' }}>
-                                <div style={{ width: '90%', display: 'flex', paddingLeft: '8px', height: '50px', color: '#0009', alignItems: 'center', background: '#E8F0FE', borderTopRightRadius: '1000vh', borderBottomRightRadius: '1000vh', gap: '10px' }}>
-                                    <img height="20" src="data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2021%2025%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%230009%22%3E%3Cpath%20d%3D%22M1%2021h22L12%202zm12-3h-2v-2h2zm0-4h-2v-4h2z%22%2F%3E%3C%2Fsvg%3E" width="20" alt="" />
-                                    Loading
+                        {showFake && (
+                            <div style={{ width: '100vw', height: '100vh', background: 'white', zIndex: '999' }}>
+                                <div style={{ width: '100%', height: '60px', borderBottom: '1px solid #00000015', display: 'flex', alignItems: 'center' }}>
+                                    <svg style={{ marginLeft: '25px' }} width="24" height="24" viewBox="0 0 24 24" fill="#00000099" focusable="false" className=" NMm5M"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                                    <img style={{ marginLeft: '25px' }} width="26" src="https://www.gstatic.com/classroom/logo_square_rounded.svg"></img>
+                                    <span style={{ marginLeft: '10px', color: '#000000cc', fontSize: '20px' }}>Classroom</span>
+                                </div>
+                                <div style={{ width: '300px', height: '100%', borderRight: '1px solid #00000015', display: 'flex', paddingTop: '10px' }}>
+                                    <div style={{ width: '90%', display: 'flex', paddingLeft: '8px', height: '50px', color: '#0009', alignItems: 'center', background: '#E8F0FE', borderTopRightRadius: '1000vh', borderBottomRightRadius: '1000vh', gap: '10px' }}>
+                                        <img height="20" src="data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2021%2025%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%230009%22%3E%3Cpath%20d%3D%22M1%2021h22L12%202zm12-3h-2v-2h2zm0-4h-2v-4h2z%22%2F%3E%3C%2Fsvg%3E" width="20" alt="" />
+                                        Loading
+                                    </div>
+                                </div>
+                                <div style={{ width: 'calc(100% - 300px)', height: 'calc(100% - 60px)', position: 'absolute', right: '0', top: '60px', color: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '10px' }}>
+                                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20width%3D%22200%22%20height%3D%22200%22%20style%3D%22shape-rendering%3A%20auto%3B%20display%3A%20block%3B%20background%3A%20rgb(255%2C%20255%2C%20255)%3B%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cg%3E%3Ccircle%20stroke-dasharray%3D%22164.93361431346415%2056.97787143782138%22%20r%3D%2235%22%20stroke-width%3D%225%22%20stroke%3D%22%23d1d1d1%22%20fill%3D%22none%22%20cy%3D%2250%22%20cx%3D%2250%22%3E%3CanimateTransform%20keyTimes%3D%220%3B1%22%20values%3D%220%2050%2050%3B360%2050%2050%22%20dur%3D%221s%22%20repeatCount%3D%22indefinite%22%20type%3D%22rotate%22%20attributeName%3D%22transform%22%3E%3C%2FanimateTransform%3E%3C%2Fcircle%3E%3Cg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" width="60" alt="" />
+                                    <b style={{ color: '#0009' }}>Loading...</b>
+                                    <p style={{ position: 'absolute', bottom: '3px' }}>Having issues? Try: <span style={{ color: '#369', cursor: 'pointer' }} onClick={() => { setShowFake(false) }}>opening glacier</span></p>
                                 </div>
                             </div>
-                            <div style={{ width: 'calc(100% - 300px)', height: 'calc(100% - 60px)', position: 'absolute', right: '0', top: '60px', color: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '10px' }}>
-                                <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20width%3D%22200%22%20height%3D%22200%22%20style%3D%22shape-rendering%3A%20auto%3B%20display%3A%20block%3B%20background%3A%20rgb(255%2C%20255%2C%20255)%3B%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cg%3E%3Ccircle%20stroke-dasharray%3D%22164.93361431346415%2056.97787143782138%22%20r%3D%2235%22%20stroke-width%3D%225%22%20stroke%3D%22%23d1d1d1%22%20fill%3D%22none%22%20cy%3D%2250%22%20cx%3D%2250%22%3E%3CanimateTransform%20keyTimes%3D%220%3B1%22%20values%3D%220%2050%2050%3B360%2050%2050%22%20dur%3D%221s%22%20repeatCount%3D%22indefinite%22%20type%3D%22rotate%22%20attributeName%3D%22transform%22%3E%3C%2FanimateTransform%3E%3C%2Fcircle%3E%3Cg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" width="60" alt="" />
-                                <b style={{ color: '#0009' }}>Loading...</b>
-                                <p style={{ position: 'absolute', bottom: '3px' }}>Having issues? Try: <span style={{ color: '#369', cursor: 'pointer' }} onClick={() => { setShowFake(false) }}>opening glacier</span></p>
-                            </div>
-                        </div>
-                    )}
-                    {!showFake && <SyntaxpadProvider><FavoritesProvider>
-                        {selectedOS === "tvos" && <TVOS />}
-                        {selectedOS === "tvos-visionos" && <VisionOS />}
-                        {selectedOS === "tvos-ipados" && <IPadOS />}
-                        <StartMenu updTaskbarWindows={() => {
-                            setTaskbarDefaults(selectedOS);
-                        }}>
-                            <Taskbar apps={taskbarApps} />
-                        </StartMenu>
-                        {!selectedOS.includes('tvos') && <FavoriteGrid />}
-                        <SettingsApp taskbar={setTaskbarDefaults} />
-                        <CalculatorApp />
-                        <TerminalApp />
-                        <FileExplorer />
-                        <EdgeApp />
-                        <CameraApp />
-                        <StoreApp />
-                        <LunarClientApp />
-                        <ModrinthApp />
-                        <CloudGaming />
-                        <MinecraftLauncherApp />
-                        <Syntaxpad />
-                        <Bootpad />
-                        <DuallerApp />
-                        <LiquidGlassApp />
-                        <AudioVizApp />
-                        <ThemeMakerApp setTaskbar={setTaskbarDefaults} />
-                        <HydraProvider>
-                            <HydraCreator />
-                        </HydraProvider>
-                        <QuadpadProvider>
-                            <Quadpad />
-                        </QuadpadProvider>
-                    </FavoritesProvider></SyntaxpadProvider>}
-                </main>
+                        )}
+                        {!showFake && <SyntaxpadProvider><FavoritesProvider>
+                            {selectedOS === "tvos" && <TVOS />}
+                            {selectedOS === "tvos-visionos" && <VisionOS />}
+                            {selectedOS === "tvos-ipados" && <IPadOS />}
+                            <StartMenu updTaskbarWindows={() => {
+                                setTaskbarDefaults(selectedOS);
+                            }}>
+                                <Taskbar apps={taskbarApps} />
+                            </StartMenu>
+                            {!selectedOS.includes('tvos') && <FavoriteGrid />}
+                            <SettingsApp taskbar={setTaskbarDefaults} />
+                            <CalculatorApp />
+                            <TerminalApp />
+                            <FileExplorer />
+                            <EdgeApp />
+                            <CameraApp />
+                            <StoreApp />
+                            <LunarClientApp />
+                            <ModrinthApp />
+                            <CloudGaming />
+                            <MinecraftLauncherApp />
+                            <Syntaxpad />
+                            <Bootpad />
+                            <DuallerApp />
+                            <LiquidGlassApp />
+                            <AudioVizApp />
+                            <ThemeMakerApp setTaskbar={setTaskbarDefaults} />
+                            <HydraProvider>
+                                <HydraCreator />
+                            </HydraProvider>
+                            <QuadpadProvider>
+                                <Quadpad />
+                            </QuadpadProvider>
+                        </FavoritesProvider></SyntaxpadProvider>}
+                    </main>
+                </StoreAppsProvider>
             </FluentProvider>
         </>
     );

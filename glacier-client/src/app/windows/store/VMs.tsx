@@ -1,5 +1,4 @@
 import { getWithCategory } from "@/app/utils/AppListHelper";
-import { toggleStoreApp, nameToID } from "./StoreApps";
 import { StoreGridItem } from "./Games";
 import { useFavorites } from "../useFavorites";
 

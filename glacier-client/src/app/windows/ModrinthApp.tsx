@@ -5,10 +5,11 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { SearchRegular, RecordStopRegular, ArrowRotateClockwiseRegular, ArrowRotateCounterclockwiseRegular, ArrowRedoRegular, ArrowLeft20Regular, CaretLeft16Filled, CaretRight16Filled, Home16Regular, Home24Regular, Library24Regular, CompassNorthwest24Regular } from "@fluentui/react-icons";
 import { registerSWandset } from "../utils/doSWStuff";
 import contsants from "../Constants";
-import { nameToID, toggleStoreApp } from "./store/StoreApps";
+import { nameToID, useToggleStoreApp } from "./store/StoreApps";
 import { allClients, clients, SelectedClientData } from "./LunarClient";
 
 export default function ModrinthApp() {
+    const toggleStoreApp = useToggleStoreApp();
     function launchGame(selectedClient: SelectedClientData) {
         let launcher = document.querySelector('.modrinth') as HTMLElement;
     

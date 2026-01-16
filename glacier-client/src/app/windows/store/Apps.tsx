@@ -3,7 +3,6 @@ import { getApps, getWithCategory } from "@/app/utils/AppListHelper"
 import { Text } from "@fluentui/react";
 import { RatingDisplay } from "@fluentui/react-components";
 import { useEffect } from "react";
-import { toggleStoreApp, nameToID } from "./StoreApps";
 import { PinFilled, PinOffFilled } from '@fluentui/react-icons';
 import { useFavorites } from "../useFavorites";
 import { StoreGridItem } from "./Games";

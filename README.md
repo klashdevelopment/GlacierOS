@@ -1,17 +1,20 @@
 # GlacierOS
 GlacierOS's only official open source repo: klashdevelopment/GlacierOS
 
-```
-Instructions below may be changing as glacier goes into a static-only state. They should apply until stated otherwise
-```
+## Flavors
+Glacier comes in two flavors. A noUV, or static copy, can be ran on any static hosting server but does ***not include anti-censorship***. I only host these copies.
+
+The full UV version is ran on an actual VPS, requiring more resources as it runs an Ultraviolet instance under the hood. The only official instances are hosted by @Colbster937.
 
 ## Hosting
-You're gonna want to host `glacier-server`. (`npm install` first obv) That repo includes the actual glacier hostable code and files.
+You're gonna want to host `glacier-server` for a full UV instance. (`npm install` first obv) That repo includes the actual glacier hostable code and files.
 
 **Fly.io**
 Enter `glacier-server` using `cd` and deploy using `fly launch`, copying the settings.
 
 **Self-host services**
+
+For a full UV version of Glacier:
 
 - [Replit](https://replit.com/@gavingogaminalt/glacierOSReplit?v=1) - Run the project
 - [CodeSandbox](https://codesandbox.io/p/devbox/jxw75r) - Run the project
@@ -19,6 +22,8 @@ Enter `glacier-server` using `cd` and deploy using `fly launch`, copying the set
 
 **Other services**
 Glacier server can be deployed on any service - simply host `glacier-server` however you need to as a NodeJS project.
+
+Glacier client (noUV) can be hosted easily too, using `glacier-server/client`, but hosting it statically.
 
 ## Modifying
 `glacier-client` contains the pure UI and featureset of Glacier in next.js. Feel free to modify and make PRs!

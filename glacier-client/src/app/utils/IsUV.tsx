@@ -1,6 +1,7 @@
+'use client';
+
 import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 
-'use client';
 
 
 interface UVContextType {

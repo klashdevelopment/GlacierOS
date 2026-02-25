@@ -35,7 +35,7 @@ lib.loop(60);`);
     }
 </style>
 <canvas id="game"></canvas>
-<script src="https://raw.githack.com/klashdevelopment/Hydra/main/hydra.js"></script>
+<script src="https://raw.githack.com/klashdevelopment/Hydra/main/src/hydra.js"></script>
 <script>
     %GAME
 </script>`);

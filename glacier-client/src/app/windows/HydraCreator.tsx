@@ -15,10 +15,10 @@ function EditorPane() {
             inherit: true,
             ...OneDarkPro
         });
-        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/hydra.d.ts')
+        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/src/hydra.d.ts')
             .then(res => res.text())
             .then(text => {
-                monaco.languages.typescript.javascriptDefaults.addExtraLib(text, 'file:///node_modules/@types/hydra/index.d.ts');
+                monaco.languages.typescript.javascriptDefaults.addExtraLib(text, 'hydra.d.ts');
             });
     };
     function handleEditorChange(value: string | undefined, event: any) {
@@ -137,7 +137,7 @@ function ExtraPanel({ hydra }: { hydra: HydraContextType }) {
                     margin: '2px 0'
                 }}>
                     <Button onClick={() => {
-                        fetch(`https://raw.githack.com/klashdevelopment/Hydra/main/examples/${example}.js`)
+                        fetch(`https://raw.githack.com/klashdevelopment/Hydra/main/examples/basics/${example}.js`)
                             .then(res => res.text())
                             .then(text => {
                                 hydra.setValue(text);

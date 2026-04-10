@@ -23,6 +23,8 @@ For a full UV version of Glacier:
 **Other services**
 Glacier server can be deployed on any service - simply host `glacier-server` however you need to as a NodeJS project.
 
+To host glacier server easier, you can use the [Bash installer](https://github.com/klashdevelopment/GlacierOS/blob/main/setup.sh) or [NodeJS installer](https://github.com/gavingogaming/GlacierOSBootstrap) to install and run glacierOS-server on your host of choice.
+
 Glacier client (noUV) can be hosted easily too, using `glacier-server/client`, but hosting it statically.
 
 ## Modifying

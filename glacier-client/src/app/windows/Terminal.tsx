@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Window from "../components/Window";
 import "./terminal.css";
 import { getAllNames, getApps, getWithName } from "../utils/AppListHelper";
-import { nameToID, toggleStoreApp } from "./store/StoreApps";
+import { nameToID, useToggleStoreApp } from "./store/StoreApps";
 import { ArrowUploadRegular } from "@fluentui/react-icons";
 import {Button} from "@fluentui/react-components";
 
@@ -34,6 +34,7 @@ function escapeMarkup (dangerousInput: string) {
   }
 
 export default function TerminalApp() {
+    const toggleStoreApp = useToggleStoreApp();
     const [lines, updLines] = useState<string[]>(["Glacier Terminal v1.0.0"]);
     function setLines(newLines: string[]) {
         const markedLines = newLines.map(line => {

@@ -1,7 +1,6 @@
 import { getCategories, getWithCategory, reloadData } from "@/app/utils/AppListHelper";
 import { Button, Dropdown, Option } from "@fluentui/react-components";
 import { useState, useEffect } from "react";
-import { nameToID, toggleStoreApp } from "./StoreApps";
 
 import { ArrowClockwiseFilled } from "@fluentui/react-icons";
 import { StoreGridItem } from "./Games";

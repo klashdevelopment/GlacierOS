@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Window from "../components/Window";
 import "./thememaker.css";
 import { Button, Checkbox, Dropdown, Label, Option, Popover, PopoverSurface, PopoverTrigger, Slider } from "@fluentui/react-components";
 import { CaretDown20Filled, CaretUp20Filled, DismissCircle20Filled } from "@fluentui/react-icons";
 import { ColorPicker } from "@fluentui/react";
+import OneDarkPro from "../themes/oneDarkPro.json";
+import { Editor, Monaco } from "@monaco-editor/react";
 
 export var iconSets = [
     {
@@ -69,6 +71,7 @@ export interface CustomTheme {
         },
         rightside: boolean,
     },
+    customCSS: string,
     windows: {
         border: Border,
         controls: {
@@ -228,7 +231,153 @@ export function computeTheme(theme: CustomTheme): string {
                 display: none;
             }
         `: ''}
+        ${theme.customCSS || ''}
     `;
+}
+
+function ColPick({
+    onChange,
+    color,
+    open,
+    close,
+    id,
+}: {
+    onChange: (color: string) => void;
+    color: string;
+    close: () => void;
+    open: boolean;
+    id: string;
+}) {
+    return (
+        <Popover
+            open={open}
+            trapFocus
+        >
+            <PopoverTrigger>
+                <div />
+            </PopoverTrigger>
+            <PopoverSurface>
+                <ColorPicker
+                    color={color}
+                    onChange={(_, data) => onChange(data.str)}
+                ></ColorPicker>
+                <Button onClick={close}>Close</Button>
+            </PopoverSurface>
+        </Popover>
+    );
+}
+
+function Section({ children, title, open, setOpen }: {
+    children?: React.ReactNode,
+    title: string,
+    open: boolean,
+    setOpen: (open: boolean) => void
+}) {
+    return (
+        <div className={`thememaker-section ${open ? "open" : ""}`}>
+            <div className={`tms-bar`} onClick={() => setOpen(!open)}>
+                {open ? <CaretUp20Filled /> : <CaretDown20Filled />}
+                {title}
+            </div>
+            {open && <div className="tms-content">
+                {children}
+            </div>}
+        </div>
+    )
+}
+function MiniSection({ children, title }: {
+    children?: React.ReactNode,
+    title: string
+}) {
+    return (
+        <div className="tms-minisection">
+            <b className="tms-ms-title">{title}</b>
+            <div className="tms-ms-content">
+                {children}
+            </div>
+        </div>
+    )
+}
+function BorderEditor({ border, onChange }: {
+    border: Border,
+    onChange: (border: Border) => void
+}) {
+    const [colorOpen, setColorOpen] = useState(false);
+
+    // Use local state only if border is not 'none'
+    const width = border === 'none' ? 0 : border.width;
+    const rounding = border === 'none' ? 0 : border.rounding ?? 0;
+    const color = border === 'none' ? '#000000' : border.color;
+
+    return (
+        <div className="border-editor">
+            <Checkbox label="Enable border" checked={border !== 'none'} onChange={(_, data) => {
+                if (data.checked == false) {
+                    onChange('none');
+                } else {
+                    onChange({
+                        width: 1,
+                        color: '#000000',
+                        rounding: 0
+                    });
+                }
+            }} />
+            {border !== 'none' && (
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    marginTop: '8px'
+                }}>
+                    <ColPick id="border-color" onChange={(color) => onChange({
+                        ...border,
+                        color
+                    })} color={color} open={colorOpen} close={() => setColorOpen(false)} />
+                    <input
+                        type="number"
+                        value={width}
+                        min="0"
+                        max="20"
+                        onChange={e => {
+                            const newWidth = parseInt(e.target.value, 10) || 0;
+                            onChange({
+                                ...border,
+                                width: newWidth
+                            });
+                        }}
+                    />
+                    px thick
+                    <div style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: color,
+                        border: '1px solid #ffffff4a',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        display: 'inline-block',
+                        marginLeft: 8,
+                        marginRight: 8
+                    }} onClick={
+                        () => setColorOpen(true)
+                    }></div> border with
+                    <input
+                        type="number"
+                        value={rounding}
+                        min="0"
+                        max="100"
+                        onChange={e => {
+                            const newRounding = parseInt(e.target.value, 10) || 0;
+                            onChange({
+                                ...border,
+                                rounding: newRounding
+                            });
+                        }}
+                    />
+                    px rounding
+                </div>
+            )}
+        </div>
+    )
 }
 
 export default function ThemeMakerApp({
@@ -251,6 +400,7 @@ export default function ThemeMakerApp({
             },
             rightside: false
         },
+        customCSS: '',
         windows: {
             border: 'none',
             controls: {
@@ -273,151 +423,6 @@ export default function ThemeMakerApp({
         setTaskbarWrapper(theme.icons.base, theme.icons);
     }, [started]);
 
-    function ColPick({
-        onChange,
-        color,
-        open,
-        close,
-        id,
-    }: {
-        onChange: (color: string) => void;
-        color: string;
-        close: () => void;
-        open: boolean;
-        id: string;
-    }) {
-        return (
-            <Popover
-                open={open}
-                trapFocus
-            >
-                <PopoverTrigger>
-                    <div />
-                </PopoverTrigger>
-                <PopoverSurface>
-                    <ColorPicker
-                        color={color}
-                        onChange={(_, data) => onChange(data.str)}
-                    ></ColorPicker>
-                    <Button onClick={close}>Close</Button>
-                </PopoverSurface>
-            </Popover>
-        );
-    }
-
-    function Section({ children, title, open, setOpen }: {
-        children?: React.ReactNode,
-        title: string,
-        open: boolean,
-        setOpen: (open: boolean) => void
-    }) {
-        return (
-            <div className={`thememaker-section ${open ? "open" : ""}`}>
-                <div className={`tms-bar`} onClick={() => setOpen(!open)}>
-                    {open ? <CaretUp20Filled /> : <CaretDown20Filled />}
-                    {title}
-                </div>
-                {open && <div className="tms-content">
-                    {children}
-                </div>}
-            </div>
-        )
-    }
-    function MiniSection({ children, title }: {
-        children?: React.ReactNode,
-        title: string
-    }) {
-        return (
-            <div className="tms-minisection">
-                <b className="tms-ms-title">{title}</b>
-                <div className="tms-ms-content">
-                    {children}
-                </div>
-            </div>
-        )
-    }
-    function BorderEditor({ border, onChange }: {
-        border: Border,
-        onChange: (border: Border) => void
-    }) {
-        const [colorOpen, setColorOpen] = useState(false);
-
-        // Use local state only if border is not 'none'
-        const width = border === 'none' ? 0 : border.width;
-        const rounding = border === 'none' ? 0 : border.rounding ?? 0;
-        const color = border === 'none' ? '#000000' : border.color;
-
-        return (
-            <div className="border-editor">
-                <Checkbox label="Enable border" checked={border !== 'none'} onChange={(_, data) => {
-                    if (data.checked == false) {
-                        onChange('none');
-                    } else {
-                        onChange({
-                            width: 1,
-                            color: '#000000',
-                            rounding: 0
-                        });
-                    }
-                }} />
-                {border !== 'none' && (
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        marginTop: '8px'
-                    }}>
-                        <ColPick id="border-color" onChange={(color) => onChange({
-                            ...border,
-                            color
-                        })} color={color} open={colorOpen} close={() => setColorOpen(false)} />
-                        <input
-                            type="number"
-                            value={width}
-                            min="0"
-                            max="20"
-                            onChange={e => {
-                                const newWidth = parseInt(e.target.value, 10) || 0;
-                                onChange({
-                                    ...border,
-                                    width: newWidth
-                                });
-                            }}
-                        />
-                        px thick
-                        <div style={{
-                            width: '20px',
-                            height: '20px',
-                            backgroundColor: color,
-                            border: '1px solid #ffffff4a',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            display: 'inline-block',
-                            marginLeft: 8,
-                            marginRight: 8
-                        }} onClick={
-                            () => setColorOpen(true)
-                        }></div> border with
-                        <input
-                            type="number"
-                            value={rounding}
-                            min="0"
-                            max="100"
-                            onChange={e => {
-                                const newRounding = parseInt(e.target.value, 10) || 0;
-                                onChange({
-                                    ...border,
-                                    rounding: newRounding
-                                });
-                            }}
-                        />
-                        px rounding
-                    </div>
-                )}
-            </div>
-        )
-    }
-
     const [tbbgOpen, setTbbgOpen] = useState(false);
     const [sect, setOpenSections] = useState({
         info: false,
@@ -425,7 +430,8 @@ export default function ThemeMakerApp({
         windows: false,
         icons: false,
         preview: false,
-        export: false
+        export: false,
+        css: false
     });
     useEffect(() => {
         if (!started) return;
@@ -435,7 +441,8 @@ export default function ThemeMakerApp({
             windows: false,
             icons: false,
             preview: false,
-            export: false
+            export: false,
+            css: false
         });
     }, [started]);
     function sectionSetter(section: string) {
@@ -506,11 +513,11 @@ export default function ThemeMakerApp({
             input.click();
         });
     }
-    
+
     function setTaskbarWrapper(os: string, customIcons?: Record<string, string>) {
-        if(customIcons?.start) {
+        if (customIcons?.start) {
             document.querySelector('#startmenu-tb-app img')?.setAttribute('src', customIcons.start);
-        }else {
+        } else {
             document.querySelector('#startmenu-tb-app img')?.setAttribute('src', `/${os}/start.webp`);
         }
         setTaskbar(os, customIcons);
@@ -535,6 +542,40 @@ export default function ThemeMakerApp({
             'minecraft': 'minecraft'
         }[icon] || icon;
     }
+
+    const cssSection = useMemo(() => {
+        return (
+            <Section open={sect.css} setOpen={
+                sectionSetter('css')
+            } title="Custom CSS">
+                <span>Add custom CSS to further customize your theme. Be careful, as incorrect CSS may break the UI.</span>
+                <Editor options={{
+                    fontSize: 14,
+                    fontLigatures: true,
+                    minimap: {
+                        enabled: false
+                    },
+                    bracketPairColorization: {
+                        enabled: true
+                    },
+                    formatOnPaste: true,
+                    placeholder: '\/* Enter your custom CSS here */\n',
+                }} theme={"OneDarkPro"} height={300} onChange={(value: string | undefined, event: any) => {
+                    const newCSS = value || '';
+                    setTheme({
+                        ...theme,
+                        customCSS: newCSS
+                    });
+                }} beforeMount={(monaco: Monaco) => {
+                    monaco.editor.defineTheme('OneDarkPro', {
+                        base: 'vs-dark',
+                        inherit: true,
+                        ...OneDarkPro
+                    });
+                }} language={'css'}></Editor>
+            </Section>
+        )
+    }, [sect.css, theme.customCSS]);
 
     return (
         <Window title="Theme Maker" id="thememaker" taskbarIconID="thememaker" color={'gray'} seperateBorder="1px solid #ffffff0a">
@@ -642,6 +683,7 @@ export default function ThemeMakerApp({
                             </div>
                         </MiniSection>
                     </Section>
+                    {cssSection}
                     <Section open={sect.windows} setOpen={
                         sectionSetter('windows')
                     } title="Windows">
@@ -671,7 +713,7 @@ export default function ThemeMakerApp({
                         sectionSetter('icons')
                     } title="Icons">
                         <span>Select a fallback ("base") icon set, and upload icons (.webp, &lt;10kb)</span>
-                        
+
                         <MiniSection title="Fallback icon set">
                             <Dropdown
                                 onOptionSelect={(e, data) => {
@@ -692,7 +734,7 @@ export default function ThemeMakerApp({
                             >
                                 {iconSets.map(iconSet => (
                                     <Option text={iconSet.name} key={iconSet.value} value={iconSet.value}><>
-                                        <span style={{width: '100px'}}>{iconSet.name}</span> <OSAndIcons iconSet={iconSet.value} />
+                                        <span style={{ width: '100px' }}>{iconSet.name}</span> <OSAndIcons iconSet={iconSet.value} />
                                     </></Option>
                                 ))}
                             </Dropdown>

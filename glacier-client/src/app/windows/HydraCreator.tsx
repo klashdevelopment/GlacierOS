@@ -18,7 +18,7 @@ function EditorPane() {
         fetch('https://raw.githubusercontent.com/klashdevelopment/Hydra/main/src/hydra.d.ts')
             .then(res => res.text())
             .then(text => {
-                monaco.languages.typescript.javascriptDefaults.addExtraLib(text, 'file:///node_modules/@types/hydra/index.d.ts');
+                monaco.languages.typescript.javascriptDefaults.addExtraLib(text, 'hydra.d.ts');
             });
     };
     function handleEditorChange(value: string | undefined, event: any) {

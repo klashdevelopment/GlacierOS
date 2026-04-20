@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { nameToID, toggleStoreApp } from "./store/StoreApps";
+import { nameToID, useToggleStoreApp } from "./store/StoreApps";
 
 export interface FavoriteApp {
     name: string;
@@ -47,6 +47,7 @@ export interface FavoritesContextType {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const toggleStoreApp = useToggleStoreApp();
     const [favorites, setFavorites] = useState<FavoriteApp[]>([]);
 
     useEffect(() => {

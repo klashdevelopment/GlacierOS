@@ -1,5 +1,4 @@
 import { useEffect, useId, useState } from "react";
-import { toggleStoreApp, nameToID } from "./StoreApps";
 import { Button, Dropdown, Input, Option, Persona, Toast, ToastBody, ToastTitle, Toaster, useToastController } from "@fluentui/react-components";
 import { IconList } from "../MoreIcons";
 

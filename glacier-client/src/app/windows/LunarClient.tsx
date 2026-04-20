@@ -6,7 +6,7 @@ import { SearchRegular, RecordStopRegular, ArrowRotateClockwiseRegular, ArrowRot
 import { registerSWandset } from "../utils/doSWStuff";
 import "./lunar.css";
 import contsants from "../Constants";
-import { nameToID, toggleStoreApp } from "./store/StoreApps";
+import { nameToID, useToggleStoreApp } from "./store/StoreApps";
 import exp from "constants";
 
 export interface SelectedClientData {
@@ -158,6 +158,7 @@ export const clients: Record<string, SelectedClientData> = {
 export const allClients: SelectedClientData[] = Object.values(clients);
 
 export default function LunarClientApp() {
+    const toggleStoreApp = useToggleStoreApp();
     const [selectedClient, setSelectedClient] = useState<SelectedClientData>(clients.astra);
 
     function getNextClient() {

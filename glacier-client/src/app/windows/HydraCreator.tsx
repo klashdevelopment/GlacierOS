@@ -15,7 +15,7 @@ function EditorPane() {
             inherit: true,
             ...OneDarkPro
         });
-        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/hydra.d.ts')
+        fetch('https://raw.githubusercontent.com/klashdevelopment/Hydra/main/src/hydra.d.ts')
             .then(res => res.text())
             .then(text => {
                 monaco.languages.typescript.javascriptDefaults.addExtraLib(text, 'file:///node_modules/@types/hydra/index.d.ts');
@@ -72,7 +72,7 @@ function ExtraPanel({ hydra }: { hydra: HydraContextType }) {
     }
 
     useEffect(() => {
-        fetch('https://raw.githack.com/klashdevelopment/Hydra/main/examples/examples-main.js')
+        fetch('https://raw.githubusercontent.com/klashdevelopment/Hydra/main/examples/basics/examples-main.js')
             .then(res => res.text())
             .then(text => {
                 const line = text.split('\n').find(l => l.startsWith('var _exm_games'));
@@ -137,7 +137,7 @@ function ExtraPanel({ hydra }: { hydra: HydraContextType }) {
                     margin: '2px 0'
                 }}>
                     <Button onClick={() => {
-                        fetch(`https://raw.githack.com/klashdevelopment/Hydra/main/examples/${example}.js`)
+                        fetch(`https://raw.githack.com/klashdevelopment/Hydra/main/examples/basics/${example}.js`)
                             .then(res => res.text())
                             .then(text => {
                                 hydra.setValue(text);
@@ -190,7 +190,7 @@ export function HydraCreator() {
                     </Panel>
                     <PanelResizeHandle style={{ width: '1px', background: '#ffffff40' }} />
                     <Panel defaultSize={50} minSize={20}>
-                        <PreviewPane hydra={hydra} />
+                        <PreviewPane key={(hydra.value?.length||0) + 1938} hydra={hydra} />
                     </Panel>
                 </PanelGroup>
             </div>

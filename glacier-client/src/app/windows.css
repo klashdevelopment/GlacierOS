@@ -250,9 +250,9 @@
   animation-fill-mode: forwards;
 }
 .w11-window.maximized:not(.tvos-open) {
-  width: calc(100% - 20px) !important;
-  left: 10px !important;
-  height: calc(100% - 100px) !important;
+  width: 100% !important;
+  left: 0px !important;
+  height: calc(100% - 60px) !important;
 }
 .hidden {
   display: none !important;

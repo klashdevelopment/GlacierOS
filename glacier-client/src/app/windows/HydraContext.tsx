@@ -35,9 +35,22 @@ lib.loop(60);`);
     }
 </style>
 <canvas id="game"></canvas>
-<script src="https://raw.githack.com/klashdevelopment/Hydra/main/hydra.js"></script>
+<script src="https://raw.githubusercontent.com/klashdevelopment/Hydra/main/src/hydra.js"></script>
 <script>
     %GAME
+</script>
+<script>
+/* Basic error handler */
+window.onerror = function(message, source, lineno, colno, error) {
+    const popup = \`<div onclick="this.remove()" style="cursor:pointer;background:#ffffff02;color:white;position:absolute;bottom:5px;right:5px;width:200px;height:100px;overflow:auto;">
+        <strong>Error:</strong> \${message}<br>
+        <strong>L</strong>\${lineno} C\${colno}<br>
+        <strong>Click to dismiss</strong><br><br>
+        <strong>Stack Trace:</strong><br>
+        <pre>\${error?.stack}</pre>
+    </div>\`;
+    document.body.appendChild(popup);
+}
 </script>`);
     return (
         <HydraContext.Provider value={{ value, setValue, activeWindow, setActiveWindow, html, setHtml }}>
